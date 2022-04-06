@@ -1,0 +1,107 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+    <!-- Shopping Summery -->
+    <table class="table shopping-summery">
+        <thead>
+            <tr class="main-hading">
+                <th>Venta</th>
+                <th>Fecha Compra/Entrega</th>
+                <th>Comprador</th>
+                <th>Producto</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Total</th> 
+                <th class="text-center">Opción</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% if object_list %}
+                {% for i in object_list %}
+                    <tr>
+                        <td class="product-des" data-title="Venta">
+                            <p class="product-name">#000000{{i.id}}</p>
+                            <p class="product-des">{{i.estado_operacion}}</p>
+                        </td>
+                        <td class="product-des" data-title="Fecha Compra/Entrega">
+                            <p class="product-name">{{i.fecha_creada.date}}</p>
+                            <p class="product-name">\</p>
+                            
+                            {% if i.fecha_cierre %}
+                                <p class="product-des">{{i.fecha_cierre.date}}</p>
+                            {% else %}
+                                <p class="product-des">Indefinido</p>
+                            {% endif %}
+                                
+                            
+                        </td>
+                        <td class="qty" data-title="Comprador"><a href="{% url 'DatosDeContactoTemplateView' i.usuario.id %}">{{i.usuario}}</a></td>
+                        <td class="product-des" data-title="Producto">
+                            <p class="product-name"><a href="{% url 'ProductoDetailView' i.producto.id %}">{{i.producto.nombre}}</a></p>
+                            <p class="product-des">{{i.producto.descripcion|slice:50}}...</p>
+                        </td>
+                        <td class="price" data-title="Precio"><span>${{i.producto.precio}} </span></td>
+                        <td class="qty" data-title="Cantidad"><span>{{i.cantidad}}</span></td>
+                        
+                        <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>
+                        
+                        {% if i.state %}
+                            <td class="action" data-title="Opción"><a href="{% url 'DetalleVentaUpdateView' i.id %}">Ver factura</a></td>
+                        {% else %}
+                        <td class="action" data-title="Opción"><a href="{% url 'DetalleVentaCerradaTemplateView' i.id %}">Ver factura</a></td>
+                        {% endif %}
+                            
+                        
+                    </tr>
+                {% endfor %} 
+            {% else %}
+                <tr>
+                    <td class="product-des" data-title="Venta">
+                        <h4>Vacio</h4>
+                    </td>
+                    <td class="product-des" data-title="Fecha Compra/Entrega">
+                    </td>
+                    <td class="qty" data-title="Comprador"></td>
+                    <td class="product-des" data-title="Producto">
+                    </td>
+                    <td class="price" data-title="Precio"><span></span></td>
+                    <td class="qty" data-title="Cantidad"><span></span></td>
+                    <td class="total-amount" data-title="Total"><span></span></td>
+                    
+                    <td class="action" data-title="Opción"></td>
+                </tr>
+            {% endif %}
+                
+            
+                
+            
+        </tbody>
+    </table>
+    <!--/ End Shopping Summery -->
+{% endblock contenido %}
+
+
+
+{% block contenido_footer %}
+<div class="total-amount">
+    <div class="row">
+        <div class="col-12">
+            <div class="right" style="Padding:0px">
+                <ul>
+                    <li> 
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{page_obj.previous_page_number}}">Atrás</a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <span><a href="?page={{page_obj.next_page_number}}">Siguiente</a></span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido_footer %}
+    

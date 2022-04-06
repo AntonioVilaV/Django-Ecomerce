@@ -1,0 +1,49 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+<div class="contact-us">
+    <div class="form-main">
+            <div class="title">
+                <h3>¿Seguro que desea eliminar esta publicacion?</h3>
+            </div>
+            <form class="form" method="post" action="">
+                {% csrf_token %}
+                <table class="table shopping-summery">
+                    <thead>
+                        <tr class="main-hading">
+                            <th>Producto</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th class="text-center">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="image" data-title="No"><img src="{{producto.get_image}}" alt="#"></td>
+                            <td class="product-des" data-title="Description">
+                                <p class="product-name"><a href="#">{{producto.id}} - {{producto.nombre}}</a></p>
+                                <p class="product-des">{{producto.descripcion|slice:120}}</p>
+                            </td>
+                            <td class="price" data-title="Price"><span>{{producto.inventario_producto.cantidad}}</span></td>
+                            <td class="price" data-title="Price"><span>${{producto.precio}} </span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="col">
+                    <button type="submit" class="btn">Aceptar</button>
+                
+                    {% if producto.estado %}
+                        <a href="{% url 'ListaPublicacionesVendedorActivasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
+                    {% elif producto.estado == False %}
+                        <a href="{% url 'ListaPublicacionesVendedorPausadasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
+                    {% endif %}
+                </div>
+                
+                
+                
+            </form>
+    </div>
+</div>
+{% endblock contenido %}

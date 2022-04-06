@@ -1,0 +1,90 @@
+{% extends 'base/base_contenido.html' %}
+{% load static %}
+{% block contenido %}
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+<div class="row">
+  <div class="col-lg-16 col-12">
+    <div class="contact-us">
+      <div class="form-main" style="padding-top: 25px;">
+        <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <div class="image">
+                <img id="imagenProducto" src="{% static 'recursos/img/img_empty.jpg' %}" width="400px">
+            </div>
+            {{form.foto.label}}
+            {{form.foto}}
+            <label>{{form.errors.foto}}</label>
+          </div>
+          <div class="col-lg-5 col-12">
+            <div class="col">
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block">{{form.nombre.label}}</label>
+                  {{form.nombre}}
+                  <label>{{form.errors.nombre}}</label>
+                </div>
+              </div>
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block;">{{form.precio.label}}</label>
+                  {{form.precio}}
+                  <label>{{form.errors.precio}}</label>
+                </div>
+                
+              </div>
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block;">Cantidad</label>
+                  {{form2.cantidad}}
+                  <label>{{form2.errors.cantidad}}</label>
+                </div>
+              </div>
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block;">Categoria</label>
+                  {{form.categoria}}
+                  <label style="display: block;">{{form.errors.categoria}}</label>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="form-group message">
+              <label>{{form.descripcion.label}}</label>
+              {{form.descripcion}}
+              <label>{{form.errors.descripcion}}</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group button">
+              <button type="submit" class="btn ">Guardar</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<script>
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function (e) {
+              $('#imagenProducto').attr('src', e.target.result);
+          };
+  
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  
+</script>
+{% endblock contenido %}

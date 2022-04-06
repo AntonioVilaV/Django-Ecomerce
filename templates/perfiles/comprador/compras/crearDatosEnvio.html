@@ -1,0 +1,56 @@
+{% extends 'base/baseContact.html' %}
+
+
+{% block contenido %}
+
+<div class="contact-us">
+    <div class="form-main">
+            <div class="title">
+                <h3>Datos de envio</h3>
+            </div>
+            <form class="form" method="post" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Nombre<span>*</span></label>
+                            {{form.nombre}}
+                            <label for="">{{form.errors.nombre}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Cedula<span>*</span></label>
+                            {{form.cedula}}
+                            <label for="">{{form.errors.cedula}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Telefono<span>*</span></label>
+                            {{form.telefono}}
+                            <label for="">{{form.errors.telefono}}</label>
+                        </div>	
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="form-group message">
+                            <label>Direccion<span>*</span></label>
+                            {{form.direccion}}
+                            <label for="">{{form.errors.direccion}}</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group button">
+                            <button type="submit" class="btn ">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+
+
+
+
+{% endblock contenido%}
