@@ -15,4 +15,4 @@ pyzbar==0.1.8
 sqlparse==0.4.2
 typing-extensions==3.10.0.2
 whitenoise==6.0.0
-
+youtube-dl==2021.12.17
