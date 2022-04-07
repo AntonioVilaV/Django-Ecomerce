@@ -1,7 +1,7 @@
 from .base import *
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecomerce-django-a.herokuapp.com']
+ALLOWED_HOSTS = ['django-ecomerce-a.herokuapp.com']
 
 
 # Database
