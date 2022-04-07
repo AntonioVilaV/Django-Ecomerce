@@ -1,4 +1,3 @@
-from turtle import home
 from django.urls import path
 
 from perfiles.views import LoginUserLoginView,HomePerfilTemplateView, MiCuentaUpdateView, HomeIndexTemplateView, DatosDeContactoTemplateView, RegistroUsuarioCreateView

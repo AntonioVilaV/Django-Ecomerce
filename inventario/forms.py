@@ -1,6 +1,4 @@
 
-from distutils.command.clean import clean
-from webbrowser import get
 from django.forms import ModelForm 
 from django import forms
 from inventario.models import Inventario, Producto
