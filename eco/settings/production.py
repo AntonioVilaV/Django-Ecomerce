@@ -9,7 +9,11 @@ ALLOWED_HOSTS = ['django-ecomerce-a.herokuapp.com']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dd7o7jlfs6t54q',
+        'USER': 'ivhfdufcpcshou',
+        'PASSWORD': '7e6444ba6f230d1a887f6d81dddc8cfd772dafc2c79ecf323575aa8769ea297b',
+        'HOST': 'ec2-54-80-122-11.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
