@@ -238,7 +238,7 @@ class BuscarProductoListView(ListView):
     """ Vista encargada de mostrar la lista de productos resultado de la busqueda en el input superior del template. (Grilla de productos filtrados por el buscador) """
     model = Producto
     template_name = "perfiles/comprador/publicaciones/shop-grid.html"
-    paginate_by = 4
+    paginate_by = 9
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -255,11 +255,11 @@ class BuscarProductoListView(ListView):
             categoria = "Categorias"
         
         if  categoria == 'Categorias':
-            return Producto.objects.filter(nombre__contains=busqueda).filter(estado=True)
+            return Producto.objects.filter(nombre__icontains=busqueda).filter(estado=True)
         elif categoria == "decV":
             return Producto.objects.filter(estado=True).filter(descuento__descuento__gte=0)
         else:
-            return Producto.objects.filter(categoria__nombre=categoria).filter(estado=True).filter(nombre__contains=busqueda)
+            return Producto.objects.filter(categoria__nombre=categoria).filter(estado=True).filter(nombre__icontains=busqueda)
 
             
         
