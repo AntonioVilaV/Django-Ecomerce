@@ -1,4 +1,3 @@
-from __future__ import annotations
 from django.http import Http404
 from django.shortcuts import redirect
 from django.views.generic import ListView,TemplateView,CreateView,UpdateView,DeleteView,DetailView
@@ -10,7 +9,6 @@ from inventario.forms import crearProductoForm, inventarioForm, updateProductoFo
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from django.contrib.auth.models import User
 from django.db import transaction
 # Create your views here.
 
@@ -28,7 +26,7 @@ class ListaPublicacionesVendedorActivasListView(LoginRequiredMixin,validarGrupo,
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Publicaciones Activas"
+        context['title'] = "Eshop Django - Publicaciones Activas"
         return context
     
 
@@ -45,7 +43,7 @@ class ListaPublicacionesVendedorPausadasListView(LoginRequiredMixin,validarGrupo
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Publicaciones Pausadas"
+        context['title'] = "Eshop Django - Publicaciones Pausadas"
         return context
 
     def get_queryset(self):
@@ -63,7 +61,7 @@ class CrearPublicacionCreateView(LoginRequiredMixin,validarGrupo,CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(CrearPublicacionCreateView,self).get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Crear publicacion"
+        context['title'] = "Eshop Django - Crear publicacion"
 
         if 'form' not in context:
             context['form'] = self.form_class()
@@ -108,7 +106,7 @@ class UpdatePublicacionUpdateView(LoginRequiredMixin,validarGrupo,UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdatePublicacionUpdateView,self).get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Editar publicaciones"
+        context['title'] = "Eshop Django - Editar publicaciones"
 
         producto = self.model.objects.get(id=self.kwargs['pk'])
         inventario = self.second_model.objects.get(producto=producto)
@@ -155,7 +153,7 @@ class EliminarPublicacionDeleteView(LoginRequiredMixin,validarGrupo,DeleteView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Eliminar publicación"
+        context['title'] = "Eshop Django - Eliminar publicación"
         return context
     
     def dispatch(self, request, *args, **kwargs):
@@ -193,7 +191,7 @@ class ActionPublicacionTemplateView(LoginRequiredMixin,validarGrupo,TemplateView
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         action = self.kwargs['action']
-        title = "Beautiful Women -"
+        title = "Eshop Django -"
         if action[0] is 'a':
             title += "Activar publicación"
         elif action[0] is 'p':
@@ -242,7 +240,7 @@ class BuscarProductoListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women"
+        context['title'] = "Eshop Django - " + self.request.GET['search']
         context['productosRecientes'] = Producto.objects.filter(estado=True).order_by("-fecha_creada")[:4]
         return context
 

@@ -9,7 +9,7 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.nombre
+        return '{} - {}'.format(self.pk,self.nombre)
 
 class Producto(models.Model):
     autor = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)

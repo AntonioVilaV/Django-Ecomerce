@@ -36,7 +36,7 @@ class HomeIndexTemplateView(TemplateView):
         context['kids'] = Producto.objects.filter(estado=True).filter(categoria__nombre="Niños")[:8]
         context['women'] = Producto.objects.filter(estado=True).filter(categoria__nombre="Mujeres")[:8]
         
-        context['title'] = "Beautiful Women PTY - BWPTY"
+        context['title'] = "Eshop Django"
         return context
 
 
@@ -48,7 +48,7 @@ class HomePerfilTemplateView(LoginRequiredMixin,TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Home"
+        context['title'] = "Eshop Django - Home"
 
         if self.request.user.groups.get().name=='Vendedor':
             ventasActivas = RegistroVenta.objects.filter(producto__autor=self.request.user).filter(state=True).count()
@@ -77,7 +77,7 @@ class MiCuentaUpdateView(LoginRequiredMixin,UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Mi cuenta"
+        context['title'] = "Eshop Django - Mi cuenta"
         usuario =  self.second_model.objects.get(id=self.kwargs['pk'])
         
         if 'form' not in context:
@@ -179,7 +179,7 @@ class DatosDeContactoTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Datos Contacto"
+        context['title'] = "Eshop Django - Datos Contacto"
 
         context['contacto'] = datosContacto.objects.get(id=self.kwargs['pk'])
         return context 

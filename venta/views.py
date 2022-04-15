@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import redirect
 
-from django.views.generic import CreateView,TemplateView,ListView,UpdateView,DetailView
+from django.views.generic import CreateView,TemplateView,ListView,UpdateView
 from mixins import validarGrupo
 from venta.models import EstadoOperacion, RegistroVenta, datosEnvio, datosPago
 from inventario.models import Inventario, Producto
@@ -85,7 +85,7 @@ class MisComprasActivasListView(LoginRequiredMixin,validarGrupo,ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Compras activas"
+        context['title'] = "Eshop Django - Compras activas"
         return context
     
 
@@ -103,7 +103,7 @@ class MisComprasCerradasListView(LoginRequiredMixin,validarGrupo,ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Compras cerrada"
+        context['title'] = "Eshop Django - Compras cerrada"
         return context
     
 
@@ -295,7 +295,7 @@ class MisVentasActivasListView(LoginRequiredMixin,validarGrupo,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Ventas activas"
+        context['title'] = "Eshop Django - Ventas activas"
         context['letra']='Vendedor'
         return context       
 
@@ -311,7 +311,7 @@ class MisVentasCerradasListView(LoginRequiredMixin,validarGrupo,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Beautiful Women - Ventas cerradas"
+        context['title'] = "Eshop Django - Ventas cerradas"
         context['letra']='Vendedor'
         return context       
     
