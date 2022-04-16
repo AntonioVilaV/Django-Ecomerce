@@ -17,6 +17,7 @@ class Producto(models.Model):
     precio = models.PositiveIntegerField()
     descripcion = models.TextField()
     foto = models.ImageField(upload_to='product/%Y/%m/%d',null=True,blank=True)
+    image_test = models.CharField(max_length=500,null=True,blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE,blank=True,null=True)
     estado = models.BooleanField(default=True)
     fecha_creada = models.DateTimeField(auto_now_add=True)
