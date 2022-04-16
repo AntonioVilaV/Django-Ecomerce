@@ -26,9 +26,12 @@ class Producto(models.Model):
         return '{} - {}'.format(self.pk,self.nombre)
 
     def get_image(self):
-        if self.foto:
-            return '{}{}'.format(settings.MEDIA_URL,self.foto)
-        return '{}{}'.format(settings.STATIC_URL,'recursos/img/img_empty.jpg')
+        if self.image_test:
+            return self.image_test
+        else:
+            if self.foto:
+                return '{}{}'.format(settings.MEDIA_URL,self.foto)
+            return '{}{}'.format(settings.STATIC_URL,'recursos/img/img_empty.jpg')
 
     def get_descuento(self):
         return hasattr(self,'descuento')

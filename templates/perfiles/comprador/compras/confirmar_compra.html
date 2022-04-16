@@ -21,7 +21,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="image" data-title="No"><img src="/media/{{producto.foto}}" alt="#"></td>
+								<td class="image" data-title="No"><img src="{{producto.get_image}}" alt="#"></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href="#">{{producto.nombre}}</a></p>
 									<p class="product-des">{{producto.descripcion|slice:140}}...</p>

@@ -23,7 +23,7 @@
                         <td class="price" data-title="Nro.Venta">
                             <p class="product-name"><span>#000000{{i.id}}</span></p>
                         </td>
-                        <td class="image" data-title="Producto" width="150px"><img src="/media/{{i.producto.foto}}" alt="#"></td>
+                        <td class="image" data-title="Producto" width="150px"><img src="{{i.producto.get_image}}" alt="#"></td>
                         <td class="product-des" data-title="Nombre">
                             <p class="product-name"><a href="#">{{i.producto.nombre}}</a></p>
                             <p class="product-des">{{i.producto.descripcion|slice:40}}...</p>

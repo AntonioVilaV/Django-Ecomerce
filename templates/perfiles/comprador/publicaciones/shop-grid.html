@@ -23,7 +23,7 @@
 										<div class="single-post first">
 											<a href="/producto/{{producto.id}}/">
 												<div class="image">
-													<img src="/media/{{producto.foto}}" alt="#">
+													<img src="{{producto.get_image}}" alt="#">
 												</div>
 											</a>
 											<div class="content">
@@ -95,8 +95,10 @@
 										<div class="single-product">
 											<div class="product-img">
 												<a href="{% url 'ProductoDetailView' i.id%}">
-													<img class="default-img" src="/media/{{i.foto}}" alt="#"> <!--imagen de 550x750-->
-													<img class="hover-img" src="/media/{{i.foto}}" alt="#">
+													<!--<img class="default-img" src="/media/{{i.get_image}}" alt="#"> imagen de 550x750
+													<img class="hover-img" src="/media/{{i.get_image}}" alt="#">-->
+													<img class="default-img" src="{{i.get_image}}" alt="#"> <!--imagen de 550x750-->
+													<img class="hover-img" src="{{i.get_image}}" alt="#">
 												</a>
 												<div class="button-head">
 													<div class="product-action-2">
@@ -105,7 +107,7 @@
 												</div>
 											</div>
 											<div class="product-content">
-												<h3><a href="product-details.html">{{i.nombre}}</a></h3>
+												<h3><a href="{% url 'ProductoDetailView' i.id%}">{{i.nombre}}</a></h3>
 												<div class="product-price">
 													<span>{{i.precio}}$</span>
 												</div>
