@@ -7,17 +7,17 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView,UpdateView,CreateView
 from django.contrib.auth.views import LoginView
 
-from perfiles.models import datosContacto
+from apps.perfiles.models import datosContacto
 from django.contrib.auth.models import User
-from perfiles.forms import RegistroUsuarioForm, UpdateDatosContactoForm, UpdateDatosUsuarioForm
+from apps.perfiles.forms import RegistroUsuarioForm, UpdateDatosContactoForm, UpdateDatosUsuarioForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from venta.models import RegistroVenta
+from apps.venta.models import RegistroVenta
 
 from django.db.models import Q
 from django.contrib.auth import authenticate, login
-from inventario.models import Producto
+from apps.inventario.models import Producto
 
 from django.db import transaction
 

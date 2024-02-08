@@ -1,5 +1,5 @@
 from django.forms import ModelForm, ValidationError
-from perfiles.models import datosContacto
+from apps.perfiles.models import datosContacto
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

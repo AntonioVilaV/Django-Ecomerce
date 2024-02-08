@@ -1,8 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
-from django.forms import DateInput
-from inventario.models import Producto
+from apps.inventario.models import Producto
 
 # Create your models here.
 

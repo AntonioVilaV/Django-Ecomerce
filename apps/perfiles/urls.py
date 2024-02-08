@@ -1,6 +1,6 @@
 from django.urls import path
 
-from perfiles.views import LoginUserLoginView,HomePerfilTemplateView, MiCuentaUpdateView, HomeIndexTemplateView, DatosDeContactoTemplateView, RegistroUsuarioCreateView
+from apps.perfiles.views import LoginUserLoginView,HomePerfilTemplateView, MiCuentaUpdateView, HomeIndexTemplateView, DatosDeContactoTemplateView, RegistroUsuarioCreateView
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [

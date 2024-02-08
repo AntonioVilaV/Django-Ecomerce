@@ -1,6 +1,6 @@
 from django.urls import path
 
-from venta.views import ComprarProductoCreateView, CrearDatosEnvioCreateView, CrearDatosPagoCreateView, DetalleCompraDetailView, DetalleVentaUpdateView, DetalleVentaCerradaTemplateView, MisComprasActivasListView, MisComprasCerradasListView, MisVentasActivasListView, MisVentasCerradasListView, UpdateDatosEnvioUpdateView, UpdateDatosPagoUpdateView
+from apps.venta.views import ComprarProductoCreateView, CrearDatosEnvioCreateView, CrearDatosPagoCreateView, DetalleCompraDetailView, DetalleVentaUpdateView, DetalleVentaCerradaTemplateView, MisComprasActivasListView, MisComprasCerradasListView, MisVentasActivasListView, MisVentasCerradasListView, UpdateDatosEnvioUpdateView, UpdateDatosPagoUpdateView
 
 urlpatterns = [
     path('comprar/<int:pk>/', ComprarProductoCreateView.as_view(),name="ComprarProductoCreateView"),

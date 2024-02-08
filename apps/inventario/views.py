@@ -3,9 +3,9 @@ from django.shortcuts import redirect
 from django.views.generic import ListView,TemplateView,CreateView,UpdateView,DeleteView,DetailView
 from django.urls import reverse_lazy
 
-from inventario.models import Inventario, Producto
+from apps.inventario.models import Inventario, Producto
 from mixins import validarGrupo
-from inventario.forms import crearProductoForm, inventarioForm, updateProductoForm
+from apps.inventario.forms import crearProductoForm, inventarioForm, updateProductoForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 

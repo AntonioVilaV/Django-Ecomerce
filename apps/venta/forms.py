@@ -1,6 +1,6 @@
 
 from django.forms import ModelForm, ValidationError
-from venta.models import  RegistroVenta, datosEnvio, datosPago
+from apps.venta.models import  RegistroVenta, datosEnvio, datosPago
 
 
 class VentaForm(ModelForm):

@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf import settings
 
-from inventario.views import ActionPublicacionTemplateView, BuscarProductoListView, CrearPublicacionCreateView, EliminarPublicacionDeleteView,ProductoDetailView, ListaPublicacionesVendedorActivasListView, ListaPublicacionesVendedorPausadasListView, UpdatePublicacionUpdateView
+from apps.inventario.views import ActionPublicacionTemplateView, BuscarProductoListView, CrearPublicacionCreateView, EliminarPublicacionDeleteView,ProductoDetailView, ListaPublicacionesVendedorActivasListView, ListaPublicacionesVendedorPausadasListView, UpdatePublicacionUpdateView
 
 from django.conf.urls.static import static
 

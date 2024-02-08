@@ -3,10 +3,10 @@ from django.shortcuts import redirect
 
 from django.views.generic import CreateView,TemplateView,ListView,UpdateView
 from mixins import validarGrupo
-from venta.models import EstadoOperacion, RegistroVenta, datosEnvio, datosPago
-from inventario.models import Inventario, Producto
+from apps.venta.models import EstadoOperacion, RegistroVenta, datosEnvio, datosPago
+from apps.inventario.models import Inventario, Producto
 from django.urls import reverse_lazy
-from venta.forms import DatosEnviosForm, DatosPagoForm, EstadoOperacionForm, VentaForm
+from apps.venta.forms import DatosEnviosForm, DatosPagoForm, EstadoOperacionForm, VentaForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 

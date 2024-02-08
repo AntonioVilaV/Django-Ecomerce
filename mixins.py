@@ -1,11 +1,7 @@
-from importlib.resources import path
-from django.contrib.auth.models import User
-from django.forms import models
-from django.http import Http404, HttpResponseForbidden, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse_lazy
 
-from venta.models import RegistroVenta
+from apps.venta.models import RegistroVenta
 
 
 class validarGrupo(object):

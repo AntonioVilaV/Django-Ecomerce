@@ -1,7 +1,6 @@
-from pyexpat import model
 from django.contrib import admin
 
-from inventario.models import Categoria, Descuento, Inventario, Producto
+from apps.inventario.models import Categoria, Descuento, Inventario, Producto
 
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin

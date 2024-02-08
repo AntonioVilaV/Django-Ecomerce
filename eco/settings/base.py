@@ -34,21 +34,27 @@ DEBUG = os.getenv('DEBUG', True)
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #apps
-    'inventario',
-    'perfiles',
-    'venta',
-    #Librerias
+]
+
+THIRD_PARTY_APPS = [
     'betterforms',
     'import_export',
 ]
+
+LOCAL_APPS = [
+    'apps.inventario',
+    'apps.perfiles',
+    'apps.venta',
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

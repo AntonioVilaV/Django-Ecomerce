@@ -1,7 +1,7 @@
 
 from django.forms import ModelForm 
 from django import forms
-from inventario.models import Inventario, Producto
+from apps.inventario.models import Inventario, Producto
 
 class crearProductoForm(ModelForm):
     class Meta:

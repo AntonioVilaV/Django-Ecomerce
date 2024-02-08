@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from venta.models import EstadoOperacion, RegistroVenta, datosEnvio, datosPago
+from apps.venta.models import EstadoOperacion, RegistroVenta, datosEnvio, datosPago
 
 # Register your models here.
 
