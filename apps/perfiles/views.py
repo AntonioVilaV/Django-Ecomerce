@@ -29,13 +29,13 @@ class HomeIndexTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["man"] = Producto.objects.filter(estado=True).filter(
-            categoria__nombre="Hombres"
+            categoria__nombre="Men"
         )[:8]
         context["kids"] = Producto.objects.filter(estado=True).filter(
-            categoria__nombre="Niños"
+            categoria__nombre="Childrens"
         )[:8]
         context["women"] = Producto.objects.filter(estado=True).filter(
-            categoria__nombre="Mujeres"
+            categoria__nombre="Women"
         )[:8]
 
         context["title"] = "Eshop Django"

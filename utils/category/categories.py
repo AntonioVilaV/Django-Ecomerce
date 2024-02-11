@@ -1,7 +1,5 @@
-
-CATEGORIES = [
-    "Accessories",
-    "Shoes",
-    "Tshirt",
-    "Pants",
-]
+CATEGORIES = {
+    1: "Men",
+    2: "Women",
+    3: "Childrens",
+}
