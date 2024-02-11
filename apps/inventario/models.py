@@ -23,7 +23,7 @@ class Producto(models.Model):
         Categoria, on_delete=models.CASCADE, blank=True, null=True
     )
     estado = models.BooleanField(default=True)
-    fecha_creada = models.DateTimeField(auto_now_add=True)
+    fecha_creada = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return f"{self.pk} - {self.nombre}"
