@@ -11,8 +11,8 @@
                 <th></th>
                 <th class="text-center">Precio</th>
                 <th class="text-center">Cantidad</th>
-                <th class="text-center">Total</th> 
-                <th class="text-center">Estado</th> 
+                <th class="text-center">Total</th>
+                <th class="text-center">Estado</th>
                 <th class="text-center">Opción</th>
             </tr>
         </thead>
@@ -39,15 +39,15 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{% url 'DetalleCompraDetailView' i.id %}"><i class="fa fa-file-text"></i> Ver datos</a>
-                                
+
                                     {% if i.estado_operacion.nombre == 'Esperando pago' %}
                                         <a class="dropdown-item" href="{% url 'CrearDatosPagoCreateView' i.id %}"><i class="fa fa-credit-card-alt"></i> Pagar</a>
                                     {% endif %}
-                                    
+
                                     {% if i.estado_operacion.nombre != 'Entregado' and i.estado_operacion.nombre != 'Cancelado' %}
                                         <a class="dropdown-item" href="{% url 'CrearDatosEnvioCreateView' i.id %}"><i class="fa fa-truck"></i> Datos Envio</a>
                                     {% endif %}
-                                    
+
                                     <a class="dropdown-item" href="{% url 'DatosDeContactoTemplateView' i.producto.autor.id %}"><i class="fa fa-phone-square"></i> Vendedor </a>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                         <h4>Vacio</h4>
                     </td>
                     <td class="image" data-title="Producto" width="150px">
-                        
+
                     </td>
                     <td class="product-des" data-title="Nombre">
                     </td>
@@ -83,7 +83,7 @@
         <div class="col-12">
             <div class="right" style="Padding:0px">
                 <ul>
-                    <li> 
+                    <li>
                         {% if page_obj.has_previous %}
                             <a href="?page={{page_obj.previous_page_number}}">Atrás</a>
                         {% endif %}

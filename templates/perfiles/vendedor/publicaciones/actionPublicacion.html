@@ -10,7 +10,7 @@
                 {% elif action == 'activar' %}
                     <h3>¿Seguro que desea activar esta publicacion?</h3>
                 {% endif %}
-                
+
             </div>
             <form class="form" method="post" action="">
                 {% csrf_token %}
@@ -39,22 +39,22 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 {% if error %}
                     <li style="color:red">{{error}}</li>
                 {% endif %}
                 <div class="col">
                     <button type="submit" class="btn">Aceptar</button>
-                
+
                 {% if action == 'pausar' %}
                     <a href="{% url 'ListaPublicacionesVendedorActivasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                 {% elif action == 'activar'%}
                     <a href="{% url 'ListaPublicacionesVendedorPausadasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                 {% endif %}
                 </div>
-                
-                
-                
+
+
+
             </form>
     </div>
 </div>

@@ -2,7 +2,7 @@
 {% block contenido %}
 <form action="" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  
+
 <div class="row">
   <div class="col-lg-16 col-12">
     <div class="contact-us">
@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-lg-6 col-12">
             <div class="image">
-                <img src="{{object.get_image}}" width="400px"> 
+                <img src="{{object.get_image}}" width="400px">
             </div>
             {{form.foto.label}}
             {{form.foto}}
@@ -19,7 +19,7 @@
           </div>
           <div class="col-lg-5 col-12">
             <div class="col">
-              
+
               <div class="col-lg-11 col-12">
                 <div class="form-group">
                   <label style="display: block">{{form.nombre.label}}</label>
@@ -27,14 +27,14 @@
                   <label>{{form.errors.nombre}}</label>
                 </div>
               </div>
-              
+
               <div class="col-lg-11 col-12">
                 <div class="form-group">
                   <label style="display: block">{{form.precio.label}}</label>
                   {{form.precio}}
                   <label>{{form.errors.precio}}</label>
                 </div>
-                
+
               </div>
 
               <div class="col-lg-11 col-12">
@@ -54,7 +54,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="col-12">
             <div class="form-group message">
               <label>{{form.descripcion.label}}</label>

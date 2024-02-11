@@ -58,7 +58,7 @@ website:    http://www.themepunch.com
 	height:12px;
 	position:absolute;
 	background:#aaa;
-	border:1px solid #e5e5e5;	
+	border:1px solid #e5e5e5;
 	cursor: pointer;
 	box-sizing:content-box;
 }
@@ -70,5 +70,3 @@ website:    http://www.themepunch.com
 }
 .persephone .tp-bullet-title {
 }
-
-

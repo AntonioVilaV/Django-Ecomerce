@@ -20,15 +20,15 @@ website:    http://www.themepunch.com
 	width:100%;
 	height:100%;
 	background: #777777; /* Old browsers */
-    background: -moz-linear-gradient(top,  #777777 0%, #666666 100%); 
-    background: -webkit-gradient(linear, left top, left bottom, 
-    color-stop(0%,#777777), color-stop(100%,#666666)); 
-    background: -webkit-linear-gradient(top,  #777777 0%,#666666 100%); 
-    background: -o-linear-gradient(top,  #777777 0%,#666666 100%); 
-    background: -ms-linear-gradient(top,  #777777 0%,#666666 100%); 
-    background: linear-gradient(to bottom,  #777777 0%,#666666 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#777777", 
-    endColorstr="#666666",GradientType=0 ); 
+    background: -moz-linear-gradient(top,  #777777 0%, #666666 100%);
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#777777), color-stop(100%,#666666));
+    background: -webkit-linear-gradient(top,  #777777 0%,#666666 100%);
+    background: -o-linear-gradient(top,  #777777 0%,#666666 100%);
+    background: -ms-linear-gradient(top,  #777777 0%,#666666 100%);
+    background: linear-gradient(to bottom,  #777777 0%,#666666 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#777777",
+    endColorstr="#666666",GradientType=0 );
 	padding:10px;
 	margin-left:-10px;margin-top:-10px;
 	box-sizing:content-box;
@@ -48,13 +48,13 @@ website:    http://www.themepunch.com
 .gyges .tp-bullet.selected {
 	background: #ffffff; /* Old browsers */
     background: -moz-linear-gradient(top,  #ffffff 0%, #e1e1e1 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, 
+    background: -webkit-gradient(linear, left top, left bottom,
     color-stop(0%,#ffffff), color-stop(100%,#e1e1e1)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #ffffff 0%,#e1e1e1 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff",
     endColorstr="#e1e1e1",GradientType=0 ); /* IE6-9 */
 
 }
@@ -62,10 +62,10 @@ website:    http://www.themepunch.com
 }
 .gyges .tp-bullet-title {
 }
-	
+
 
 /* THUMBS */
-.gyges .tp-thumb { 
+.gyges .tp-thumb {
       opacity:1
   }
 .gyges .tp-thumb-img-wrap {
@@ -83,17 +83,17 @@ website:    http://www.themepunch.com
     -webkit-transition:all 0.3s;
 }
 .gyges .tp-thumb-image {
-   padding:3px; 
+   padding:3px;
    display:block;
    box-sizing:border-box;
    position:relative;
     -webkit-box-shadow: inset 5px 5px 10px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: inset 5px 5px 10px 0px rgba(0,0,0,0.25);
   box-shadow: inset 5px 5px 10px 0px rgba(0,0,0,0.25);
- }  
-.gyges .tp-thumb-title { 
-     position:absolute; 
-     bottom:100%; 
+ }
+.gyges .tp-thumb-title {
+     position:absolute;
+     bottom:100%;
      display:inline-block;
      left:50%;
      background:rgba(255,255,255,0.8);
@@ -143,15 +143,15 @@ website:    http://www.themepunch.com
 
 
 /* TABS */
-.gyges .tp-tab { 
-  opacity:1;      
+.gyges .tp-tab {
+  opacity:1;
   padding:10px;
   box-sizing:border-box;
   font-family: "Roboto", sans-serif;
   border-bottom: 1px solid rgba(255,255,255,0.15);
  }
-.gyges .tp-tab-image 
-{ 
+.gyges .tp-tab-image
+{
   width:60px;
   height:60px; max-height:100%; max-width:100%;
   position:relative;
@@ -159,9 +159,9 @@ website:    http://www.themepunch.com
   float:left;
 
 }
-.gyges .tp-tab-content 
+.gyges .tp-tab-content
 {
-    background:rgba(0,0,0,0); 
+    background:rgba(0,0,0,0);
     position:relative;
     padding:15px 15px 15px 85px;
  left:0px;
@@ -181,9 +181,9 @@ website:    http://www.themepunch.com
   font-size:12px;
   margin-bottom:0px;
   }
-.gyges .tp-tab-title 
+.gyges .tp-tab-title
 {
-    display:block;  
+    display:block;
     text-align:left;
     color:#fff;
     font-size:14px;
@@ -193,7 +193,7 @@ website:    http://www.themepunch.com
 }
 .gyges .tp-tab:hover,
 .gyges .tp-tab.selected {
-  background:rgba(0,0,0,0.5); 
+  background:rgba(0,0,0,0.5);
 }
 
 .gyges .tp-tab-mask {
@@ -206,4 +206,3 @@ website:    http://www.themepunch.com
 @media only screen and (max-width: 768px) {
 
 }
-

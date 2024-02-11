@@ -4,16 +4,16 @@ from django.urls import reverse_lazy
 from apps.venta.models import RegistroVenta
 
 
-class validarGrupo(object):
-    grupo = ''
-    url_redirect = ''
-    
+class validarGrupo:
+    grupo = ""
+    url_redirect = ""
+
     def get_grupo(self):
         return self.grupo
 
     def get_url_redirect(self):
         if not self.url_redirect:
-            return reverse_lazy('HomePerfilTemplateView')
+            return reverse_lazy("HomePerfilTemplateView")
         else:
             return self.url_redirect
 
@@ -22,13 +22,16 @@ class validarGrupo(object):
             return super().dispatch(request, *args, **kwargs)
         return HttpResponseRedirect(self.get_url_redirect())
 
-class validarUsuario(object):
+
+class validarUsuario:
     model = ""
+
     def dispatch(self, request, *args, **kwargs):
-        
         if self.model == "RegistroVenta":
-            
-            if RegistroVenta.objects.get(id=self.kwargs['pk']).usuario != self.request.user:
+            if (
+                RegistroVenta.objects.get(id=self.kwargs["pk"]).usuario
+                != self.request.user
+            ):
                 print("############")
                 print("aaa")
                 raise Http404("Producto deshabilitado")

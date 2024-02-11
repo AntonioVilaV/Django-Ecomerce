@@ -17,17 +17,17 @@ var _R = jQuery.fn.revolution,
 	// 	EXTENDED FUNCTIONS AVAILABLE GLOBAL  //
 	///////////////////////////////////////////
 	jQuery.extend(true,_R, {
-		
+
 		animateSlide : function(nexttrans, comingtransition, container,   nextli, actli, nextsh, actsh,  mtl) {
 			if (_R.compare_version(extension).check==="stop") return mtl;
 			return animateSlideIntern(nexttrans, comingtransition, container,   nextli, actli, nextsh, actsh,  mtl)
 		}
-			
+
 	});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////       SLIDE TRANSITION MODULES 		////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ var _R = jQuery.fn.revolution,
 					mediafilter = img.data('mediafilter'),
 					scalestart = sh.data('zoomstart'),
 					rotatestart = sh.data('rotationstart');
-				
+
 				if (img.data('currotate')!=undefined)
 					rotatestart = img.data('currotate');
 				if (img.data('curscale')!=undefined && vorh=="box")
@@ -57,10 +57,10 @@ var _R = jQuery.fn.revolution,
 				else
 				if (img.data('curscale')!=undefined)
 					scalestart = img.data('curscale');
-				
+
 				_R.slotSize(img,opt);
-				
-				
+
+
 				var src = img.attr('src'),
 					bgcolor=img.data('bgcolor'),
 					w = opt.width,
@@ -70,11 +70,11 @@ var _R = jQuery.fn.revolution,
 
 
 				if (bgcolor===undefined) bgcolor = img.css("backgroundColor");
-				
+
 
 				if (opt.autoHeight=="on") h = opt.c.height();
 				if (fulloff==undefined) fulloff=0;
-			
+
 				var off=0,
 					bgfit = img.data('bgfit'),
 					bgrepeat = img.data('bgrepeat'),
@@ -91,9 +91,9 @@ var _R = jQuery.fn.revolution,
  				} else {
  					bgstyle = 'background-color:'+bgcolor+';'+'background-image:url('+src+');'+'background-repeat:'+bgrepeat+';'+'background-size:'+bgfit+';background-position:'+bgposition;
  				}
-				
 
-				
+
+
 				switch (vorh) {
 					// BOX ANIMATION PREPARING
 					case "box":
@@ -106,11 +106,11 @@ var _R = jQuery.fn.revolution,
 							basicsize=opt.sloth
 						else
 							basicsize=opt.slotw;
-						
+
 						opt.slotw = basicsize;
 						opt.sloth = basicsize;*/
-						
-											
+
+
 						for (var j=0;j<opt.slots;j++) {
 							y=0;
 							for (var i=0;i<opt.slots;i++) 	{
@@ -148,7 +148,7 @@ var _R = jQuery.fn.revolution,
 					// SLOT ANIMATION PREPARING
 					case "vertical":
 					case "horizontal":
-						
+
 						 if (vorh == "horizontal") {
 
 							if (!visible) var off=0-opt.slotw;
@@ -168,7 +168,7 @@ var _R = jQuery.fn.revolution,
 									'</div></div></div>');
 									if (scalestart!=undefined && rotatestart!=undefined)
 										punchgs.TweenLite.set(sh.find('.slot').last(),{rotationZ:rotatestart});
-									
+
 							}
 						} else {
 							if (!visible) var off=0-opt.sloth;
@@ -193,7 +193,7 @@ var _R = jQuery.fn.revolution,
 											'</div></div></div>');
 									if (scalestart!=undefined && rotatestart!=undefined)
 										punchgs.TweenLite.set(sh.find('.slot').last(),{rotationZ:rotatestart});
-									
+
 							}
 						}
 					break;
@@ -203,8 +203,8 @@ var _R = jQuery.fn.revolution,
 
 
 var getSliderTransitionParameters = function(container,comingtransition,nextsh,slidedirection) {
-	
-	
+
+
 	/* Transition Name ,
 	   Transition Code,
 	   Transition Sub Code,
@@ -222,14 +222,14 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 
 
 	var opt=container[0].opt,
-		p1i = punchgs.Power1.easeIn, 
+		p1i = punchgs.Power1.easeIn,
 		p1o = punchgs.Power1.easeOut,
 		p1io = punchgs.Power1.easeInOut,
 		p2i = punchgs.Power2.easeIn,
 		p2o = punchgs.Power2.easeOut,
 		p2io = punchgs.Power2.easeInOut,
-		p3i = punchgs.Power3.easeIn, 
-		p3o = punchgs.Power3.easeOut, 
+		p3i = punchgs.Power3.easeIn,
+		p3o = punchgs.Power3.easeOut,
 		p3io = punchgs.Power3.easeInOut,
 		flatTransitions = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45],
 		premiumTransitions = [16,17,18,19,20,21,22,23,24,25,27],
@@ -285,7 +285,7 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 							 ['fadetoleftfadefromright', 12, 2,1,0,'horizontal',true,true,32,p2io,p2io,1000,1],
 							 ['fadetorightfadefromleft', 15, 2,1,0,'horizontal',true,true,33,p2io,p2io,1000,1],
 							 ['fadetobottomfadefromtop', 14, 2,1,0,'horizontal',true,true,34,p2io,p2io,1000,1],
-							 ['fadetotopfadefrombottom', 13, 2,1,0,'horizontal',true,true,35,p2io,p2io,1000,1],							 
+							 ['fadetotopfadefrombottom', 13, 2,1,0,'horizontal',true,true,35,p2io,p2io,1000,1],
 							 ['parallaxtoright', 15, 3,1,0,'horizontal',true,true,36,p2io,p2i,1500,1],
 							 ['parallaxtoleft', 12, 3,1,0,'horizontal',true,true,37,p2io,p2i,1500,1],
 							 ['parallaxtotop', 14, 3,1,0,'horizontal',true,true,38,p2io,p1i,1500,1],
@@ -308,7 +308,7 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 							 ['parallaxright', 15, 3,1,0,'horizontal',true,true,55,p2io,p2i,1500,1],
 							 ['parallaxleft', 12, 3,1,0,'horizontal',true,true,56,p2io,p2i,1500,1],
 							 ['parallaxup', 14, 3,1,0,'horizontal',true,true,57,p2io,p1i,1500,1],
-							 ['parallaxdown', 13, 3,1,0,'horizontal',true,true,58,p2io,p1i,1500,1],							 
+							 ['parallaxdown', 13, 3,1,0,'horizontal',true,true,58,p2io,p1i,1500,1],
 						   ];
 
 	opt.duringslidechange = true;
@@ -321,17 +321,17 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 		comingtransition = transitionsArray[opt.nexttesttransform][0];
 		console.log(comingtransition+"  "+opt.nexttesttransform+"  "+transitionsArray[opt.nexttesttransform][1]+"  "+transitionsArray[opt.nexttesttransform][2]);
 	}
-		
 
-	// CHECK AUTO DIRECTION FOR TRANSITION ARTS		
-	jQuery.each(["parallaxcircles","slidingoverlay","slide","slideover","slideremove","parallax","parralaxto"],function(i,b) {	
-	
-		if (comingtransition==b+"horizontal")  comingtransition = slidedirection!=1 ? b+"left" : b+"right";			
-		if (comingtransition==b+"vertical") comingtransition = slidedirection!=1 ? b+"up" : b+"down";			
-	});					
 
-		
-		
+	// CHECK AUTO DIRECTION FOR TRANSITION ARTS
+	jQuery.each(["parallaxcircles","slidingoverlay","slide","slideover","slideremove","parallax","parralaxto"],function(i,b) {
+
+		if (comingtransition==b+"horizontal")  comingtransition = slidedirection!=1 ? b+"left" : b+"right";
+		if (comingtransition==b+"vertical") comingtransition = slidedirection!=1 ? b+"up" : b+"down";
+	});
+
+
+
 	// RANDOM TRANSITIONS
 	if (comingtransition == "random") {
 		comingtransition = Math.round(Math.random()*transitionsArray.length-1);
@@ -351,7 +351,7 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 		if (comingtransition>premiumTransitions.length-1) comingtransition=premiumTransitions.length-1;
 		comingtransition = premiumTransitions[comingtransition];
 	}
-	
+
 	//joomla only change: avoid problematic transitions that don't compatible with mootools
 	var problematicTransitions = [12,13,14,15,16,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45];
 	if(opt.isJoomla == true && window.MooTools != undefined && problematicTransitions.indexOf(comingtransition) != -1){
@@ -384,7 +384,7 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 
 	findTransition();
 
-	
+
 
 	if (nexttrans>30) nexttrans = 30;
 	if (nexttrans<0) nexttrans = 0;
@@ -394,7 +394,7 @@ var getSliderTransitionParameters = function(container,comingtransition,nextsh,s
 	var obj = new Object();
 	obj.nexttrans = nexttrans;
 	obj.STA = transitionsArray[STAindex]; // PREPARED DEFAULT SETTINGS PER TRANSITION
-	obj.specials = specials;	
+	obj.specials = specials;
 	return obj;
 
 
@@ -414,21 +414,21 @@ var gSlideTransA = function(a,i) {
 var animateSlideIntern = function(nexttrans, comingtransition, container, nextli, actli, nextsh, actsh,  mtl) {
 
 	// GET THE TRANSITION
-	
+
 	var opt = container[0].opt,
 		ai = actli.index(),
 		ni = nextli.index(),
 		slidedirection = ni<ai ? 1 : 0;
 
-	if (opt.sc_indicator=="arrow") slidedirection = opt.sc_indicator_dir;			
-			
+	if (opt.sc_indicator=="arrow") slidedirection = opt.sc_indicator_dir;
+
 	var stp = getSliderTransitionParameters(container,comingtransition,nextsh,slidedirection),
 		STA = stp.STA,
-		specials = stp.specials,					
+		specials = stp.specials,
 		nexttrans = stp.nexttrans;
 
 	//KEN BURNS ONLY WITH FADE TRANSITION
-	if (nextsh.data('kenburns')=="on") //|| actsh.data('kenburns')=="on") 
+	if (nextsh.data('kenburns')=="on") //|| actsh.data('kenburns')=="on")
 		nexttrans = 11;
 
 
@@ -441,18 +441,18 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 
 	// ADJUST MASTERSPEED
 	masterspeed = masterspeed + STA[4];
-	
-	
+
+
 	///////////////////////
-	//	ADJUST SLOTS     //	
+	//	ADJUST SLOTS     //
 	///////////////////////
-	opt.slots = gSlideTransA(nextli.data('slotamount'),ctid);	
+	opt.slots = gSlideTransA(nextli.data('slotamount'),ctid);
 	opt.slots = opt.slots==undefined || opt.slots=="default" ? STA[12] : opt.slots=="random" ? Math.round(Math.random()*12+4) : opt.slots;
 	opt.slots = opt.slots < 1 ? comingtransition=="boxslide" ? Math.round(Math.random()*6+3) : comingtransition=="flyin" ? Math.round(Math.random()*4+1) : opt.slots : opt.slots;
 	opt.slots = (nexttrans==4 || nexttrans==5 || nexttrans==6) && opt.slots<3 ? 3 : opt.slots;
 	opt.slots = STA[3] != 0 ? Math.min(opt.slots,STA[3]) : opt.slots;
 	opt.slots = nexttrans==9 ? opt.width/opt.slots : nexttrans==10 ? opt.height/opt.slots : opt.slots;
-	
+
 
 	/////////////////////////////////////////////
 	//	SET THE ACTUAL AMOUNT OF SLIDES !!     //
@@ -461,11 +461,11 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 	opt.rotate = gSlideTransA(nextli.data('rotate'),ctid);
 	opt.rotate = opt.rotate==undefined || opt.rotate=="default" ? 0 : opt.rotate==999 || opt.rotate=="random" ? Math.round(Math.random()*360) : opt.rotate;
 	opt.rotate = (!jQuery.support.transition  || opt.ie || opt.ie9) ? 0 : opt.rotate;
-	
-	
 
-	
-	
+
+
+
+
 	// prepareOneSlide
 	if (nexttrans!=11) {
 		if (STA[7] !=null) prepareOneSlide(actsh,opt,STA[7],STA[5]);
@@ -473,19 +473,19 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 	}
 
 	// DEFAULT SETTINGS FOR NEXT AND ACT SH
-	mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultvid'),{y:0,x:0,top:0,left:0,scale:1}),0);				
-	mtl.add(punchgs.TweenLite.set(actsh.find('.defaultvid'),{y:0,x:0,top:0,left:0,scale:1}),0);				
-	mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultvid'),{y:"+0%",x:"+0%"}),0);				
-	mtl.add(punchgs.TweenLite.set(actsh.find('.defaultvid'),{y:"+0%",x:"+0%"}),0);				
-	mtl.add(punchgs.TweenLite.set(nextsh,{autoAlpha:1,y:"+0%",x:"+0%"}),0);				
-	mtl.add(punchgs.TweenLite.set(actsh,{autoAlpha:1,y:"+0%",x:"+0%"}),0);	
-	mtl.add(punchgs.TweenLite.set(nextsh.parent(),{backgroundColor:"transparent"}),0);				
-	mtl.add(punchgs.TweenLite.set(actsh.parent(),{backgroundColor:"transparent"}),0);	
-				
-	
+	mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultvid'),{y:0,x:0,top:0,left:0,scale:1}),0);
+	mtl.add(punchgs.TweenLite.set(actsh.find('.defaultvid'),{y:0,x:0,top:0,left:0,scale:1}),0);
+	mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultvid'),{y:"+0%",x:"+0%"}),0);
+	mtl.add(punchgs.TweenLite.set(actsh.find('.defaultvid'),{y:"+0%",x:"+0%"}),0);
+	mtl.add(punchgs.TweenLite.set(nextsh,{autoAlpha:1,y:"+0%",x:"+0%"}),0);
+	mtl.add(punchgs.TweenLite.set(actsh,{autoAlpha:1,y:"+0%",x:"+0%"}),0);
+	mtl.add(punchgs.TweenLite.set(nextsh.parent(),{backgroundColor:"transparent"}),0);
+	mtl.add(punchgs.TweenLite.set(actsh.parent(),{backgroundColor:"transparent"}),0);
 
-	var ei= gSlideTransA(nextli.data('easein'),ctid), 
-		eo =gSlideTransA(nextli.data('easeout'),ctid); 
+
+
+	var ei= gSlideTransA(nextli.data('easein'),ctid),
+		eo =gSlideTransA(nextli.data('easeout'),ctid);
 
 	ei = ei==="default" ? STA[9] || punchgs.Power2.easeInOut : ei || STA[9] || punchgs.Power2.easeInOut;
 	eo = eo==="default" ? STA[10] || punchgs.Power2.easeInOut : eo || STA[10] || punchgs.Power2.easeInOut;
@@ -777,26 +777,26 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 	//////////////////////
 	// SLIDING OVERLAYS //
 	//////////////////////
-				
+
 	if (nexttrans==27||nexttrans==28||nexttrans==29||nexttrans==30) {
-		
-		var slot = nextsh.find('.slot'),		
+
+		var slot = nextsh.find('.slot'),
 			nd = nexttrans==27 || nexttrans==28 ? 1 : 2,
 			mhp = nexttrans==27 || nexttrans==29 ? "-100%" : "+100%",
 			php = nexttrans==27 || nexttrans==29 ? "+100%" : "-100%",
 			mep = nexttrans==27 || nexttrans==29 ? "-80%" : "80%",
 			pep = nexttrans==27 || nexttrans==29 ? "+80%" : "-80%",
 			ptp = nexttrans==27 || nexttrans==29 ? "+10%" : "-10%",
-			
+
 			fa = {overwrite:"all"},
 			ta = {autoAlpha:0,zIndex:1,force3D:"auto",ease:ei},
-			
+
 			fb = {position:"inherit",autoAlpha:0,overwrite:"all",zIndex:1},
 			tb = {autoAlpha:1,force3D:"auto",ease:eo},
-			
+
 			fc = {overwrite:"all",zIndex:2,opacity:1,autoAlpha:1},
 			tc = {autoAlpha:1,force3D:"auto",overwrite:"all",ease:ei},
-			
+
 			fd = {overwrite:"all",zIndex:2,autoAlpha:1},
 			td = {autoAlpha:1,force3D:"auto",ease:ei},
 			at = nd==1 ? "y" : "x";
@@ -807,26 +807,26 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 		tb[at] = "0%";
 		fc[at] = php;
 		tc[at] = mhp;
-		fd[at] = mep;  
+		fd[at] = mep;
 		td[at] = pep;
 
-	
+
 		slot.append('<span style="background-color:rgba(0,0,0,0.6);width:100%;height:100%;position:absolute;top:0px;left:0px;display:block;z-index:2"></span>');
-				
-		mtl.add(punchgs.TweenLite.fromTo(actsh,masterspeed/1000,fa,ta),0);						
-		mtl.add(punchgs.TweenLite.fromTo(nextsh.find('.defaultimg'),masterspeed/2000,fb,tb),masterspeed/2000);				
-		mtl.add(punchgs.TweenLite.fromTo(slot,masterspeed/1000,fc,tc),0);	
-		mtl.add(punchgs.TweenLite.fromTo(slot.find('.slotslide div'),masterspeed/1000,fd,td),0);			
+
+		mtl.add(punchgs.TweenLite.fromTo(actsh,masterspeed/1000,fa,ta),0);
+		mtl.add(punchgs.TweenLite.fromTo(nextsh.find('.defaultimg'),masterspeed/2000,fb,tb),masterspeed/2000);
+		mtl.add(punchgs.TweenLite.fromTo(slot,masterspeed/1000,fc,tc),0);
+		mtl.add(punchgs.TweenLite.fromTo(slot.find('.slotslide div'),masterspeed/1000,fd,td),0);
 	}
 
-	
+
 	////////////////////////////////
 	// PARALLAX CIRCLE TRANSITION //
 	////////////////////////////////
 
 	//nexttrans = 34;
 	if (nexttrans==31||nexttrans==32||nexttrans==33||nexttrans==34) { // up , down, right ,left
-		
+
 		masterspeed = 6000;
 		ei = punchgs.Power3.easeInOut;
 
@@ -837,56 +837,56 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 			fx = _nt == 33 ? "+100%" : _nt == 34 ? "-100%" : "0%",
 			ty = _nt == 31 ? "-100%" : _nt == 32 ? "+100%" : "0%",
 			tx = _nt == 33 ? "-100%" : _nt == 34 ? "+100%" : "0%",
-		
-				
+
+
 		mtl.add(punchgs.TweenLite.fromTo(actsh,ms-(ms*0.2),{y:0,x:0},{y:ty,x:tx,ease:eo}),ms*0.2);
 		mtl.add(punchgs.TweenLite.fromTo(nextsh,ms,{y:fy, x:fx},{y:"0%",x:"0%",ease:ei}),0);
 		//mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultimg'),{autoAlpha:0}),0);border:1px solid #fff
 
 		function moveCircles(cont,ms,_nt,dir,ei) {
-			var slot = cont.find('.slot'),			
+			var slot = cont.find('.slot'),
 				pieces = 6,
-				sizearray = [2,1.2,0.9,0.7,0.55,0.42],				
+				sizearray = [2,1.2,0.9,0.7,0.55,0.42],
 				sw = cont.width(),
 				sh = cont.height(),
 				di = sh>sw ? (sw*2) / pieces : (sh*2) / pieces;
 			slot.wrap('<div class="slot-circle-wrapper" style="overflow:hidden;position:absolute;border:1px solid #fff"></div>');
-			
-			for (var i=0; i<pieces;i++) slot.parent().clone(false).appendTo(nextsh);	
+
+			for (var i=0; i<pieces;i++) slot.parent().clone(false).appendTo(nextsh);
 
 			cont.find('.slot-circle-wrapper').each(function(i) {
 				if (i<pieces) {
 					var t = jQuery(this),
-						s = t.find('.slot'),						
+						s = t.find('.slot'),
 
 						nh = sw>sh ? sizearray[i]*sw : sizearray[i]*sh,
 						nw =  nh,
-						
+
 						nl = 0 + (nw/2 - sw/2),
 						nt = 0 + (nh/2 - sh/2),
-						br = i!=0 ? "50%" : "0",						
-						
+						br = i!=0 ? "50%" : "0",
+
 						ftop = _nt == 31 ? sh/2 - nh/2 : _nt == 32 ? sh/2 - nh/2 : sh/2 - nh/2,
-						fleft = _nt == 33 ? sw/2 - nw/2 : _nt == 34 ? sw - nw : sw/2 - nw/2,											
+						fleft = _nt == 33 ? sw/2 - nw/2 : _nt == 34 ? sw - nw : sw/2 - nw/2,
 						fa = {scale:1,transformOrigo:"50% 50%",width:nw+"px",height:nh+"px",top:ftop+"px",left:fleft+"px",borderRadius:br},
 						ta = {scale:1,top:sh/2 - nh/2,left:sw/2 - nw/2,ease:ei},
-						
+
 						fftop = _nt == 31 ? nt : _nt == 32 ? nt : nt,
 						ffleft = _nt == 33 ? nl : _nt == 34 ? nl+(sw/2) : nl,
 						fb = {width:sw,height:sh,autoAlpha:1,top:fftop+"px",position:"absolute",left:ffleft+"px"},
 						tb = {top:nt+"px",left:nl+"px",ease:ei},
-						
+
 						speed = ms,
 						delay = 0;
-						
-					
-									
-					
+
+
+
+
 					mtl.add(punchgs.TweenLite.fromTo(t,speed,fa,ta),delay);
-					mtl.add(punchgs.TweenLite.fromTo(s,speed,fb,tb),delay);				
+					mtl.add(punchgs.TweenLite.fromTo(s,speed,fb,tb),delay);
 					mtl.add(punchgs.TweenLite.fromTo(t,0.001,{autoAlpha:0},{autoAlpha:1}),0);
 				}
-			})				
+			})
 		}
 
 		nextsh.find('.slot').remove();
@@ -895,11 +895,11 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 	//	moveCircles(actsh, mas,_nt,"out",eo);
 
 
-		
-		
-		
-				
-		
+
+
+
+
+
 	}
 
 	/////////////////////////////
@@ -908,42 +908,42 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 	if (nexttrans==11) {
 
 			if (specials>4) specials = 0;
-						
+
 				var ssamount=0,
 					bgcol = specials == 2 ? "#000000" : specials == 3 ? "#ffffff" : "transparent";
-												
+
 				switch (specials) {
-					case 0: //FADE 						
-						mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/1000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),0);																
+					case 0: //FADE
+						mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/1000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),0);
 					break;
 
-					case 1: // CROSSFADE						
-						mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/1000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),0);				
-						mtl.add(punchgs.TweenLite.fromTo(actsh,masterspeed/1000,{autoAlpha:1},{autoAlpha:0,force3D:"auto",ease:ei}),0);														
+					case 1: // CROSSFADE
+						mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/1000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),0);
+						mtl.add(punchgs.TweenLite.fromTo(actsh,masterspeed/1000,{autoAlpha:1},{autoAlpha:0,force3D:"auto",ease:ei}),0);
 					break;
-					
+
 					case 2:
 					case 3:
 					case 4:
 						mtl.add(punchgs.TweenLite.set(actsh.parent(),{backgroundColor:bgcol,force3D:"auto"}),0);
 						mtl.add(punchgs.TweenLite.set(nextsh.parent(),{backgroundColor:"transparent",force3D:"auto"}),0);
 						mtl.add(punchgs.TweenLite.to(actsh,masterspeed/2000,{autoAlpha:0,force3D:"auto",ease:ei}),0);
-						mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/2000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),masterspeed/2000);																
+						mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/2000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),masterspeed/2000);
 					break;
-					
+
 				}
 
 				mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultimg'),{autoAlpha:1}),0);
-				mtl.add(punchgs.TweenLite.set(actsh.find('defaultimg'),{autoAlpha:1}),0);	
+				mtl.add(punchgs.TweenLite.set(actsh.find('defaultimg'),{autoAlpha:1}),0);
 
-				
+
     }
 
 	if (nexttrans==26) {
-				var ssamount=0;			
-				masterspeed=0;	
-				mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/1000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),0);				
-				mtl.add(punchgs.TweenLite.to(actsh,masterspeed/1000,{autoAlpha:0,force3D:"auto",ease:ei}),0);				
+				var ssamount=0;
+				masterspeed=0;
+				mtl.add(punchgs.TweenLite.fromTo(nextsh,masterspeed/1000,{autoAlpha:0},{autoAlpha:1,force3D:"auto",ease:ei}),0);
+				mtl.add(punchgs.TweenLite.to(actsh,masterspeed/1000,{autoAlpha:0,force3D:"auto",ease:ei}),0);
 				mtl.add(punchgs.TweenLite.set(nextsh.find('.defaultimg'),{autoAlpha:1}),0);
 				mtl.add(punchgs.TweenLite.set(actsh.find('defaultimg'),{autoAlpha:1}),0);
 	}
@@ -967,7 +967,7 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 					twy = 0,
 					op = 1,
 					scal = 1,
-					fromscale = 1,					
+					fromscale = 1,
 					speedy = masterspeed/1000,
 					speedy2 = speedy;
 
@@ -995,7 +995,7 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 				// DEPENDING ON EXTENDED SPECIALS, DIFFERENT SCALE AND OPACITY FUNCTIONS NEED TO BE ADDED
 				if (specials == 1) op = 0;
 				if (specials == 2) op = 0;
-				if (specials == 3) speedy = masterspeed / 1300;				
+				if (specials == 3) speedy = masterspeed / 1300;
 
 				if (specials==4 || specials==5)
 					scal=0.6;
@@ -1024,29 +1024,29 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 				mtl.add(punchgs.TweenLite.set(nextli,{zIndex:20}),0);
 
 				if (specials==8) {
-										
+
 					mtl.add(punchgs.TweenLite.set(actli,{zIndex:20}),0);
-					mtl.add(punchgs.TweenLite.set(nextli,{zIndex:15}),0);					
+					mtl.add(punchgs.TweenLite.set(nextli,{zIndex:15}),0);
 					mtl.add(punchgs.TweenLite.set(inc,{left:0, top:0, scale:1, opacity:1,rotation:0,ease:ei,force3D:"auto"}),0);
 				} else {
-					
+
 					mtl.add(punchgs.TweenLite.from(inc,speedy,{left:twx, top:twy, scale:fromscale, opacity:op,rotation:opt.rotate,ease:ei,force3D:"auto"}),0);
 				}
-				
+
 				if (specials==4 || specials==5) {
 					oow = 0; ooh=0;
 				}
-				
+
 				if (specials!=1)
 					switch (nexttrans) {
-						case 12:		
-							
+						case 12:
+
 							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'left':(0-oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 15:
 							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'left':(oow)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
-						case 13:						
+						case 13:
 							mtl.add(punchgs.TweenLite.to(outc,speedy2,{'top':(0-ooh)+'px',force3D:"auto",scale:scal,opacity:op,rotation:opt.rotate,ease:eo}),0);
 						break;
 						case 14:
@@ -1217,7 +1217,7 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 									{transformStyle:"flat",backfaceVisibility:"hidden",autoAlpha:1,rotationY:0,top:0,z:0,scale:1,force3D:"auto",transformPerspective:600,transformOrigin:torig, rotationX:0},
 									{autoAlpha:1,rotationY:opt.rotate,top:0,z:10, scale:1,rotationX:rot, delay:(j*50)/1000,force3D:"auto",ease:eo}),0);
 
-					mtl.add(subtl);					
+					mtl.add(subtl);
 				});
 				mtl.add(punchgs.TweenLite.set(actli,{zIndex:18}),0);
 	}
@@ -1234,7 +1234,7 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 				setTimeout(function() {
 					actsh.find('.defaultimg').css({opacity:0});
 				},100);
-				
+
 				if (slidedirection==1) {
 				   var ofx = -opt.width
 				   var rot  =80;
@@ -1250,12 +1250,12 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 					var ss=jQuery(this),
 						d = (j*50)/1000;
 
-					
+
 
 					mtl.add(punchgs.TweenLite.fromTo(ss,masterspeed/1000,
 									{left:ofx,rotationX:40,z:-600, opacity:op,top:0,scale:1,force3D:"auto",transformPerspective:600,transformOrigin:torig,transformStyle:"flat",rotationY:rot},
 									{left:0,rotationX:0,opacity:1,top:0,z:0, scale:1,rotationY:0, delay:d,ease:ei}),0);
-				
+
 
 				});
 				actsh.find('.slotslide').each(function(j) {
@@ -1277,8 +1277,8 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 					mtl.add(punchgs.TweenLite.fromTo(ss,masterspeed/1000,
 									{opacity:1,rotationX:0,top:0,z:0,scale:1,left:0, force3D:"auto",transformPerspective:600,transformOrigin:torig, transformStyle:"flat",rotationY:0},
 									{opacity:1,rotationX:20,top:0, z:-600, left:ofx, force3D:"auto",rotationY:rot, delay:d,ease:eo}),0);
-					
-					
+
+
 				});
 	}
 
@@ -1405,10 +1405,10 @@ var animateSlideIntern = function(nexttrans, comingtransition, container, nextli
 			if (nexttrans==23) mtl.add(punchgs.TweenLite.fromTo(ss,masterspeed/2000,{autoAlpha:1},{autoAlpha:0,delay:(j*50)/500 + masterspeed/3000,ease:eo}),0);
 
 		});
-	}	
-	
+	}
+
 
 	return mtl;
-}	
+}
 
 })(jQuery);

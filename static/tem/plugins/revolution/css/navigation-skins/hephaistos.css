@@ -34,7 +34,7 @@ website:    http://www.themepunch.com
 .hephaistos.tparrows.tp-leftarrow:before {
 	content: "\e82c";
   margin-left:-2px;
-  
+
 }
 .hephaistos.tparrows.tp-rightarrow:before {
 	content: "\e82d";
@@ -77,5 +77,3 @@ website:    http://www.themepunch.com
 }
 .hephaistos .tp-bullet-title {
 }
-
-

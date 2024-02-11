@@ -16,7 +16,7 @@ website:    http://www.themepunch.com
   position:absolute;
   display:block;
   z-index:100;
-  border-radius:35px;   
+  border-radius:35px;
   overflow:hidden;
   background:rgba(0,0,0,0.10);
 }
@@ -27,7 +27,7 @@ website:    http://www.themepunch.com
   color:#fff;
   display:block;
   line-height: 70px;
-  text-align: center;    
+  text-align: center;
   z-index:2;
   position:relative;
 }
@@ -79,13 +79,13 @@ website:    http://www.themepunch.com
   -webkit-transform:translateX(0);
   opacity:1;
 }
-      
+
 .zeus.tparrows:hover .tp-title-wrap {
   transform:scale(1);
   -webkit-transform:scale(1);
   opacity:1;
 }
- 
+
 
 /* BULLETS */
 .zeus .tp-bullet {
@@ -116,7 +116,7 @@ website:    http://www.themepunch.com
     -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
-  
+
  .zeus .tp-bullet-image,
  .zeus .tp-bullet-imageoverlay{
         width:135px;
@@ -132,7 +132,7 @@ website:    http://www.themepunch.com
         background-position:center center;
         visibility:hidden;
         opacity:0;
-         -webkit-backface-visibility: hidden; 
+         -webkit-backface-visibility: hidden;
       	backface-visibility: hidden;
         -webkit-transform-origin: 50% 50%;
 		transform-origin: 50% 50%;
@@ -141,24 +141,24 @@ website:    http://www.themepunch.com
         border-radius:4px;
 
 }
-          
+
 
 .zeus .tp-bullet-title,
 .zeus .tp-bullet-imageoverlay {
         z-index:2;
         -webkit-transition: all 0.5s ease;
 	  	transition: all 0.5s ease;
-}     
-.zeus .tp-bullet-title { 
+}
+.zeus .tp-bullet-title {
         color:#fff;
         text-align:center;
         line-height:15px;
         font-size:13px;
-        font-weight:600;  
+        font-weight:600;
         z-index:3;
          visibility:hidden;
         opacity:0;
-         -webkit-backface-visibility: hidden; 
+         -webkit-backface-visibility: hidden;
       	backface-visibility: hidden;
         -webkit-transform-origin: 50% 50%;
 		transform-origin: 50% 50%;
@@ -170,14 +170,14 @@ website:    http://www.themepunch.com
     	vertical-align:middle;
         left:-57px;
 }
-      
+
 .zeus .tp-bullet:hover .tp-bullet-title,
 .zeus .tp-bullet:hover .tp-bullet-image,
 .zeus .tp-bullet:hover .tp-bullet-imageoverlay{
       opacity:1;
       visibility:visible;
 	  -webkit-transform:translateY(0px);
-      transform:translateY(0px);         
+      transform:translateY(0px);
     }
 
 /* THUMBS */
@@ -205,7 +205,7 @@ opacity:1
   color:rgba(255,255,255,0.75);
   display:block;
   line-height: 12px;
-  text-align: left;    
+  text-align: left;
   z-index:2;
   position:absolute;
   top:20px;
@@ -223,7 +223,7 @@ opacity:1
   color:#fff;
   display:block;
   line-height: 15px;
-  text-align: left;    
+  text-align: left;
   z-index:2;
   position:absolute;
   top:0px;
@@ -256,25 +256,24 @@ opacity:1
 
 
 /* TABS */
-.zeus .tp-tab { 
-  opacity:1;      
+.zeus .tp-tab {
+  opacity:1;
   box-sizing:border-box;
 }
 
-.zeus .tp-tab-title { 
+.zeus .tp-tab-title {
 display: block;
 text-align: center;
 background: rgba(0,0,0,0.25);
-font-family: "Roboto Slab", serif; 
-font-weight: 700; 
-font-size: 13px; 
+font-family: "Roboto Slab", serif;
+font-weight: 700;
+font-size: 13px;
 line-height: 13px;
-color: #fff; 
+color: #fff;
 padding: 9px 10px; }
 
 .zeus .tp-tab:hover .tp-tab-title,
 .zeus .tp-tab.selected .tp-tab-title {
  color: #000;
-  background:rgba(255,255,255,1); 
+  background:rgba(255,255,255,1);
 }
-

@@ -23,14 +23,14 @@
                             <tr>
                                 <td class="price" data-title="Fecha compra"><span>#00000{{venta.id}} </span></td>
                                 <td class="price" data-title="Nro"><span>{{venta.fecha_creada.date}}</span></td>
-                                
+
                                 {% if not venta.fecha_cierre %}
                                     <td class="price" data-title="Fecha entrega"><span>Indefinido</span></td>
                                 {% else %}
                                     <td class="price" data-title="Fecha entrega"><span>{{venta.fecha_cierre.date}}</span></td>
                                 {% endif %}
-                                    
-								
+
+
 								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' venta.usuario.id %}">{{venta.usuario}} <i class="fa fa-id-card"></i></a></span></td>
 								    <td class="price" data-title="Estado">{{venta.estado_operacion}}</td>
 							</tr>
@@ -46,12 +46,12 @@
                                 <th>Producto</th>
                                 <th>Precio</th>
                                 <th>Cantidad</th>
-                                
+
                                 {% if venta.producto.get_descuento %}
                                     <th>Descuento</th>
                                 {% endif %}
-                                    
-                                
+
+
                                 <th>Total</th>
                                 <th></th>
                             </tr>
@@ -84,7 +84,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                
+
                                 {% if datosPago == 'Indefinido' %}
                                     <td class="price" data-title="Nro Referencia"><span>{{datosPago}}</span></td>
                                     <td class="price" data-title="Recibo"><span><a href="">{{datosPago}}</a></span></td>
@@ -93,7 +93,7 @@
                                     <td class="price" data-title="Nro Referencia"><span>#{{datosPago.nroRef}}</span></td>
                                     <td class="price" data-title="Recibo"><span><a href="">{{datosPago.recibo}}</a></span></td>
                                     <td class="price" data-title="Fecha de pago"><span>{{datosPago.fecha_pago}}</span></td>
-                                {% endif %}                                
+                                {% endif %}
 							</tr>
                         </tbody>
                     </table>
@@ -110,27 +110,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {% if datosEnvio == 'Indefinido' %}
                                 <td class="price" data-title="Nombre">Indefinido</td>
                                 <td class="price" data-title="Cedula">Indefinido</td>
                                 <td class="price" data-title="Telefono">Indefinido</td>
-                                <td class="price" data-title="Dirección">Indefinido</td>    
+                                <td class="price" data-title="Dirección">Indefinido</td>
                             {% else %}
                                 <td class="price" data-title="Nombre">{{datosEnvio.nombre}}</td>
                                 <td class="price" data-title="Cedula">{{datosEnvio.cedula}}</td>
                                 <td class="price" data-title="Telefono">{{datosEnvio.telefono}}</td>
                                 <td class="price" data-title="Dirección">{{datosEnvio.direccion}}</td>
                             {% endif %}
-                            
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
     <!--Factura-->
-    
-    
+
+
     </div>
 </div>
 {% endblock contenido %}
@@ -153,13 +153,13 @@
                                 <li>Total: 12$ </li>
                                 <li>------------------------</li>
                             </ul>
-                            
+
 
                         </div>
                         <div class="single-info">
                             <h4 class="title">Datos de pago</h4>
                             <ul>
-                                
+
                                 {% if datosPago %}
                                     <li>Nro.ref: #00000{{datosPago.nroRef}}</li>
                                     <li>Recibo: {{datosPago.recibo}}</li>
@@ -169,10 +169,10 @@
                                     <li>Recibo: Indefinido</li>
                                     <li>Fecha de pago: Indefinido</li>
                                 {% endif %}
-                                
+
                             </ul>
                         </div>
-                        
+
                         {% if estado_operacion_actual == 'Cancelado' %}
                             <ul>
                                 <li>Estado de la venta: Cancelada</li>
@@ -209,13 +209,13 @@
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <input type="text" name="title" value="datos_envios" hidden>
-                                
+
                                 {% for i in form %}
                                     <h5>{{i.label}}</h5>
                                     <p>{{i}}</p>
                                 {% endfor %}
-                                    
-                                
+
+
                                 {% if estado_operacion_actual != 'Cancelado' %}
                                     <button type="submit" class="btn">boton</button>
                                 {% endif %}
@@ -223,6 +223,6 @@
                         </div>
                     </div>
     </div>
-    
+
 </div>
 </div>

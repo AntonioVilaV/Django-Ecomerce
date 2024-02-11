@@ -15,8 +15,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			
-			
+
+
 			{% if object_list %}
 				{% for publicaciones in object_list %}
 				<tr>
@@ -34,7 +34,7 @@
 							</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{% url 'UpdatePublicacionUpdateView' publicaciones.id %}"><i class="fas fa-edit"></i> Editar</a>
-								
+
 								{% if publicaciones.estado %}
 								<a class="dropdown-item" href="{% url 'ActionPublicacionTemplateView' 'pausar' publicaciones.id %}"><i class="fa fa-pause"></i> Pausar</a>
 								{% elif publicaciones.estado == False %}
@@ -45,9 +45,9 @@
 						</div>
 					</td>
 
-				
+
 				</tr>
-				{% endfor %}	
+				{% endfor %}
 			{% else %}
 				<tr>
 					<td class="image" data-title="Producto" width="150px">
@@ -60,18 +60,18 @@
 					<td class="action" data-title="Opc">
 					</td>
 
-				
+
 				</tr>
 			{% endif %}
-				
 
-			
-				
-			
+
+
+
+
 		</tbody>
 	</table>
 	<!--/ End Shopping Summery -->
-	
+
 	<!--/ End Shopping Cart -->
 {% endblock contenido  %}
 
@@ -81,7 +81,7 @@
         <div class="col-12">
             <div class="right" style="Padding:0px">
                 <ul>
-                    <li> 
+                    <li>
                         {% if page_obj.has_previous %}
                             <a href="?page={{page_obj.previous_page_number}}">Atrás</a>
                         {% endif %}

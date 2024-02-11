@@ -30,19 +30,19 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <div class="col">
                     <button type="submit" class="btn">Aceptar</button>
-                
+
                     {% if producto.estado %}
                         <a href="{% url 'ListaPublicacionesVendedorActivasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                     {% elif producto.estado == False %}
                         <a href="{% url 'ListaPublicacionesVendedorPausadasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                     {% endif %}
                 </div>
-                
-                
-                
+
+
+
             </form>
     </div>
 </div>

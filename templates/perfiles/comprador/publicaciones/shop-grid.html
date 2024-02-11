@@ -2,23 +2,23 @@
 {%load static%}
 
 {% block barraMenu %}
-	
+
 {% endblock barraMenu %}
-	
+
 {%block content%}
-		
+
 		<!-- Product Style -->
 		<section class="product-area shop-sidebar shop section">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-md-4 col-12">
 						<div class="shop-sidebar">
-								
+
 								<!-- Single Widget -->
 								<div class="single-widget recent-post">
 									<h3 class="title">Productos Recientes</h3>
 									<!-- Single Post -->
-									
+
 									{% for producto in productosRecientes %}
 										<div class="single-post first">
 											<a href="/producto/{{producto.id}}/">
@@ -39,14 +39,14 @@
 											</div>
 										</div>
 									{% endfor %}
-										
-									
+
+
 									<!-- End Single Post -->
-									
+
 								</div>
 								<!--/ End Single Widget -->
 								<!-- Single Widget -->
-								
+
 						</div>
 					</div>
 					<div class="col-lg-9 col-md-8 col-12">
@@ -64,11 +64,11 @@
 														{% endif %}
 													</div>
 													<div class="col-lg-8 col-md-7 col-12" style="text-align: center;">
-														
+
 														{% for i in paginator.page_range %}
 															<a href="/buscar/?{{request.GET.urlencode}}&page={{i}}">{{i}}</a>
 														{% endfor %}
-														
+
 													</div>
 													{% if page_obj.has_next %}
 														<a href="/buscar/?categorias={{request.GET.categorias}}&search={{request.GET.search}}&page={{page_obj.next_page_number}}">Siguiente</a>
@@ -88,8 +88,8 @@
 							</div>
 						</div>
 						<div class="row">
-							
-							
+
+
 								{% for i in object_list%}
 									<div class="col-lg-4 col-md-6 col-12">
 										<div class="single-product">
@@ -114,11 +114,11 @@
 											</div>
 										</div>
 									</div>
-								{%endfor%}	
-							
+								{%endfor%}
 
-							
-							
+
+
+
 
 						</div>
 					</div>
@@ -135,15 +135,15 @@
 								{% endif %}
 							</div>
 							<div class="col-lg-8 col-md-7 col-12" style="text-align: center;">
-								
+
 								{% for i in paginator.page_range %}
 									<a href="/buscar/?{{request.GET.urlencode}}&page={{i}}">{{i}}</a>
 								{% endfor %}
-								
+
 							</div>
 							{% if page_obj.has_next %}
 								<a href="/buscar/?categorias={{request.GET.categorias}}&search={{request.GET.search}}&page=&page={{page_obj.next_page_number}}">Siguiente</a>
-								
+
 							{% endif %}
 						</div>
 					</div>
@@ -151,12 +151,12 @@
 			</div>
 			<!--/ End Shop Top -->
 		</section>
-		<!--/ End Product Style 1  -->	
+		<!--/ End Product Style 1  -->
 
-		
-		
-		
-		
+
+
+
+
 		<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
@@ -269,7 +269,7 @@
 				</div>
 			</div>
 			<!-- Modal end -->
-		
-		
+
+
 
 {%endblock%}

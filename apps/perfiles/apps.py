@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class PerfilesConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.perfiles'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.perfiles"

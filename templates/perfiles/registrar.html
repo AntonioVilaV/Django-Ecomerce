@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block barraMenu %}
-	
+
 {% endblock barraMenu %}
 
 {% block content %}
@@ -19,7 +19,7 @@
 									{% csrf_token %}
 									<div class="row">
 										<div class="col-lg-8 offset-lg-2 col-12">
-                                            
+
                                             {% for field in form %}
                                                 <div class="form-group">
                                                     <label>{{field.label}}<span>*</span></label>
@@ -37,13 +37,13 @@
 								</form>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
 	</section>
 	<!--/ End Contact -->
-	
-	
+
+
 
 {% endblock content %}

@@ -16,51 +16,51 @@
 	<!--<link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">-->
 	<!-- Web Font -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-	
+
 	<!-- StyleSheet -->
-	
+
 	<!-- Bootstrap -->
-	
+
 	<link rel="stylesheet" href="{% static 'adminLTE/plugins/fontawesome-free/css/all.min.css' %}">
 	<link rel="stylesheet" href="{% static 'adminLTE/plugins/fontawesome-free/css/all.css' %}">
 
 
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 	<!-- Magnific Popup -->
-    
+
     <link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
 	<!-- Font Awesome -->
-    
+
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
 	<!-- Fancybox -->
 	<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
 	<!-- Themify Icons -->
-    
+
     <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
 	<!-- Nice Select CSS -->
-    
+
     <link rel="stylesheet" href="{% static 'css/niceselect.css' %}">
 	<!-- Animate CSS -->
-    
+
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 	<!-- Flex Slider CSS -->
-    
+
     <link rel="stylesheet" href="{% static 'css/flex-slider.min.css' %}">
 	<!-- Owl Carousel -->
-    
+
     <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
 	<!-- Slicknav -->
-   
+
     <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
-	
+
 	<!-- Eshop StyleSheet -->
-	
+
 	<link rel="stylesheet" href="{% static 'css/reset.css' %}">
-	
-	
+
+
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
-    
+
+
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
 	<script src="{% static 'js/jquery.min.js' %}"></script>
@@ -69,12 +69,12 @@
 	<!--<link rel="stylesheet" href="{% static 'adminLTE/plugins/fontawesome-free/css/all.min.css' %}">-->
 	<!-- Theme style -->
 	<!--<link rel="stylesheet" href="{% static 'adminLTE/dist/css/adminlte.min.css' %}">-->
-	
-	
+
+
 </head>
 
 <body class="js">
-	
+
 	<!-- Preloader -->
 	<div class="preloader">
 		<div class="preloader-inner">
@@ -85,8 +85,8 @@
 		</div>
 	</div>
 	<!-- End Preloader -->
-	
-	
+
+
 	<!-- Header -->
 	{% block header%}
 	<header class="header shop">
@@ -101,14 +101,14 @@
 						<div class="right-content">
 							<ul class="list-main">
 								<li><i class="ti-user"></i> <a href="{% url 'HomePerfilTemplateView' %}">Mi cuenta</a></li>
-								
+
 								{% if request.user.is_authenticated %}
 									<li><i class="ti-power-off"></i><a href="{% url 'LogoutView' %}">Salir</a></li>
 								{% else %}
 									<li><i class="ti-power-off"></i><a href="{% url 'LoginUserLoginView' %}">Login</a></li>
 								{% endif %}
-									
-								
+
+
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -116,7 +116,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		{% block logo %}
 		<div class="middle-inner">
 			<div class="container">
@@ -148,22 +148,22 @@
 							<div class="search-bar">
 								<select name="categorias">
 									<option selected="selected">Categorias</option>
-									
+
 									{% for i in categorias %}
 										<option value="{{i.nombre}}">{{i.nombre}}</option>
 									{% endfor %}
-										
+
 								</select>
-								
+
 									<input name="search" placeholder="Search Products Here....." type="search">
 									<button class="btnn"><i class="ti-search"></i></button>
-								
+
 							</div>
 						</form>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-3 col-12">
-						
+
 					</div>
 				</div>
 			</div>
@@ -181,31 +181,31 @@
 			});
 		</script>
 		{% endblock logo %}
-		
-		
+
+
 		<!-- Header Inner -->
-		
-		
-			
+
+
+
 		<div class="header-inner">
 			<div class="container">
 				<div class="cat-nav-head">
 					<div class="row">
-						
+
 						<div class="col-lg-9 col-12">
 							<div class="menu-area">
 								<!-- Main Menu -->
 								<nav class="navbar navbar-expand-lg">
-									<div class="navbar-collapse">	
+									<div class="navbar-collapse">
 										{% block barraMenu %}
-											<div class="nav-inner">	
+											<div class="nav-inner">
 												<ul class="nav main-menu menu navbar-nav">
-													
+
 													{% if request.user.is_authenticated %}
 														<li><a href="{% url 'HomePerfilTemplateView'%}">Home</a></li>
-														
+
 														{% if request.user.groups.get.name == 'Vendedor' %}
-															<li><a href="{% url 'CrearPublicacionCreateView'%}">Vender</a></li>												
+															<li><a href="{% url 'CrearPublicacionCreateView'%}">Vender</a></li>
 															<li><a href="#">Ventas<i class="ti-angle-down"></i></a>
 																<ul class="dropdown">
 																	<li><a href="{% url 'MisVentasActivasListView'%}">Activas</a></li>
@@ -217,10 +217,10 @@
 																	<li><a href="{% url 'ListaPublicacionesVendedorActivasListView'%}">Activas</a></li>
 																	<li><a href="{% url 'ListaPublicacionesVendedorPausadasListView'%}">Pausadas</a></li>
 																</ul>
-															</li>	
+															</li>
 														{% endif %}
 
-														
+
 														{% if request.user.groups.get.name == 'Comprador' %}
 															<li><a href="#">Mis Compras<i class="ti-angle-down"></i></a>
 																<ul class="dropdown">
@@ -229,39 +229,39 @@
 																</ul>
 															</li>
 														{% endif %}
-															
-														
+
+
 														<li><a href="#">Mi cuenta<i class="ti-angle-down"></i></a>
 															<ul class="dropdown">
 																<li><a href="{% url 'MiCuentaUpdateView' request.user.id %}">Mis Datos</a></li>
 															</ul>
 														</li>
 													{% endif %}
-													
+
 												</ul>
 											</div>
 										{% endblock barraMenu %}
 									</div>
 								</nav>
-								<!--/ End Main Menu -->	
+								<!--/ End Main Menu -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<!--/ End Header Inner -->
 	</header>
 	{% endblock%}
 	{% block content %}
-	
+
 	{% endblock%}
 	<!-- Jquery -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    
+
     <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
-	
+
 	<script src="{% static 'js/jquery-ui.min.js' %}"></script>
 	<!-- Popper JS -->
 	<script src="{% static 'js/popper.min.js' %}"></script>
