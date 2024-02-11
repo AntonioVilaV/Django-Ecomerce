@@ -1,291 +1,231 @@
-{% extends 'base/base.html' %} {% load static %} {% block barraMenu %} {%
-endblock barraMenu %} {% block content %}
-<section class="hero-slider">
-  <!-- Single Slider -->
-  <div
-    class="single-slider"
-    style="background-image: url({%static'recursos/img/base.jpg'%})"
-  >
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-lg-9 offset-lg-3 col-12">
-          <div class="text-inner">
-            <div class="row">
-              <div class="col-lg-7 col-12">
-                <div class="hero-text">
-                  <h1><span>Descuento 50% </span>Ropa para mujeres</h1>
-                  <p>
-                    Porque tú te lo mereces
-                    <!--<br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>-->
-                  </p>
+{% extends 'base/base.html' %}
+{% load static %}
 
-                  <div class="button">
-                    <a href="/buscar/?categorias=decV&amp;search=" class="btn"
-                      >Comprar ahora!</a
-                    >
-                  </div>
+{% block barraMenu %}
+
+{% endblock barraMenu %}
+
+
+{% block content %}
+<section class="hero-slider">
+    <!-- Single Slider -->
+    <div class="single-slider" style="background-image: url({% static 'recursos/img/base.jpg' %})">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-9 offset-lg-3 col-12">
+                    <div class="text-inner">
+                        <div class="row">
+                            <div class="col-lg-7 col-12">
+                                <div class="hero-text">
+                                    <h1><span>Descuento 50% </span>Ropa para mujeres</h1>
+                                    <p>Porque tú te lo mereces
+                                        <!--<br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>-->
+                                    <div class="button">
+                                        <a href="/buscar/?categorias=decV&amp;search=" class="btn">Comprar ahora!</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!--/ End Single Slider -->
+    <!--/ End Single Slider -->
 </section>
 
 <section class="small-banner section">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Single Banner  -->
-      <div class="col-lg-4 col-md-6 col-12">
-        <div class="single-banner">
-          <img
-            src="{% static 'recursos/img/ki.jpg' %}"
-            height="370px"
-            alt="#"
-          />
-          <div class="content">
-            <p>Colección Niños</p>
-            <h3>
-              Para los consentidos <br />
-              de la casa
-            </h3>
-            <a href="/buscar/?categorias=Niños&search=">Comprar ahora!</a>
-          </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Single Banner  -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-banner">
+                    <img src="{% static 'recursos/img/ki.jpg' %}" height="370px" alt="#">
+                    <div class="content">
+                        <p>Colección Niños</p>
+                        <h3>Para los consentidos <br> de la casa</h3>
+                        <a href="/buscar/?categorias=Niños&search=">Comprar ahora!</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /End Single Banner  -->
+            <!-- Single Banner  -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-banner">
+                    <img src="{% static 'recursos/img/man5.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>Coleccion Hombres</p>
+                        <h3>Para lucir bien <br> y sentirte bien</h3>
+                        <a href="/buscar/?categorias=Salud&search=">Comprar Ahora!</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /End Single Banner  -->
+            <!-- Single Banner  -->
+            <div class="col-lg-4 col-12">
+                <div class="single-banner tab-height">
+                    <img src="{% static 'recursos/img/model.jpg' %}" alt="#">
+                    <div class="content">
+                        <p>Ventas Flash</p>
+                        <h3>Ofertas flash <br> hasta <span>70%</span> menos</h3>
+                        <a href="/buscar/?categorias=decV&search=">Comprar ahora!</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /End Single Banner  -->
         </div>
-      </div>
-      <!-- /End Single Banner  -->
-      <!-- Single Banner  -->
-      <div class="col-lg-4 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="{% static 'recursos/img/man5.jpg' %}" alt="#" />
-          <div class="content">
-            <p>Coleccion Hombres</p>
-            <h3>
-              Para lucir bien <br />
-              y sentirte bien
-            </h3>
-            <a href="/buscar/?categorias=Salud&search=">Comprar Ahora!</a>
-          </div>
-        </div>
-      </div>
-      <!-- /End Single Banner  -->
-      <!-- Single Banner  -->
-      <div class="col-lg-4 col-12">
-        <div class="single-banner tab-height">
-          <img src="{% static 'recursos/img/model.jpg' %}" alt="#" />
-          <div class="content">
-            <p>Ventas Flash</p>
-            <h3>
-              Ofertas flash <br />
-              hasta <span>70%</span> menos
-            </h3>
-            <a href="/buscar/?categorias=decV&search=">Comprar ahora!</a>
-          </div>
-        </div>
-      </div>
-      <!-- /End Single Banner  -->
     </div>
-  </div>
 </section>
 
 <div class="product-area section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="section-title">
-          <h2>Top Productos</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="product-info">
-          <div class="nav-main">
-            <!-- Tab Nav -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#man" role="tab"
-                  >Hombres</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#women" role="tab"
-                  >Mujeres</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#kids" role="tab"
-                  >Niños</a
-                >
-              </li>
-            </ul>
-            <!--/ End Tab Nav -->
-          </div>
-          <div class="tab-content" id="myTabContent">
-            <!-- Start Single Tab -->
-            <div class="tab-pane fade show active" id="man" role="tabpanel">
-              <div class="tab-single">
-                <div class="row">
-                  {% for producto in man %}
-                  <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                    <div class="single-product">
-                      <div class="product-img">
-                        <a href="{% url 'ProductoDetailView' producto.id %}">
-                          <img
-                            class="default-img"
-                            src="{{producto.get_image}}"
-                            alt="#"
-                          />
-                          <img
-                            class="hover-img"
-                            src="{{producto.get_image}}"
-                            alt="#"
-                          />
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Top Productos</h2>
 
-                          {% if producto.descuento %}
-                          <span class="price-dec"
-                            >{{producto.descuento.descuento}}% -</span
-                          >
-                          {% endif %}
-                        </a>
-                        <div class="button-head">
-                          <div class="product-action-2">
-                            <a
-                              title="Add to cart"
-                              href="{% url 'ProductoDetailView' producto.id %}"
-                              ><i class="fa fa-shopping-cart"></i> Comprar</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-content">
-                        <h3>
-                          <a href="{% url 'ProductoDetailView' producto.id %}"
-                            >{{producto.nombre}}</a
-                          >
-                        </h3>
-                        <div class="product-price">
-                          <span>${{producto.precio}}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% endfor %}
                 </div>
-              </div>
             </div>
-            <!--/ End Single Tab -->
-            <!-- Start Single Tab -->
-            <div class="tab-pane fade" id="women" role="tabpanel">
-              <div class="tab-single">
-                <div class="row">
-                  {% for producto in women %}
-                  <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                    <div class="single-product">
-                      <div class="product-img">
-                        <a href="{% url 'ProductoDetailView' producto.id %}">
-                          <img
-                            class="default-img"
-                            src="{{producto.get_image}}"
-                            alt="#"
-                          />
-                          <img
-                            class="hover-img"
-                            src="{{producto.get_image}}"
-                            alt="#"
-                          />
-                          {% if producto.descuento %}
-                          <span class="price-dec"
-                            >{{producto.descuento.descuento}}% -</span
-                          >
-                          {% endif %}
-                        </a>
-                        <div class="button-head">
-                          <div class="product-action-2">
-                            <a
-                              title="Add to cart"
-                              href="{% url 'ProductoDetailView' producto.id %}"
-                              ><i class="fa fa-shopping-cart"></i> Comprar</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-content">
-                        <h3>
-                          <a href="{% url 'ProductoDetailView' producto.id %}"
-                            >{{producto.nombre}}</a
-                          >
-                        </h3>
-                        <div class="product-price">
-                          <span>${{producto.precio}}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-            <!--/ End Single Tab -->
-            <!-- Start Single Tab -->
-            <div class="tab-pane fade" id="kids" role="tabpanel">
-              <div class="tab-single">
-                <div class="row">
-                  {% for producto in kids %}
-                  <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                    <div class="single-product">
-                      <div class="product-img">
-                        <a href="{% url 'ProductoDetailView' producto.id %}">
-                          <img
-                            class="default-img"
-                            src="{{producto.get_image}}"
-                            alt="#"
-                          />
-                          <img
-                            class="hover-img"
-                            src="{{producto.get_image}}"
-                            alt="#"
-                          />
-                          {% if producto.descuento %}
-                          <span class="price-dec"
-                            >{{producto.descuento.descuento}}% -</span
-                          >
-                          {% endif %}
-                        </a>
-                        <div class="button-head">
-                          <div class="product-action-2">
-                            <a
-                              title="Add to cart"
-                              href="{% url 'ProductoDetailView' producto.id %}"
-                              ><i class="fa fa-shopping-cart"></i> Comprar</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-content">
-                        <h3>
-                          <a href="{% url 'ProductoDetailView' producto.id %}"
-                            >{{producto.nombre}}</a
-                          >
-                        </h3>
-                        <div class="product-price">
-                          <span>${{producto.precio}}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-            <!--/ End Single Tab -->
-          </div>
         </div>
-      </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-info">
+                    <div class="nav-main">
+                        <!-- Tab Nav -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#man"
+                                    role="tab">Hombres</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#women"
+                                    role="tab">Mujeres</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#kids" role="tab">Niños</a>
+                            </li>
+                        </ul>
+                        <!--/ End Tab Nav -->
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade show active" id="man" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+
+                                    {% for producto in man %}
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="{% url 'ProductoDetailView' producto.id %}">
+                                                    <img class="default-img" src="{{producto.get_image}}" alt="#">
+                                                    <img class="hover-img" src="{{producto.get_image}}" alt="#">
+
+                                                    {% if producto.descuento %}
+                                                    <span class="price-dec">{{producto.descuento.descuento}}% -</span>
+                                                    {% endif %}
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart"
+                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                                class="fa fa-shopping-cart"></i> Comprar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a
+                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <span>${{producto.precio}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Single Tab -->
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade" id="women" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+
+                                    {% for producto in women %}
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="{% url 'ProductoDetailView' producto.id %}">
+                                                    <img class="default-img" src="{{producto.get_image}}" alt="#">
+                                                    <img class="hover-img" src="{{producto.get_image}}" alt="#">
+                                                    {% if producto.descuento %}
+                                                    <span class="price-dec">{{producto.descuento.descuento}}% -</span>
+                                                    {% endif %}
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart"
+                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                                class="fa fa-shopping-cart"></i> Comprar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a
+                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <span>${{producto.precio}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Single Tab -->
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade" id="kids" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+                                    {% for producto in kids %}
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="{% url 'ProductoDetailView' producto.id %}">
+                                                    <img class="default-img" src="{{producto.get_image}}" alt="#">
+                                                    <img class="hover-img" src="{{producto.get_image}}" alt="#">
+                                                    {% if producto.descuento %}
+                                                    <span class="price-dec">{{producto.descuento.descuento}}% -</span>
+                                                    {% endif %}
+                                                </a>
+                                                <div class="button-head">
+                                                    <div class="product-action-2">
+                                                        <a title="Add to cart"
+                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                                class="fa fa-shopping-cart"></i> Comprar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3><a
+                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <span>${{producto.precio}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Single Tab -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock content %}
