@@ -25,8 +25,6 @@ Este proyecto es una demostración de mi trabajo en el desarrollo de una platafo
 
 Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
-## Configuración de Variables de Entorno
-
 1. Clona este repositorio en tu máquina local.
    ```bash
    git clone https://github.com/tu_usuario/tu_proyecto.git
