@@ -68,7 +68,7 @@ A continuación, algunas capturas de pantalla que muestran las principales vista
 ![checkout](screenshots/checkout.png)
 ![sell-success](screenshots/sell-success.png)
 ![dashboard-seller](screenshots/dashboard-seller.png)
-![shipping-form](screenshots/shipping-from.png)
+![shipping-form](screenshots/shipping-form.png)
 ![login](screenshots/login.png)
 ![my-data](screenshots/my-data.png)
 
