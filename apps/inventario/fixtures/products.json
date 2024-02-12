@@ -1,6 +1,7 @@
 [
   {
     "model": "inventario.Producto",
+    "pk": 1,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Pants",
@@ -12,6 +13,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 2,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Pants 1",
@@ -23,6 +25,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 3,
     "fields": {
       "autor": 1,
       "nombre": "Mens Pants",
@@ -34,6 +37,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 4,
     "fields": {
       "autor": 1,
       "nombre": "Mens Pants 1",
@@ -45,6 +49,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 5,
     "fields": {
       "autor": 1,
       "nombre": "Womens Pants",
@@ -56,6 +61,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 6,
     "fields": {
       "autor": 1,
       "nombre": "Womens Pants 1",
@@ -67,6 +73,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 7,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Shoes",
@@ -78,6 +85,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 8,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Shirts",
@@ -89,6 +97,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 9,
     "fields": {
       "autor": 1,
       "nombre": "Mens Shirts",
@@ -100,6 +109,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 10,
     "fields": {
       "autor": 1,
       "nombre": "Mens Shirts 1",
@@ -111,6 +121,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 11,
     "fields": {
       "autor": 1,
       "nombre": "Womens Shirts",
@@ -122,6 +133,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 12,
     "fields": {
       "autor": 1,
       "nombre": "Womens Shirts 1",
@@ -133,6 +145,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 13,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Shirts 1",
@@ -144,6 +157,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 14,
     "fields": {
       "autor": 1,
       "nombre": "Womens Shoes",
@@ -155,6 +169,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 15,
     "fields": {
       "autor": 1,
       "nombre": "Mens Shoes",
@@ -166,6 +181,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 16,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Pants 2",
@@ -177,6 +193,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 17,
     "fields": {
       "autor": 1,
       "nombre": "Pantyhose",
@@ -188,6 +205,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 18,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Chirts 2",
@@ -199,6 +217,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 19,
     "fields": {
       "autor": 1,
       "nombre": "Childrens Pants 3",
@@ -210,6 +229,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 20,
     "fields": {
       "autor": 1,
       "nombre": "Womens Socks",
@@ -221,6 +241,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 21,
     "fields": {
       "autor": 1,
       "nombre": "Womens Sweater",
@@ -232,6 +253,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 22,
     "fields": {
       "autor": 1,
       "nombre": "Mens Shirts 2",
@@ -243,6 +265,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 23,
     "fields": {
       "autor": 1,
       "nombre": "Mens Shirts 3",
@@ -254,6 +277,7 @@
   },
   {
     "model": "inventario.Producto",
+    "pk": 24,
     "fields": {
       "autor": 1,
       "nombre": "Mens Shirts 4",
