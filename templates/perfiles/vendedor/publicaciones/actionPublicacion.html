@@ -47,9 +47,9 @@
                     <button type="submit" class="btn">Aceptar</button>
 
                 {% if action == 'pausar' %}
-                    <a href="{% url 'ListaPublicacionesVendedorActivasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
+                    <a href="{% url 'ActivePublicationsListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                 {% elif action == 'activar'%}
-                    <a href="{% url 'ListaPublicacionesVendedorPausadasListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
+                    <a href="{% url 'PausedPublicationsListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                 {% endif %}
                 </div>
 

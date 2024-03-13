@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from apps.inventario.models import Inventario, Producto
 
 
-class crearProductoForm(ModelForm):
+class CreateProductForm(ModelForm):
     class Meta:
         model = Producto
         fields = "__all__"
@@ -26,7 +26,7 @@ class crearProductoForm(ModelForm):
     #    return nombre
 
 
-class updateProductoForm(ModelForm):
+class UpdateProductForm(ModelForm):
     class Meta:
         model = Producto
         fields = "__all__"
@@ -36,7 +36,7 @@ class updateProductoForm(ModelForm):
         }
 
 
-class inventarioForm(ModelForm):
+class InventoryForm(ModelForm):
     class Meta:
         model = Inventario
         fields = "__all__"

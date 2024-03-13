@@ -12,7 +12,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from apps.inventario.forms import crearProductoForm, inventarioForm, updateProductoForm
+from apps.inventario.forms import CreateProductForm, InventoryForm, UpdateProductForm
 from apps.inventario.models import Inventario, Producto
 from mixins import validarGrupo
 
@@ -20,10 +20,8 @@ from mixins import validarGrupo
 
 
 # Vendedor - Vistas Productos
-class ListaPublicacionesVendedorActivasListView(
-    LoginRequiredMixin, validarGrupo, ListView
-):
-    """Vista encargada de mostrar la lista de Publicaciones o productos publicados que estan activos. Vista para usuario tipo Vendedor"""
+class ActivePublicationsListView(LoginRequiredMixin, validarGrupo, ListView):
+    """View in charge of displaying the list of Publications or published products that are active. View for user type Seller"""
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
@@ -33,17 +31,15 @@ class ListaPublicacionesVendedorActivasListView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Publicaciones Activas"
+        context["title"] = "Eshop Django - Active publications"
         return context
 
     def get_queryset(self):
         return Producto.objects.filter(estado=True).filter(autor=self.request.user)
 
 
-class ListaPublicacionesVendedorPausadasListView(
-    LoginRequiredMixin, validarGrupo, ListView
-):
-    """Vista encargada de mostrar la lista de Publicaciones o productos publicados que estan pausadas. Vista para usuario tipo Vendedor"""
+class PausedPublicationsListView(LoginRequiredMixin, validarGrupo, ListView):
+    """View in charge of showing the list of Publications or published products that are paused. View for user type Seller"""
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
@@ -53,27 +49,27 @@ class ListaPublicacionesVendedorPausadasListView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Publicaciones Pausadas"
+        context["title"] = "Eshop Django - Paused publications"
         return context
 
     def get_queryset(self):
         return Producto.objects.filter(autor=self.request.user).filter(estado=False)
 
 
-class CrearPublicacionCreateView(LoginRequiredMixin, validarGrupo, CreateView):
-    """Vista encargada de crear producto o publicacion para vender en la plataforma"""
+class PublicationCreateView(LoginRequiredMixin, validarGrupo, CreateView):
+    """View in charge of creating product or publication to sell on the platform"""
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     template_name = "perfiles/vendedor/publicaciones/crearPublicacion.html"
     model = Producto
-    form_class = crearProductoForm
-    second_form_class = inventarioForm
+    form_class = CreateProductForm
+    second_form_class = InventoryForm
     success_url = reverse_lazy("HomePerfilTemplateView")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Crear publicacion"
+        context["title"] = "Eshop Django - Add publication"
 
         if "form" not in context:
             context["form"] = self.form_class()
@@ -95,34 +91,34 @@ class CrearPublicacionCreateView(LoginRequiredMixin, validarGrupo, CreateView):
             inventario.producto = form.save()
             inventario.save()
 
-            return redirect(reverse_lazy("ListaPublicacionesVendedorActivasListView"))
+            return redirect(reverse_lazy("ActivePublicationsListView"))
         else:
             return self.render_to_response(
                 self.get_context_data(form=form, form2=form2)
             )
 
 
-class UpdatePublicacionUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
-    """Vista encargada de actualizar o editar los datos de un Producto"""
+class PublicationUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
+    """View in charge of updating or editing the data of a Product"""
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     template_name = "perfiles/vendedor/publicaciones/updatePublicacion.html"
     model = Producto
     second_model = Inventario
-    form_class = updateProductoForm
-    second_form_class = inventarioForm
+    form_class = UpdateProductForm
+    second_form_class = InventoryForm
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.autor == self.request.user:
             return super().dispatch(request, *args, **kwargs)
         else:
-            raise Http404("Producto no encontrado")
+            raise Http404("Product not found")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Editar publicaciones"
+        context["title"] = "Eshop Django - Update publication"
 
         producto = self.model.objects.get(id=self.kwargs["pk"])
         inventario = self.second_model.objects.get(producto=producto)
@@ -150,13 +146,9 @@ class UpdatePublicacionUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
                 form2.save()
 
                 if form.instance.estado:
-                    self.success_url = reverse_lazy(
-                        "ListaPublicacionesVendedorActivasListView"
-                    )
+                    self.success_url = reverse_lazy("ActivePublicationsListView")
                 else:
-                    self.success_url = reverse_lazy(
-                        "ListaPublicacionesVendedorPausadasListView"
-                    )
+                    self.success_url = reverse_lazy("PausedPublicationsListView")
 
                 return redirect(self.get_success_url())
             else:
@@ -167,18 +159,18 @@ class UpdatePublicacionUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
             raise Http404("Acción denegada")
 
 
-class EliminarPublicacionDeleteView(LoginRequiredMixin, validarGrupo, DeleteView):
-    """Vista encargada de eliminar producto o publicacion"""
+class PublicationDeleteView(LoginRequiredMixin, validarGrupo, DeleteView):
+    """View in charge of deleting product or publication"""
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     model = Producto
     template_name = "perfiles/vendedor/publicaciones/eliminarPublicacion.html"
-    success_url = reverse_lazy("ListaPublicacionesVendedorActivasListView")
+    success_url = reverse_lazy("ActivePublicationsListView")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Eliminar publicación"
+        context["title"] = "Eshop Django - Delete publication"
         return context
 
     def dispatch(self, request, *args, **kwargs):
@@ -186,18 +178,18 @@ class EliminarPublicacionDeleteView(LoginRequiredMixin, validarGrupo, DeleteView
         if self.object.autor == self.request.user:
             return super().dispatch(request, *args, **kwargs)
         else:
-            raise Http404("Producto no encontrado")
+            raise Http404("Product not found")
 
     def post(self, request, *args, **kwargs):
         if self.object.autor == self.request.user:
             self.object.delete()
-            return redirect(reverse_lazy("ListaPublicacionesVendedorActivasListView"))
+            return redirect(reverse_lazy("ActivePublicationsListView"))
         else:
-            raise Http404("Acción denegada")
+            raise Http404("Action denied")
 
 
-class ActionPublicacionTemplateView(LoginRequiredMixin, validarGrupo, TemplateView):
-    """Vista encargada de manejar y ejecutar las acciones sobre las publicaciones; Activar o pausar publicacion"""
+class ActionPublicationTemplateView(LoginRequiredMixin, validarGrupo, TemplateView):
+    """View in charge of managing and executing actions on publications; Activate or pause publication."""
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
@@ -213,18 +205,18 @@ class ActionPublicacionTemplateView(LoginRequiredMixin, validarGrupo, TemplateVi
             elif self.kwargs["action"] == "activar" and not producto.estado:
                 return super().dispatch(request, *args, **kwargs)
             else:
-                raise Http404("Accion incorrecta")
+                raise Http404("Incorrect action")
         except Producto.DoesNotExist:
-            raise Http404("Producto no existe")
+            raise Http404("Prduct not found")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         action = self.kwargs["action"]
         title = "Eshop Django -"
         if action[0] == "a":
-            title += "Activar publicación"
+            title += "Activate publication"
         elif action[0] == "p":
-            title += "Pausar publicación"
+            title += "Pause publication"
         context["title"] = title
         context["action"] = action
         context["producto"] = Producto.objects.get(id=self.kwargs["pk"])
@@ -242,11 +234,7 @@ class ActionPublicacionTemplateView(LoginRequiredMixin, validarGrupo, TemplateVi
                                 cantidad=cantidad
                             )
                             producto.update(estado=True)
-                            return redirect(
-                                reverse_lazy(
-                                    "ListaPublicacionesVendedorActivasListView"
-                                )
-                            )
+                            return redirect(reverse_lazy("ActivePublicationsListView"))
                     else:
                         return self.render_to_response(
                             self.get_context_data(
@@ -255,14 +243,12 @@ class ActionPublicacionTemplateView(LoginRequiredMixin, validarGrupo, TemplateVi
                         )
             elif self.kwargs["action"] == "pausar":
                 producto.update(estado=False)
-                return redirect(
-                    reverse_lazy("ListaPublicacionesVendedorPausadasListView")
-                )
+                return redirect(reverse_lazy("PausedPublicationsListView"))
 
 
 # Comprador - Vistas Productos
-class ProductoDetailView(DetailView):
-    """Vista encargada de mostrar los detalles del producto al comprador y dar opciones y detalles de compra"""
+class ProductDetailView(DetailView):
+    """View in charge of displaying product details to the buyer and giving options and purchase details"""
 
     model = Producto
     template_name = "perfiles/comprador/publicaciones/productoDetail.html"
@@ -275,8 +261,8 @@ class ProductoDetailView(DetailView):
         return context
 
 
-class BuscarProductoListView(ListView):
-    """Vista encargada de mostrar la lista de productos resultado de la busqueda en el input superior del template. (Grilla de productos filtrados por el buscador)"""
+class ProductSearchListView(ListView):
+    """View in charge of showing the list of products resulting from the search in the upper input of the template (grid of products filtered by the search engine)."""
 
     model = Producto
     template_name = "perfiles/comprador/publicaciones/shop-grid.html"
@@ -294,21 +280,21 @@ class BuscarProductoListView(ListView):
         busqueda = self.request.GET["search"]
 
         try:
-            categoria = self.request.GET.getlist("categorias")[0]
+            category = self.request.GET.getlist("categories")[0]
         except IndexError:
-            categoria = "Categorias"
+            category = "categories"
 
-        if categoria == "Categorias":
+        if category == "categories":
             return Producto.objects.filter(nombre__icontains=busqueda).filter(
                 estado=True
             )
-        elif categoria == "decV":
+        elif category == "decV":
             return Producto.objects.filter(estado=True).filter(
                 descuento__descuento__gte=0
             )
         else:
             return (
-                Producto.objects.filter(categoria__nombre=categoria)
+                Producto.objects.filter(category__name=category)
                 .filter(estado=True)
                 .filter(nombre__icontains=busqueda)
             )

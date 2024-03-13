@@ -21,7 +21,7 @@
                                     <p>Porque tú te lo mereces
                                         <!--<br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>-->
                                     <div class="button">
-                                        <a href="/buscar/?categorias=decV&amp;search=" class="btn">Comprar ahora!</a>
+                                        <a href="/buscar/?categories=decV&amp;search=" class="btn">Comprar ahora!</a>
                                     </div>
 
                                 </div>
@@ -45,7 +45,7 @@
                     <div class="content">
                         <p>Colección Niños</p>
                         <h3>Para los consentidos <br> de la casa</h3>
-                        <a href="/buscar/?categorias=Niños&search=">Comprar ahora!</a>
+                        <a href="/buscar/?categories=Niños&search=">Comprar ahora!</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <div class="content">
                         <p>Coleccion Hombres</p>
                         <h3>Para lucir bien <br> y sentirte bien</h3>
-                        <a href="/buscar/?categorias=Salud&search=">Comprar Ahora!</a>
+                        <a href="/buscar/?categories=Salud&search=">Comprar Ahora!</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <div class="content">
                         <p>Ventas Flash</p>
                         <h3>Ofertas flash <br> hasta <span>70%</span> menos</h3>
-                        <a href="/buscar/?categorias=decV&search=">Comprar ahora!</a>
+                        <a href="/buscar/?categories=decV&search=">Comprar ahora!</a>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{% url 'ProductoDetailView' producto.id %}">
+                                                <a href="{% url 'ProductDetailView' producto.id %}">
                                                     <img class="default-img" src="{{producto.get_image}}" alt="#">
                                                     <img class="hover-img" src="{{producto.get_image}}" alt="#">
 
@@ -124,14 +124,14 @@
                                                 <div class="button-head">
                                                     <div class="product-action-2">
                                                         <a title="Add to cart"
-                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                            href="{% url 'ProductDetailView' producto.id %}"><i
                                                                 class="fa fa-shopping-cart"></i> Comprar</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a
-                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                        href="{% url 'ProductDetailView' producto.id %}">{{producto.nombre}}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     <span>${{producto.precio}}</span>
@@ -154,7 +154,7 @@
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{% url 'ProductoDetailView' producto.id %}">
+                                                <a href="{% url 'ProductDetailView' producto.id %}">
                                                     <img class="default-img" src="{{producto.get_image}}" alt="#">
                                                     <img class="hover-img" src="{{producto.get_image}}" alt="#">
                                                     {% if producto.descuento %}
@@ -164,14 +164,14 @@
                                                 <div class="button-head">
                                                     <div class="product-action-2">
                                                         <a title="Add to cart"
-                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                            href="{% url 'ProductDetailView' producto.id %}"><i
                                                                 class="fa fa-shopping-cart"></i> Comprar</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a
-                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                        href="{% url 'ProductDetailView' producto.id %}">{{producto.nombre}}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     <span>${{producto.precio}}</span>
@@ -192,7 +192,7 @@
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{% url 'ProductoDetailView' producto.id %}">
+                                                <a href="{% url 'ProductDetailView' producto.id %}">
                                                     <img class="default-img" src="{{producto.get_image}}" alt="#">
                                                     <img class="hover-img" src="{{producto.get_image}}" alt="#">
                                                     {% if producto.descuento %}
@@ -202,14 +202,14 @@
                                                 <div class="button-head">
                                                     <div class="product-action-2">
                                                         <a title="Add to cart"
-                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                            href="{% url 'ProductDetailView' producto.id %}"><i
                                                                 class="fa fa-shopping-cart"></i> Comprar</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a
-                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                        href="{% url 'ProductDetailView' producto.id %}">{{producto.nombre}}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     <span>${{producto.precio}}</span>

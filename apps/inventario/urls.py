@@ -3,48 +3,48 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from apps.inventario.views import (
-    ActionPublicacionTemplateView,
-    BuscarProductoListView,
-    CrearPublicacionCreateView,
-    EliminarPublicacionDeleteView,
-    ListaPublicacionesVendedorActivasListView,
-    ListaPublicacionesVendedorPausadasListView,
-    ProductoDetailView,
-    UpdatePublicacionUpdateView,
+    ActionPublicationTemplateView,
+    ActivePublicationsListView,
+    PausedPublicationsListView,
+    ProductDetailView,
+    ProductSearchListView,
+    PublicationCreateView,
+    PublicationDeleteView,
+    PublicationUpdateView,
 )
 
 urlpatterns = [
     path(
-        "publicaciones/activas/",
-        ListaPublicacionesVendedorActivasListView.as_view(),
-        name="ListaPublicacionesVendedorActivasListView",
+        "publications/active/",
+        ActivePublicationsListView.as_view(),
+        name="ActivePublicationsListView",
     ),
     path(
-        "publicaciones/pausadas/",
-        ListaPublicacionesVendedorPausadasListView.as_view(),
-        name="ListaPublicacionesVendedorPausadasListView",
+        "publications/paused/",
+        PausedPublicationsListView.as_view(),
+        name="PausedPublicationsListView",
     ),
     path(
-        "publicacion/add/",
-        CrearPublicacionCreateView.as_view(),
-        name="CrearPublicacionCreateView",
+        "publication/add/",
+        PublicationCreateView.as_view(),
+        name="PublicationCreateView",
     ),
     path(
-        "publicacion/update/<int:pk>/",
-        UpdatePublicacionUpdateView.as_view(),
-        name="UpdatePublicacionUpdateView",
+        "publication/update/<int:pk>/",
+        PublicationUpdateView.as_view(),
+        name="PublicationUpdateView",
     ),
     path(
-        "publicacion/delete/<int:pk>/",
-        EliminarPublicacionDeleteView.as_view(),
-        name="EliminarPublicacionDeleteView",
+        "publication/delete/<int:pk>/",
+        PublicationDeleteView.as_view(),
+        name="PublicationDeleteView",
     ),
     path(
-        "producto/action/<str:action>/<int:pk>/",
-        ActionPublicacionTemplateView.as_view(),
-        name="ActionPublicacionTemplateView",
+        "publication/action/<str:action>/<int:pk>/",
+        ActionPublicationTemplateView.as_view(),
+        name="ActionPublicationTemplateView",
     ),
-    path("producto/<int:pk>/", ProductoDetailView.as_view(), name="ProductoDetailView"),
-    path("buscar/", BuscarProductoListView.as_view(), name="BuscarProductoListView"),
+    path("product/<int:pk>/", ProductDetailView.as_view(), name="ProductDetailView"),
+    path("buscar/", ProductSearchListView.as_view(), name="ProductSearchListView"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

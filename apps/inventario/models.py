@@ -5,11 +5,11 @@ from django.db import models
 # Create your models here.
 
 
-class Categoria(models.Model):
-    nombre = models.CharField(max_length=100)
+class Category(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.pk} - {self.nombre}"
+        return f"{self.pk} - {self.name}"
 
 
 class Producto(models.Model):
@@ -19,8 +19,8 @@ class Producto(models.Model):
     descripcion = models.TextField()
     foto = models.ImageField(upload_to="product/%Y/%m/%d", null=True, blank=True)
     image_test = models.CharField(max_length=500, null=True, blank=True)
-    categoria = models.ForeignKey(
-        Categoria, on_delete=models.CASCADE, blank=True, null=True
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, blank=True, null=True
     )
     estado = models.BooleanField(default=True)
     fecha_creada = models.DateTimeField(auto_now_add=True, null=True, blank=True)

@@ -146,11 +146,11 @@
 						<div class="search-bar-top">
 							<form method="get" action="/buscar/">
 							<div class="search-bar">
-								<select name="categorias">
-									<option selected="selected">Categorias</option>
+								<select name="categories">
+									<option selected="selected">Categories</option>
 
-									{% for i in categorias %}
-										<option value="{{i.nombre}}">{{i.nombre}}</option>
+									{% for i in categories %}
+										<option value="{{i.name}}">{{i.name}}</option>
 									{% endfor %}
 
 								</select>
@@ -205,7 +205,7 @@
 														<li><a href="{% url 'HomePerfilTemplateView'%}">Home</a></li>
 
 														{% if request.user.groups.get.name == 'Vendedor' %}
-															<li><a href="{% url 'CrearPublicacionCreateView'%}">Vender</a></li>
+															<li><a href="{% url 'PublicationCreateView'%}">Vender</a></li>
 															<li><a href="#">Ventas<i class="ti-angle-down"></i></a>
 																<ul class="dropdown">
 																	<li><a href="{% url 'MisVentasActivasListView'%}">Activas</a></li>
@@ -214,8 +214,8 @@
 															</li>
 															<li><a href="#">Publicaciones<i class="ti-angle-down"></i></a>
 																<ul class="dropdown">
-																	<li><a href="{% url 'ListaPublicacionesVendedorActivasListView'%}">Activas</a></li>
-																	<li><a href="{% url 'ListaPublicacionesVendedorPausadasListView'%}">Pausadas</a></li>
+																	<li><a href="{% url 'ActivePublicationsListView'%}">Activas</a></li>
+																	<li><a href="{% url 'PausedPublicationsListView'%}">Pausadas</a></li>
 																</ul>
 															</li>
 														{% endif %}
