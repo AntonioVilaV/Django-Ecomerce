@@ -59,11 +59,11 @@ class ShippingDetails(models.Model):
         return str(self.id)
 
 
-class datosPago(models.Model):
-    venta = models.ForeignKey(
+class PaymentDetails(models.Model):
+    sale = models.ForeignKey(
         SalesRecord, on_delete=models.CASCADE, blank=True, null=True
     )
-    nroRef = models.CharField(max_length=200)
-    recibo = models.FileField(upload_to="recibos/")
-    fecha_pago = models.DateTimeField()
-    fecha_creada = models.DateTimeField(auto_now_add=True)
+    ref_no = models.CharField(max_length=200)
+    receipt = models.FileField(upload_to="receipts/")
+    payment_date = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)

@@ -1,6 +1,6 @@
 from django.forms import ModelForm, ValidationError
 
-from apps.venta.models import SalesRecord, ShippingDetails, datosPago
+from apps.venta.models import PaymentDetails, SalesRecord, ShippingDetails
 
 
 class VentaForm(ModelForm):
@@ -38,8 +38,8 @@ class DatosEnviosForm(ModelForm):
 
 class DatosPagoForm(ModelForm):
     class Meta:
-        model = datosPago
-        fields = ["nroRef", "recibo", "fecha_pago"]
+        model = PaymentDetails
+        fields = ["ref_no", "receipt", "payment_date"]
 
 
 class OperatingStatusForm(ModelForm):

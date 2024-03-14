@@ -90,9 +90,9 @@
                                     <td class="price" data-title="Recibo"><span><a href="">{{datosPago}}</a></span></td>
                                     <td class="price" data-title="Fecha de pago"><span>{{datosPago}}</span></td>
                                 {% else %}
-                                    <td class="price" data-title="Nro Referencia"><span>#{{datosPago.nroRef}}</span></td>
-                                    <td class="price" data-title="Recibo"><span><a href="">{{datosPago.recibo}}</a></span></td>
-                                    <td class="price" data-title="Fecha de pago"><span>{{datosPago.fecha_pago}}</span></td>
+                                    <td class="price" data-title="Nro Referencia"><span>#{{datosPago.ref_no}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="">{{datosPago.receipt}}</a></span></td>
+                                    <td class="price" data-title="Fecha de pago"><span>{{datosPago.payment_date}}</span></td>
                                 {% endif %}
 							</tr>
                         </tbody>
@@ -161,9 +161,9 @@
                             <ul>
 
                                 {% if datosPago %}
-                                    <li>Nro.ref: #00000{{datosPago.nroRef}}</li>
-                                    <li>Recibo: {{datosPago.recibo}}</li>
-                                    <li>Fecha de pago: {{datosPago.fecha_pago}}</li>
+                                    <li>Nro.ref: #00000{{datosPago.ref_no}}</li>
+                                    <li>Recibo: {{datosPago.receipt}}</li>
+                                    <li>Fecha de pago: {{datosPago.payment_date}}</li>
                                 {% else %}
                                     <li>Nro.ref: Indefinido</li>
                                     <li>Recibo: Indefinido</li>

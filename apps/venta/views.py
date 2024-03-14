@@ -13,7 +13,12 @@ from apps.venta.forms import (
     OperatingStatusForm,
     VentaForm,
 )
-from apps.venta.models import OperatingStatus, SalesRecord, ShippingDetails, datosPago
+from apps.venta.models import (
+    OperatingStatus,
+    PaymentDetails,
+    SalesRecord,
+    ShippingDetails,
+)
 from mixins import validarGrupo
 
 # Create your views here.
@@ -136,8 +141,8 @@ class DetalleCompraDetailView(LoginRequiredMixin, TemplateView):
         except SalesRecord.DoesNotExist:
             raise Http404("Venta no existe")
 
-        if datosPago.objects.filter(venta__id=sale.id).exists():
-            context["datosPago"] = datosPago.objects.get(venta__id=sale.id)
+        if PaymentDetails.objects.filter(sale__id=sale.id).exists():
+            context["datosPago"] = PaymentDetails.objects.get(sale__id=sale.id)
         else:
             context["datosPago"] = "Indefinido"
 
@@ -236,10 +241,10 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
-    """Vista encargada de agregar los recibos y datos del pago del producto comprado"""
+    """Vista encargada de agregar los receipts y datos del pago del producto comprado"""
 
     template_name = "profiles/buyer/compras/crearDatosPago.html"
-    model = datosPago
+    model = PaymentDetails
     form_class = DatosPagoForm
     success_url = reverse_lazy("misCompras")
 
@@ -284,7 +289,7 @@ class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
     """Vista encargada de editar o actualizar los datos de pago del producto comprado"""
 
     template_name = "profiles/buyer/compras/crearDatosPago.html"
-    model = datosPago
+    model = PaymentDetails
     form_class = DatosPagoForm
     success_url = reverse_lazy("HomePerfilTemplateView")
 
@@ -299,7 +304,7 @@ class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
             .filter(product__author=logeado)
             .exists()
         ):
-            return datosPago.objects.get(venta__id=self.kwargs["pk"])
+            return PaymentDetails.objects.get(sale__id=self.kwargs["pk"])
         else:
             raise Http404("Venta no existe")
 
@@ -394,8 +399,8 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Venta - " + self.get_object().product.name
-        if datosPago.objects.filter(venta__id=self.kwargs["pk"]).exists():
-            datos_Pago = datosPago.objects.get(venta__id=self.kwargs["pk"])
+        if PaymentDetails.objects.filter(sale__id=self.kwargs["pk"]).exists():
+            datos_Pago = PaymentDetails.objects.get(sale__id=self.kwargs["pk"])
             context["datosPago"] = datos_Pago
         else:
             context["datosPago"] = "Indefinido"
@@ -443,8 +448,8 @@ class DetalleVentaCerradaTemplateView(
         sale = SalesRecord.objects.filter(product__author=self.request.user).get(
             id=self.kwargs["pk"]
         )
-        if datosPago.objects.filter(venta__id=self.kwargs["pk"]).exists():
-            datos_Pago = datosPago.objects.get(venta__id=self.kwargs["pk"])
+        if PaymentDetails.objects.filter(sale__id=self.kwargs["pk"]).exists():
+            datos_Pago = PaymentDetails.objects.get(sale__id=self.kwargs["pk"])
             context["datosPago"] = datos_Pago
         else:
             context["datosPago"] = "Indefinido"
