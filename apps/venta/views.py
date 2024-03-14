@@ -64,23 +64,21 @@ class ComprarProductoCreateView(LoginRequiredMixin, validarGrupo, CreateView):
         with transaction.atomic():
             form.instance.usuario = self.request.user
             form.instance.product = pro
-            descuento = 0
+            discount = 0
 
-            if pro.get_descuento():
-                form.instance.descuento = int(pro.descuento.descuento)
-                descuento = (int(pro.price) * cant) * (
-                    int(pro.descuento.descuento) / 100
-                )
+            if pro.get_discount():
+                form.instance.discount = int(pro.discount.discount)
+                discount = (int(pro.price) * cant) * (int(pro.discount.discount) / 100)
             form.instance.cantidad = cant
-            form.instance.total = (cant * pro.price) - descuento
+            form.instance.total = (cant * pro.price) - discount
             form.instance.estado_operacion = EstadoOperacion.objects.get(id=1)
             self.object = form.save()
 
             inv = Inventory.objects.get(product=pro)
-            inv.cantidad -= cant
+            inv.quantity -= cant
             inv.save()
 
-            if inv.cantidad == 0:
+            if inv.quantity == 0:
                 pro.status = False
                 pro.save()
             return redirect(reverse_lazy("MisComprasActivasListView"))

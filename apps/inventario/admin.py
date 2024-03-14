@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.inventario.models import Category, Descuento, Inventory, Product
+from apps.inventario.models import Category, Discount, Inventory, Product
 
 # Register your models here.
 
@@ -19,4 +19,4 @@ class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Inventory)
 admin.site.register(Category)
-admin.site.register(Descuento)
+admin.site.register(Discount)

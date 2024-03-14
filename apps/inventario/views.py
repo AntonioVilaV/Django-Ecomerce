@@ -287,9 +287,7 @@ class ProductSearchListView(ListView):
         if category == "categories":
             return Product.objects.filter(name__icontains=busqueda).filter(status=True)
         elif category == "decV":
-            return Product.objects.filter(status=True).filter(
-                descuento__descuento__gte=0
-            )
+            return Product.objects.filter(status=True).filter(discount__discount__gte=0)
         else:
             return (
                 Product.objects.filter(category__name=category)

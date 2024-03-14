@@ -71,8 +71,8 @@
 												<li>Sub Total<span>${{product.price}}</span></li>
 												<li>(+) Envio<span>Gratis</span></li>
 
-												{% if product.descuento %}
-													<li>(-) Descuento<span>{{product.descuento.descuento}}%</span></li>
+												{% if product.discount %}
+													<li>(-) Descuento<span>{{product.discount.discount}}%</span></li>
 												{% endif %}
 												<li class="last">Total<span>${{product.sub_total}}</span></li>
 

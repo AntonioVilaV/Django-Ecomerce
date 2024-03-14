@@ -72,10 +72,10 @@
 									<ul>
 										<li>Sub-Total<span id="sub_total">${{product.price}}</span></li>
 										<li>Envio<span>Gratis</span></li>
-										{% if product.descuento %}
+										{% if product.discount %}
 											<li>(-) Descuento
-												<input id="descuento" type="num" value="{{product.descuento.descuento}}" hidden>
-												<span>{{product.descuento.descuento}}%</span>
+												<input id="discount" type="num" value="{{product.discount.discount}}" hidden>
+												<span>{{product.discount.discount}}%</span>
 											</li>
 										{% endif %}
 										<li class="last">Total a pagar<span id="total_pagar">${{product.sub_total}}</span></li>
@@ -107,11 +107,11 @@
 			sub_total = valor*price
 			$("#total").html("$"+sub_total)
 			$("#sub_total").html("$"+sub_total)
-			descuento = $("#descuento").val()/100
+			discount = $("#discount").val()/100
 			desc = 0
-			if(!isNaN(descuento)){
+			if(!isNaN(discount)){
 				alert("Aa")
-				desc = descuento*sub_total
+				desc = discount*sub_total
 			}
 
 			sub_desc = sub_total-desc

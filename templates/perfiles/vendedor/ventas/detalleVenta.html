@@ -54,7 +54,7 @@
                                 <th>Precio</th>
                                 <th>Cantidad</th>
 
-                                {% if object.product.get_descuento %}
+                                {% if object.product.get_discount %}
                                     <th>Descuento</th>
                                 {% endif %}
 
@@ -71,8 +71,8 @@
                                 </td>
                                 <td class="price" data-title="Precio"><span>{{object.product.price}}$</span></td>
                                 <td class="price" data-title="Cantidad"><span>{{object.cantidad}}</span></td>
-                                {% if object.product.get_descuento %}
-                                    <td class="price" data-title="Descuento"><span>{{object.descuento}}%</span></td>
+                                {% if object.product.get_discount %}
+                                    <td class="price" data-title="Descuento"><span>{{object.discount}}%</span></td>
                                 {% endif %}
                                 <td class="price" data-title="Total"><span>{{object.total}}%</span></td>
 							</tr>

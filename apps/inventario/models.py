@@ -36,12 +36,12 @@ class Product(models.Model):
                 return f"{settings.MEDIA_URL}{self.photo}"
             return "{}{}".format(settings.STATIC_URL, "recursos/img/img_empty.jpg")
 
-    def get_descuento(self):
-        return hasattr(self, "descuento")
+    def get_discount(self):
+        return hasattr(self, "discount")
 
     def sub_total(self):
-        if hasattr(self, "descuento"):
-            desc = (self.price * self.descuento.descuento) / 100
+        if hasattr(self, "discount"):
+            desc = (self.price * self.discount.discount) / 100
             return self.price - desc
         else:
             return self.price
@@ -66,14 +66,14 @@ class Inventory(models.Model):
         )
 
 
-class Descuento(models.Model):
+class Discount(models.Model):
     product = models.OneToOneField(
         Product,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        related_name="descuento",
+        related_name="discount",
     )
-    descuento = models.PositiveSmallIntegerField(default=1)
-    fecha_inicio = models.DateTimeField()
-    fecha_cierre = models.DateTimeField()
+    discount = models.PositiveSmallIntegerField(default=1)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
