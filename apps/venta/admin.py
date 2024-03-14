@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from apps.venta.models import OperatingStatus, SalesRecord, datosEnvio, datosPago
+from apps.venta.models import OperatingStatus, SalesRecord, ShippingDetails, datosPago
 
 # Register your models here.
 
 admin.site.register(SalesRecord)
 admin.site.register(OperatingStatus)
-admin.site.register(datosEnvio)
+admin.site.register(ShippingDetails)
 admin.site.register(datosPago)

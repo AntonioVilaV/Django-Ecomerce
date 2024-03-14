@@ -13,7 +13,7 @@ from apps.venta.forms import (
     OperatingStatusForm,
     VentaForm,
 )
-from apps.venta.models import OperatingStatus, SalesRecord, datosEnvio, datosPago
+from apps.venta.models import OperatingStatus, SalesRecord, ShippingDetails, datosPago
 from mixins import validarGrupo
 
 # Create your views here.
@@ -130,23 +130,23 @@ class DetalleCompraDetailView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         try:
-            venta = SalesRecord.objects.filter(user=self.request.user).get(
+            sale = SalesRecord.objects.filter(user=self.request.user).get(
                 id=self.kwargs["pk"]
             )
         except SalesRecord.DoesNotExist:
             raise Http404("Venta no existe")
 
-        if datosPago.objects.filter(venta__id=venta.id).exists():
-            context["datosPago"] = datosPago.objects.get(venta__id=venta.id)
+        if datosPago.objects.filter(venta__id=sale.id).exists():
+            context["datosPago"] = datosPago.objects.get(venta__id=sale.id)
         else:
             context["datosPago"] = "Indefinido"
 
-        if datosEnvio.objects.filter(venta__id=venta.id).exists():
-            context["datosEnvio"] = datosEnvio.objects.get(venta__id=venta.id)
+        if ShippingDetails.objects.filter(sale__id=sale.id).exists():
+            context["datosEnvio"] = ShippingDetails.objects.get(sale__id=sale.id)
         else:
             context["datosEnvio"] = "Indefinido"
-        context["title"] = "Compra - " + venta.product.name
-        context["venta"] = venta
+        context["title"] = "Compra - " + sale.product.name
+        context["venta"] = sale
         return context
 
 
@@ -156,7 +156,7 @@ class CrearDatosEnvioCreateView(
     """Vista encargada de crear los datos de envio del comprador"""
 
     template_name = "profiles/buyer/compras/crearDatosEnvio.html"
-    model = datosEnvio
+    model = ShippingDetails
     form_class = DatosEnviosForm
     success_url = reverse_lazy("MisVentasActivasListView")
 
@@ -184,7 +184,7 @@ class CrearDatosEnvioCreateView(
 
     def form_valid(self, form):
         miVenta = SalesRecord.objects.get(id=self.kwargs["pk"])
-        form.instance.venta = miVenta
+        form.instance.sale = miVenta
 
         if form.is_valid():
             form.save()
@@ -198,7 +198,7 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
     """Vista encargada de editar o actualizar en los datos de envio del comprador en la compra realizada"""
 
     template_name = "profiles/buyer/compras/updateDatosEnvio.html"
-    model = datosEnvio
+    model = ShippingDetails
     form_class = DatosEnviosForm
     success_url = reverse_lazy("HomePerfilTemplateView")
 
@@ -212,7 +212,7 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
             .filter(product__author=logeado)
             .exists()
         ):
-            return datosEnvio.objects.get(venta__id=self.kwargs["pk"])
+            return ShippingDetails.objects.get(sale__id=self.kwargs["pk"])
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -226,13 +226,13 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def form_valid(self, form):
-        venta = SalesRecord.objects.get(id=self.kwargs["pk"])
+        sale = SalesRecord.objects.get(id=self.kwargs["pk"])
         if form.is_valid():
             form.save()
             if self.request.user.groups.get().name == "Vendedor":
-                return redirect("/detalleVenta/" + str(venta.id))
+                return redirect("/detalleVenta/" + str(sale.id))
             elif self.request.user.groups.get().name == "Comprador":
-                return redirect("/detalleCompra/" + str(venta.id))
+                return redirect("/detalleCompra/" + str(sale.id))
 
 
 class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
@@ -267,7 +267,7 @@ class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
 
     def form_valid(self, form):
         miVenta = SalesRecord.objects.get(id=self.kwargs["pk"])
-        form.instance.venta = miVenta
+        form.instance.sale = miVenta
         with transaction.atomic():
             form.save()
             estado_nuevo = OperatingStatus.objects.get(name="Confirmando pago")
@@ -315,13 +315,13 @@ class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
         return context
 
     def form_valid(self, form):
-        venta = SalesRecord.objects.get(id=self.kwargs["pk"])
+        sale = SalesRecord.objects.get(id=self.kwargs["pk"])
         if form.is_valid():
             form.save()
             if self.request.user.groups.get().name == "Vendedor":
-                return redirect("/detalleVenta/" + str(venta.id))
+                return redirect("/detalleVenta/" + str(sale.id))
             elif self.request.user.groups.get().name == "Comprador":
-                return redirect("/detalleCompra/" + str(venta.id))
+                return redirect("/detalleCompra/" + str(sale.id))
 
 
 # Vendedor - vistas Ventas
@@ -400,8 +400,8 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
         else:
             context["datosPago"] = "Indefinido"
 
-        if datosEnvio.objects.filter(venta__id=self.kwargs["pk"]).exists():
-            datos = datosEnvio.objects.get(venta__id=self.kwargs["pk"])
+        if ShippingDetails.objects.filter(sale__id=self.kwargs["pk"]).exists():
+            datos = ShippingDetails.objects.get(sale__id=self.kwargs["pk"])
             context["datosEnvio"] = datos
         else:
             context["datosEnvio"] = "Indefinido"
@@ -428,10 +428,10 @@ class DetalleVentaCerradaTemplateView(
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            venta = SalesRecord.objects.filter(product__author=self.request.user).get(
+            sale = SalesRecord.objects.filter(product__author=self.request.user).get(
                 id=self.kwargs["pk"]
             )
-            if not venta.state:
+            if not sale.state:
                 return super().dispatch(request, *args, **kwargs)
             else:
                 return redirect("/detalleVenta/" + str(self.kwargs["pk"]))
@@ -440,7 +440,7 @@ class DetalleVentaCerradaTemplateView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        venta = SalesRecord.objects.filter(product__author=self.request.user).get(
+        sale = SalesRecord.objects.filter(product__author=self.request.user).get(
             id=self.kwargs["pk"]
         )
         if datosPago.objects.filter(venta__id=self.kwargs["pk"]).exists():
@@ -449,12 +449,12 @@ class DetalleVentaCerradaTemplateView(
         else:
             context["datosPago"] = "Indefinido"
 
-        if datosEnvio.objects.filter(venta__id=self.kwargs["pk"]).exists():
-            datos = datosEnvio.objects.get(venta__id=self.kwargs["pk"])
+        if ShippingDetails.objects.filter(sale__id=self.kwargs["pk"]).exists():
+            datos = ShippingDetails.objects.get(sale__id=self.kwargs["pk"])
             context["datosEnvio"] = datos
         else:
             context["datosEnvio"] = "Indefinido"
 
-        context["title"] = "Venta - " + venta.product.name
-        context["venta"] = venta
+        context["title"] = "Venta - " + sale.product.name
+        context["venta"] = sale
         return context

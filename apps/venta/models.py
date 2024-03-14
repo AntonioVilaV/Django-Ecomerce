@@ -18,7 +18,7 @@ class SalesRecord(models.Model):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        related_name="venta_product",
+        related_name="sale_product",
         blank=True,
         null=True,
     )
@@ -39,21 +39,21 @@ class SalesRecord(models.Model):
         ordering = ["-created"]
 
 
-class datosEnvio(models.Model):
-    venta = models.ForeignKey(
+class ShippingDetails(models.Model):
+    sale = models.ForeignKey(
         SalesRecord,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name="venta_datosEnvio",
+        related_name="sale_shipping_details",
     )
-    nroEncomienda = models.CharField(max_length=200, blank=True, null=True)
-    nombre = models.CharField(max_length=200)
-    cedula = models.CharField(max_length=20)
-    telefono = models.CharField(max_length=20)
-    direccion = models.TextField()
-    fecha_envio = models.DateTimeField(blank=True, null=True)
-    fecha_creada = models.DateTimeField(auto_now_add=True)
+    oreder_no = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200)
+    dni = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+    shipment_date = models.DateTimeField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)

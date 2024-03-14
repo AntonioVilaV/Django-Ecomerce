@@ -129,10 +129,10 @@
                                 <td class="price" data-title="Dirección">Indefinido</td>
                                 <td class="price" data-title="Opción"><a href="{% url 'CrearDatosEnvioCreateView' object.id %}">Agregar</a></td>
                             {% else %}
-                                <td class="price" data-title="Nombre">{{datosEnvio.nombre}}</td>
-                                <td class="price" data-title="Cedula">{{datosEnvio.cedula}}</td>
-                                <td class="price" data-title="Telefono">{{datosEnvio.telefono}}</td>
-                                <td class="price" data-title="Dirección">{{datosEnvio.direccion}}</td>
+                                <td class="price" data-title="Nombre">{{datosEnvio.name}}</td>
+                                <td class="price" data-title="Cedula">{{datosEnvio.dni}}</td>
+                                <td class="price" data-title="Telefono">{{datosEnvio.phone}}</td>
+                                <td class="price" data-title="Dirección">{{datosEnvio.address}}</td>
                                 <td class="price" data-title="Opción"><a href="{% url 'UpdateDatosEnvioUpdateView' object.id %}">Editar</a></td>
                             {% endif %}
 
