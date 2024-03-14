@@ -1,0 +1,290 @@
+[
+  {
+    "model": "inventory.Product",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Pants",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/64_Childrens-Pants.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 2,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Pants 1",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/65_Childrens-Pants-1.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 3,
+    "fields": {
+      "author": 1,
+      "name": "Mens Pants",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/66_Mens-Pants.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 4,
+    "fields": {
+      "author": 1,
+      "name": "Mens Pants 1",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/67_Mens-Pants-1.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 5,
+    "fields": {
+      "author": 1,
+      "name": "Womens Pants",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/68_Womens-Pants.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 6,
+    "fields": {
+      "author": 1,
+      "name": "Womens Pants 1",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/69_Womens-Pants-1.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 7,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Shoes",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/70_Childrens-Shoes.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 8,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Shirts",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/71_Childrens-Shirts.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 9,
+    "fields": {
+      "author": 1,
+      "name": "Mens Shirts",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/73_Mens-Shirts.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 10,
+    "fields": {
+      "author": 1,
+      "name": "Mens Shirts 1",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/74_Mens-Shirts-1.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 11,
+    "fields": {
+      "author": 1,
+      "name": "Womens Shirts",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/75_Womens-Shirts.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 12,
+    "fields": {
+      "author": 1,
+      "name": "Womens Shirts 1",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/76_Womens-Shirts-1.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 13,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Shirts 1",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/77_Childrens-Shirts-1.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 14,
+    "fields": {
+      "author": 1,
+      "name": "Womens Shoes",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/78_Womens-Shoes.png"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 15,
+    "fields": {
+      "author": 1,
+      "name": "Mens Shoes",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/79_Mens-Shoes.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 16,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Pants 2",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/80_Childrens-Pants-2.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 17,
+    "fields": {
+      "author": 1,
+      "name": "Pantyhose",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/81_Pantyhose.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 18,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Chirts 2",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/82_Childrens-Chirts-2.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 19,
+    "fields": {
+      "author": 1,
+      "name": "Childrens Pants 3",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 3,
+      "photo": "products/83_Childrens-Pants-3.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 20,
+    "fields": {
+      "author": 1,
+      "name": "Womens Socks",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/84_Womens-Socks.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 21,
+    "fields": {
+      "author": 1,
+      "name": "Womens Sweater",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 2,
+      "photo": "products/85_Womens-Sweater.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 22,
+    "fields": {
+      "author": 1,
+      "name": "Mens Shirts 2",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/86_Mens-Shirts-2.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 23,
+    "fields": {
+      "author": 1,
+      "name": "Mens Shirts 3",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/87_Mens-Shirts-3.jpg"
+    }
+  },
+  {
+    "model": "inventory.Product",
+    "pk": 24,
+    "fields": {
+      "author": 1,
+      "name": "Mens Shirts 4",
+      "price": 100,
+      "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "category": 1,
+      "photo": "products/88_Mens-Shirts-4.jpg"
+    }
+  }
+]

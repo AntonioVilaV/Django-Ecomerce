@@ -42,7 +42,7 @@ class DatosPagoForm(ModelForm):
         fields = ["nroRef", "recibo", "fecha_pago"]
 
 
-class EstadoOperacionForm(ModelForm):
+class OperatingStatusForm(ModelForm):
     class Meta:
         model = RegistroVenta
         fields = ["estado_operacion"]

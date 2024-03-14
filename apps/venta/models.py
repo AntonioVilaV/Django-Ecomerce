@@ -1,16 +1,16 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from apps.inventario.models import Product
+from apps.inventory.models import Product
 
 # Create your models here.
 
 
-class EstadoOperacion(models.Model):
-    nombre = models.CharField(max_length=200)
+class OperatingStatus(models.Model):
+    name = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 
 
 class RegistroVenta(models.Model):
@@ -25,7 +25,7 @@ class RegistroVenta(models.Model):
     cantidad = models.IntegerField(default=1)
     total = models.FloatField(default=1)
     descuento = models.PositiveSmallIntegerField(null=True, blank=True)
-    estado_operacion = models.ForeignKey(EstadoOperacion, on_delete=models.CASCADE)
+    estado_operacion = models.ForeignKey(OperatingStatus, on_delete=models.CASCADE)
     fecha_creada = models.DateTimeField(auto_now_add=True)
     fecha_cierre = models.DateTimeField(blank=True, null=True)
     state = models.BooleanField(default=True)

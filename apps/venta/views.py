@@ -6,14 +6,14 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
-from apps.inventario.models import Inventory, Product
+from apps.inventory.models import Inventory, Product
 from apps.venta.forms import (
     DatosEnviosForm,
     DatosPagoForm,
-    EstadoOperacionForm,
+    OperatingStatusForm,
     VentaForm,
 )
-from apps.venta.models import EstadoOperacion, RegistroVenta, datosEnvio, datosPago
+from apps.venta.models import OperatingStatus, RegistroVenta, datosEnvio, datosPago
 from mixins import validarGrupo
 
 # Create your views here.
@@ -26,7 +26,7 @@ class ComprarProductoCreateView(LoginRequiredMixin, validarGrupo, CreateView):
     grupo = "Comprador"
     url_redirect = reverse_lazy("LoginUserLoginView")
     models = RegistroVenta
-    template_name = "perfiles/comprador/compras/confirmar_compra.html"
+    template_name = "profiles/buyer/compras/confirmar_compra.html"
     form_class = VentaForm
     success_url = "/comprar/CompraRealizada/"
 
@@ -71,7 +71,7 @@ class ComprarProductoCreateView(LoginRequiredMixin, validarGrupo, CreateView):
                 discount = (int(pro.price) * cant) * (int(pro.discount.discount) / 100)
             form.instance.cantidad = cant
             form.instance.total = (cant * pro.price) - discount
-            form.instance.estado_operacion = EstadoOperacion.objects.get(id=1)
+            form.instance.estado_operacion = OperatingStatus.objects.get(id=1)
             self.object = form.save()
 
             inv = Inventory.objects.get(product=pro)
@@ -90,7 +90,7 @@ class MisComprasActivasListView(LoginRequiredMixin, validarGrupo, ListView):
     grupo = "Comprador"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     model = RegistroVenta
-    template_name = "perfiles/comprador/compras/misCompras.html"
+    template_name = "profiles/buyer/compras/misCompras.html"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -110,7 +110,7 @@ class MisComprasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
     grupo = "Comprador"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     model = RegistroVenta
-    template_name = "perfiles/comprador/compras/misCompras.html"
+    template_name = "profiles/buyer/compras/misCompras.html"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -128,7 +128,7 @@ class DetalleCompraDetailView(LoginRequiredMixin, TemplateView):
     """Vista encargada de mostrar detalles de compra o factura de compra al usuario"""
 
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    template_name = "perfiles/comprador/compras/detalleCompra.html"
+    template_name = "profiles/buyer/compras/detalleCompra.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -159,7 +159,7 @@ class CrearDatosEnvioCreateView(
 ):  # SemiValidado - Recordar decidir cedula
     """Vista encargada de crear los datos de envio del comprador"""
 
-    template_name = "perfiles/comprador/compras/crearDatosEnvio.html"
+    template_name = "profiles/buyer/compras/crearDatosEnvio.html"
     model = datosEnvio
     form_class = DatosEnviosForm
     success_url = reverse_lazy("MisVentasActivasListView")
@@ -201,7 +201,7 @@ class CrearDatosEnvioCreateView(
 class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
     """Vista encargada de editar o actualizar en los datos de envio del comprador en la compra realizada"""
 
-    template_name = "perfiles/comprador/compras/updateDatosEnvio.html"
+    template_name = "profiles/buyer/compras/updateDatosEnvio.html"
     model = datosEnvio
     form_class = DatosEnviosForm
     success_url = reverse_lazy("HomePerfilTemplateView")
@@ -242,7 +242,7 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
 class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
     """Vista encargada de agregar los recibos y datos del pago del producto comprado"""
 
-    template_name = "perfiles/comprador/compras/crearDatosPago.html"
+    template_name = "profiles/buyer/compras/crearDatosPago.html"
     model = datosPago
     form_class = DatosPagoForm
     success_url = reverse_lazy("misCompras")
@@ -274,7 +274,7 @@ class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
         form.instance.venta = miVenta
         with transaction.atomic():
             form.save()
-            estado_nuevo = EstadoOperacion.objects.get(nombre="Confirmando pago")
+            estado_nuevo = OperatingStatus.objects.get(name="Confirmando pago")
             RegistroVenta.objects.filter(id=self.kwargs["pk"]).update(
                 estado_operacion=estado_nuevo
             )
@@ -287,7 +287,7 @@ class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
 class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
     """Vista encargada de editar o actualizar los datos de pago del producto comprado"""
 
-    template_name = "perfiles/comprador/compras/crearDatosPago.html"
+    template_name = "profiles/buyer/compras/crearDatosPago.html"
     model = datosPago
     form_class = DatosPagoForm
     success_url = reverse_lazy("HomePerfilTemplateView")
@@ -337,7 +337,7 @@ class MisVentasActivasListView(LoginRequiredMixin, validarGrupo, ListView):
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     model = RegistroVenta
-    template_name = "perfiles/vendedor/ventas/misVentas.html"
+    template_name = "profiles/seller/ventas/misVentas.html"
     paginate_by = 8
 
     def get_queryset(self):
@@ -358,7 +358,7 @@ class MisVentasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     model = RegistroVenta
-    template_name = "perfiles/vendedor/ventas/misVentas.html"
+    template_name = "profiles/seller/ventas/misVentas.html"
 
     def get_queryset(self):
         return RegistroVenta.objects.filter(
@@ -377,9 +377,9 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    template_name = "perfiles/vendedor/ventas/detalleVenta.html"
+    template_name = "profiles/seller/ventas/detalleVenta.html"
     model = RegistroVenta
-    form_class = EstadoOperacionForm
+    form_class = OperatingStatusForm
     success_url = reverse_lazy("MisVentasActivasListView")
 
     def get_object(self, queryset=None):
@@ -413,8 +413,8 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
 
     def form_valid(self, form):
         if (
-            form.instance.estado_operacion.nombre == "Entregado"
-            or form.instance.estado_operacion.nombre == "Cancelado"
+            form.instance.estado_operacion.name == "Entregado"
+            or form.instance.estado_operacion.name == "Cancelado"
         ):
             form.instance.state = False
         return super().form_valid(form)
@@ -427,7 +427,7 @@ class DetalleVentaCerradaTemplateView(
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    template_name = "perfiles/vendedor/ventas/detalleVentaCerrada.html"
+    template_name = "profiles/seller/ventas/detalleVentaCerrada.html"
     success_url = reverse_lazy("MisVentasActivasListView")
 
     def dispatch(self, request, *args, **kwargs):

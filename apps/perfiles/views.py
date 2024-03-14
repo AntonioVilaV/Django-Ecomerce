@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 
-from apps.inventario.models import Product
+from apps.inventory.models import Product
 from apps.perfiles.forms import (
     RegistroUsuarioForm,
     UpdateDatosContactoForm,
@@ -48,7 +48,7 @@ class HomeIndexTemplateView(TemplateView):
 class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
     """Vista home del perfil de usuario , encargada de mostrar el status de las operaciones de venta y compra del Vendedor"""
 
-    template_name = "perfiles/homeUsuario.html"
+    template_name = "profiles/homeUsuario.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,14 +63,14 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
             pagoPorConfirmar = (
                 RegistroVenta.objects.filter(product__author__pk=self.request.user.pk)
                 .filter(
-                    Q(estado_operacion__nombre="Esperando pago")
-                    | Q(estado_operacion__nombre="Confirmando pago")
+                    Q(estado_operacion__name="Esperando pago")
+                    | Q(estado_operacion__name="Confirmando pago")
                 )
                 .count()
             )
             productosPorEnviar = (
                 RegistroVenta.objects.filter(product__author__pk=self.request.user.pk)
-                .filter(estado_operacion__nombre="Procesando Encomienda")
+                .filter(estado_operacion__name="Procesando Encomienda")
                 .count()
             )
             context["resumen"] = [ventasActivas, pagoPorConfirmar, productosPorEnviar]
@@ -82,14 +82,14 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
             )
             facturas = (
                 RegistroVenta.objects.filter(usuario=self.request.user.pk)
-                .filter(estado_operacion__nombre="Esperando pago")
+                .filter(estado_operacion__name="Esperando pago")
                 .count()
             )  # Facturas P.Pagar
             envios = (
                 RegistroVenta.objects.filter(usuario=self.request.user.pk)
                 .filter(
-                    Q(estado_operacion__nombre="Procesando Encomienda")
-                    | Q(estado_operacion__nombre="Enviado")
+                    Q(estado_operacion__name="Procesando Encomienda")
+                    | Q(estado_operacion__name="Enviado")
                 )
                 .count()
             )
@@ -105,7 +105,7 @@ class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
 
     model = datosContacto
     second_model = User
-    template_name = "perfiles/miCuenta.html"
+    template_name = "profiles/miCuenta.html"
     form_class = UpdateDatosContactoForm
     second_form_class = UpdateDatosUsuarioForm
     success_url = reverse_lazy("HomePerfilTemplateView")
@@ -164,7 +164,7 @@ class RegistroUsuarioCreateView(CreateView):
     """Vista encargada de registrar un usuario en la base de datos de la plataforma"""
 
     model = User
-    template_name = "perfiles/registrar.html"
+    template_name = "profiles/registrar.html"
     form_class = RegistroUsuarioForm
     success_url = reverse_lazy("HomePerfilTemplateView")
 
@@ -217,7 +217,7 @@ class LoginUserLoginView(LoginView):
 class DatosDeContactoTemplateView(TemplateView):
     """Vista esta encargada de mostrar los datos de contacto de un usuario y verificar si tienes permisos para verlos"""
 
-    template_name = "perfiles/contacto/datosContacto.html"
+    template_name = "profiles/contacto/datosContacto.html"
 
     def dispatch(self, request, *args, **kwargs):
         if (

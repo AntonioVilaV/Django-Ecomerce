@@ -1,4 +1,4 @@
-from apps.inventario.models import Category
+from apps.inventory.models import Category
 
 
 def categories_base(request):

@@ -14,7 +14,7 @@ def initialize_project():
     call_command("populate_categories")
 
     fixture_file = os.path.join(
-        settings.BASE_DIR, "apps", "inventario", "fixtures", "products.json"
+        settings.BASE_DIR, "apps", "inventory", "fixtures", "products.json"
     )
     call_command("loaddata", fixture_file, verbosity=0)
 
