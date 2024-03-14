@@ -7,7 +7,7 @@
         <thead>
             <tr class="main-hading">
                 <th>Nro.Venta</th>
-                <th>Producto</th>
+                <th>Product</th>
                 <th></th>
                 <th class="text-center">Precio</th>
                 <th class="text-center">Cantidad</th>
@@ -23,12 +23,12 @@
                         <td class="price" data-title="Nro.Venta">
                             <p class="product-name"><span>#000000{{i.id}}</span></p>
                         </td>
-                        <td class="image" data-title="Producto" width="150px"><img src="{{i.producto.get_image}}" alt="#"></td>
+                        <td class="image" data-title="Producto" width="150px"><img src="{{i.product.get_image}}" alt="#"></td>
                         <td class="product-des" data-title="Nombre">
-                            <p class="product-name"><a href="#">{{i.producto.nombre}}</a></p>
-                            <p class="product-des">{{i.producto.descripcion|slice:40}}...</p>
+                            <p class="product-name"><a href="#">{{i.product.name}}</a></p>
+                            <p class="product-des">{{i.product.description|slice:40}}...</p>
                         </td>
-                        <td class="price" data-title="Precio"><span>${{i.producto.precio}} </span></td>
+                        <td class="price" data-title="Precio"><span>${{i.product.price}} </span></td>
                         <td class="qty" data-title="Cantidad"><span>{{i.cantidad}}</span></td>
                         <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>
                         <td class="total-amount" data-title="Estado"><span>{{i.estado_operacion.nombre}}</span></td>
@@ -48,7 +48,7 @@
                                         <a class="dropdown-item" href="{% url 'CrearDatosEnvioCreateView' i.id %}"><i class="fa fa-truck"></i> Datos Envio</a>
                                     {% endif %}
 
-                                    <a class="dropdown-item" href="{% url 'DatosDeContactoTemplateView' i.producto.autor.id %}"><i class="fa fa-phone-square"></i> Vendedor </a>
+                                    <a class="dropdown-item" href="{% url 'DatosDeContactoTemplateView' i.product.author.id %}"><i class="fa fa-phone-square"></i> Vendedor </a>
                                 </div>
                             </div>
                         </td>

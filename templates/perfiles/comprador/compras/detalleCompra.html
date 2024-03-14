@@ -33,7 +33,7 @@
                                     <td class="price" data-title="Fecha entrega"><span>{{venta.fecha_cierre.date}}</span></td>
                                 {% endif %}
 
-								<td class="price" data-title="Vendedor"><span><a href="{% url 'DatosDeContactoTemplateView' venta.producto.autor.id %}">{{venta.producto.autor}} <i class="fa fa-id-card"></i></a></span></td>
+								<td class="price" data-title="Vendedor"><span><a href="{% url 'DatosDeContactoTemplateView' venta.product.author.id %}">{{venta.product.author}} <i class="fa fa-id-card"></i></a></span></td>
                                 <td class="price" data-title="Estado">{{venta.estado_operacion}}</td>
 							</tr>
                         </tbody>
@@ -45,11 +45,11 @@
                         <thead>
                             <tr class="main-hading">
                                 <th>Nro</th>
-                                <th>Producto</th>
+                                <th>Product</th>
                                 <th>Precio</th>
                                 <th>Cantidad</th>
 
-                                {% if venta.producto.get_descuento %}
+                                {% if venta.product.get_descuento %}
                                     <th>Descuento</th>
                                 {% endif %}
 
@@ -60,13 +60,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="price" data-title="Nro.Producto"><span>#00000{{venta.producto.id}}</span></td>
+                                <td class="price" data-title="Nro.product"><span>#00000{{venta.product.id}}</span></td>
                                 <td class="price" data-title="Descripción">
-                                    <span><a href="/producto/{{object.producto.id}}">{{venta.producto.nombre}}</a></span>
+                                    <span><a href="/producto/{{object.product.id}}">{{venta.product.name}}</a></span>
                                 </td>
-                                <td class="price" data-title="Precio"><span>{{venta.producto.precio}}$</span></td>
+                                <td class="price" data-title="Precio"><span>{{venta.product.price}}$</span></td>
                                 <td class="price" data-title="Cantidad"><span>{{venta.cantidad}}</span></td>
-                                {% if venta.producto.get_descuento %}
+                                {% if venta.product.get_descuento %}
                                     <td class="price" data-title="Descuento"><span>{{venta.descuento}}%</span></td>
                                 {% endif %}
                                 <td class="price" data-title="Total"><span>{{venta.total}}$</span></td>

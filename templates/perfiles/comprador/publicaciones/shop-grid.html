@@ -19,16 +19,16 @@
 									<h3 class="title">Productos Recientes</h3>
 									<!-- Single Post -->
 
-									{% for producto in productosRecientes %}
+									{% for product in productosRecientes %}
 										<div class="single-post first">
-											<a href="/producto/{{producto.id}}/">
+											<a href="/producto/{{product.id}}/">
 												<div class="image">
-													<img src="{{producto.get_image}}" alt="#">
+													<img src="{{product.get_image}}" alt="#">
 												</div>
 											</a>
 											<div class="content">
-												<h5><a href="/producto/{{producto.id}}/">{{producto.nombre}}</a></h5>
-												<p class="price">${{producto.precio}}</p>
+												<h5><a href="/producto/{{product.id}}/">{{product.name}}</a></h5>
+												<p class="price">${{product.price}}</p>
 												<ul class="reviews">
 													<li class="yellow"><i class="ti-star"></i></li>
 													<li class="yellow"><i class="ti-star"></i></li>
@@ -107,9 +107,9 @@
 												</div>
 											</div>
 											<div class="product-content">
-												<h3><a href="{% url 'ProductDetailView' i.id%}">{{i.nombre}}</a></h3>
+												<h3><a href="{% url 'ProductDetailView' i.id%}">{{i.name}}</a></h3>
 												<div class="product-price">
-													<span>{{i.precio}}$</span>
+													<span>{{i.price}}$</span>
 												</div>
 											</div>
 										</div>

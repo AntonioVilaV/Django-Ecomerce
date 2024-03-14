@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from apps.inventario.models import Producto
+from apps.inventario.models import Product
 
 # Create your models here.
 
@@ -15,8 +15,12 @@ class EstadoOperacion(models.Model):
 
 class RegistroVenta(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
-    producto = models.ForeignKey(
-        Producto, on_delete=models.CASCADE, related_name="venta_producto"
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="venta_product",
+        blank=True,
+        null=True,
     )
     cantidad = models.IntegerField(default=1)
     total = models.FloatField(default=1)
@@ -29,7 +33,7 @@ class RegistroVenta(models.Model):
     # estado_operacion = models.PositiveSmallIntegerField(default=1) #1 en a la espera de pago, 2 en proceso, 3 enviado, 4 entregado.
 
     def __str__(self):
-        return f"| {self.pk} | {self.producto.pk} - {self.producto.nombre} | {self.estado_operacion} | {self.fecha_creada} "
+        return f"| {self.pk} | {self.product.pk} - {self.product.name} | {self.estado_operacion} | {self.fecha_creada} "
 
     class Meta:
         ordering = ["-fecha_creada"]

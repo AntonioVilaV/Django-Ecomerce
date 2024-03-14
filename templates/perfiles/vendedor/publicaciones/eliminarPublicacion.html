@@ -20,13 +20,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="image" data-title="No"><img src="{{producto.get_image}}" alt="#"></td>
+                            <td class="image" data-title="No"><img src="{{product.get_image}}" alt="#"></td>
                             <td class="product-des" data-title="Description">
-                                <p class="product-name"><a href="#">{{producto.id}} - {{producto.nombre}}</a></p>
-                                <p class="product-des">{{producto.descripcion|slice:120}}</p>
+                                <p class="product-name"><a href="#">{{product.id}} - {{product.name}}</a></p>
+                                <p class="product-des">{{product.description|slice:120}}</p>
                             </td>
-                            <td class="price" data-title="Price"><span>{{producto.inventario_producto.cantidad}}</span></td>
-                            <td class="price" data-title="Price"><span>${{producto.precio}} </span></td>
+                            <td class="price" data-title="Price"><span>{{product.inventory_product.quantity}}</span></td>
+                            <td class="price" data-title="Price"><span>${{product.price}} </span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -34,9 +34,9 @@
                 <div class="col">
                     <button type="submit" class="btn">Aceptar</button>
 
-                    {% if producto.estado %}
+                    {% if product.status %}
                         <a href="{% url 'ActivePublicationsListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
-                    {% elif producto.estado == False %}
+                    {% elif product.status == False %}
                         <a href="{% url 'PausedPublicationsListView' %}" class="btn" style="color: #FFF;line-height: 1;">Cancelar</a>
                     {% endif %}
                 </div>

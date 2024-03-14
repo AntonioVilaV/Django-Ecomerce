@@ -39,10 +39,10 @@
                         </td>
                         <td class="qty" data-title="Comprador"><a href="{% url 'DatosDeContactoTemplateView' i.usuario.id %}">{{i.usuario}}</a></td>
                         <td class="product-des" data-title="Producto">
-                            <p class="product-name"><a href="{% url 'ProductDetailView' i.producto.id %}">{{i.producto.nombre}}</a></p>
-                            <p class="product-des">{{i.producto.descripcion|slice:50}}...</p>
+                            <p class="product-name"><a href="{% url 'ProductDetailView' i.product.id %}">{{i.product.name}}</a></p>
+                            <p class="product-des">{{i.product.description|slice:50}}...</p>
                         </td>
-                        <td class="price" data-title="Precio"><span>${{i.producto.precio}} </span></td>
+                        <td class="price" data-title="Precio"><span>${{i.product.price}} </span></td>
                         <td class="qty" data-title="Cantidad"><span>{{i.cantidad}}</span></td>
 
                         <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>

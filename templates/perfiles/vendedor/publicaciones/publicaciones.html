@@ -22,11 +22,11 @@
 				<tr>
 					<td class="image" data-title="Producto" width="150px"><img src="{{publicaciones.get_image}}" ></td>
 					<td class="product-des" data-title="Nombre">
-						<p class="product-name"><a href="{% url 'ProductDetailView' publicaciones.id %}">{{publicaciones.nombre}}</a></p>
-						<p class="product-des">{{publicaciones.descripcion|slice:140}}...</p>
+						<p class="product-name"><a href="{% url 'ProductDetailView' publicaciones.id %}">{{publicaciones.name}}</a></p>
+						<p class="product-des">{{publicaciones.description|slice:140}}...</p>
 					</td>
-					<td class="qty" data-title="Cantidad"><span>{{publicaciones.inventario_producto.cantidad}} </span></td>
-					<td class="price" data-title="Precio"><span>${{publicaciones.precio}} </span></td>
+					<td class="qty" data-title="Cantidad"><span>{{publicaciones.inventory_product.quantity}} </span></td>
+					<td class="price" data-title="Precio"><span>${{publicaciones.price}} </span></td>
 					<td class="action" data-title="Opc">
 						<div class="btn-group">
 							<button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
@@ -35,9 +35,9 @@
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{% url 'PublicationUpdateView' publicaciones.id %}"><i class="fas fa-edit"></i> Editar</a>
 
-								{% if publicaciones.estado %}
+								{% if publicaciones.status %}
 								<a class="dropdown-item" href="{% url 'ActionPublicationTemplateView' 'pausar' publicaciones.id %}"><i class="fa fa-pause"></i> Pausar</a>
-								{% elif publicaciones.estado == False %}
+								{% elif publicaciones.status == False %}
 								<a class="dropdown-item" href="{% url 'ActionPublicationTemplateView' 'activar' publicaciones.id %}"><i class="fa fa-play"></i> Activar</a>
 								{% endif %}
 								<a class="dropdown-item" href="{% url 'PublicationDeleteView' publicaciones.id%}"><i class="fas fa-trash-alt"></i> Eliminar</a>

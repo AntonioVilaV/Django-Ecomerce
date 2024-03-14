@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 
-from apps.inventario.models import Producto
+from apps.inventario.models import Product
 from apps.perfiles.forms import (
     RegistroUsuarioForm,
     UpdateDatosContactoForm,
@@ -28,13 +28,13 @@ class HomeIndexTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["man"] = Producto.objects.filter(estado=True).filter(
+        context["man"] = Product.objects.filter(status=True).filter(
             category__name="Men"
         )[:8]
-        context["kids"] = Producto.objects.filter(estado=True).filter(
+        context["kids"] = Product.objects.filter(status=True).filter(
             category__name="Childrens"
         )[:8]
-        context["women"] = Producto.objects.filter(estado=True).filter(
+        context["women"] = Product.objects.filter(status=True).filter(
             category__name="Women"
         )[:8]
 
@@ -56,12 +56,12 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
 
         if self.request.user.groups.get().name == "Vendedor":
             ventasActivas = (
-                RegistroVenta.objects.filter(producto__autor=self.request.user)
+                RegistroVenta.objects.filter(product__author=self.request.user)
                 .filter(state=True)
                 .count()
             )
             pagoPorConfirmar = (
-                RegistroVenta.objects.filter(producto__autor__pk=self.request.user.pk)
+                RegistroVenta.objects.filter(product__author__pk=self.request.user.pk)
                 .filter(
                     Q(estado_operacion__nombre="Esperando pago")
                     | Q(estado_operacion__nombre="Confirmando pago")
@@ -69,7 +69,7 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
                 .count()
             )
             productosPorEnviar = (
-                RegistroVenta.objects.filter(producto__autor__pk=self.request.user.pk)
+                RegistroVenta.objects.filter(product__author__pk=self.request.user.pk)
                 .filter(estado_operacion__nombre="Procesando Encomienda")
                 .count()
             )
@@ -222,10 +222,10 @@ class DatosDeContactoTemplateView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         if (
             RegistroVenta.objects.filter(usuario=self.request.user)
-            .filter(producto__autor__id=self.kwargs["pk"])
+            .filter(product__author__id=self.kwargs["pk"])
             .exists()
             or RegistroVenta.objects.filter(usuario__id=self.kwargs["pk"])
-            .filter(producto__autor=self.request.user)
+            .filter(product__author=self.request.user)
             .exists()
         ):
             return super().dispatch(request, *args, **kwargs)

@@ -54,7 +54,7 @@
                                 <th>Precio</th>
                                 <th>Cantidad</th>
 
-                                {% if object.producto.get_descuento %}
+                                {% if object.product.get_descuento %}
                                     <th>Descuento</th>
                                 {% endif %}
 
@@ -65,13 +65,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="price" data-title="Nro.Producto"><span>#00000{{object.producto.id}}</span></td>
+                                <td class="price" data-title="Nro.Producto"><span>#00000{{object.product.id}}</span></td>
                                 <td class="price" data-title="Descripción">
-                                    <span><a href="/producto/{{object.producto.id}}">{{object.producto.nombre}}</a></span>
+                                    <span><a href="/producto/{{object.product.id}}">{{object.product.name}}</a></span>
                                 </td>
-                                <td class="price" data-title="Precio"><span>{{object.producto.precio}}$</span></td>
+                                <td class="price" data-title="Precio"><span>{{object.product.price}}$</span></td>
                                 <td class="price" data-title="Cantidad"><span>{{object.cantidad}}</span></td>
-                                {% if object.producto.get_descuento %}
+                                {% if object.product.get_descuento %}
                                     <td class="price" data-title="Descuento"><span>{{object.descuento}}%</span></td>
                                 {% endif %}
                                 <td class="price" data-title="Total"><span>{{object.total}}%</span></td>
@@ -161,7 +161,7 @@
                                 <li>Fecha: 12/12/2021</li>
                                 <li>Nombre: {{venta.usuario.username}}</li>
                                 <li>------------------------</li>
-                                <li>#00{{venta.producto.id}} - {{venta.producto.nombre}} x 2 - {{venta.producto.precio}}$ </li>
+                                <li>#00{{venta.product.id}} - {{venta.product.name}} x 2 - {{venta.product.price}}$ </li>
                                 <li>------------------------</li>
                                 <li>Total: 12$ </li>
                                 <li>------------------------</li>

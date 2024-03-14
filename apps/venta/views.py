@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
-from apps.inventario.models import Inventario, Producto
+from apps.inventario.models import Inventory, Product
 from apps.venta.forms import (
     DatosEnviosForm,
     DatosPagoForm,
@@ -32,56 +32,56 @@ class ComprarProductoCreateView(LoginRequiredMixin, validarGrupo, CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            Producto.objects.get(id=self.kwargs["pk"])
-        except Producto.DoesNotExist:
+            Product.objects.get(id=self.kwargs["pk"])
+        except Product.DoesNotExist:
             raise Http404("Producto no encontrado o perdido")
 
-        if not Producto.objects.get(id=self.kwargs["pk"]).estado:
+        if not Product.objects.get(id=self.kwargs["pk"]).status:
             raise Http404("Producto deshabilitado")
 
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        producto = Producto.objects.get(id=self.kwargs["pk"])
-        context["title"] = "Comprar - " + producto.nombre
-        context["producto"] = producto
+        product = Product.objects.get(id=self.kwargs["pk"])
+        context["title"] = "Comprar - " + product.name
+        context["product"] = product
         return context
 
     def form_valid(self, form):
-        pro = Producto.objects.get(id=self.kwargs["pk"])
+        pro = Product.objects.get(id=self.kwargs["pk"])
         cant = 1
         if "quant[1]" in self.request.POST:
             cant = int(self.request.POST["quant[1]"])
 
-            if cant > int(pro.inventario_producto.cantidad):
+            if cant > int(pro.inventory_product.quantity):
                 return self.render_to_response(
                     self.get_context_data(
-                        cantidad_error="Sin stock, ingrese una cantidad menor"
+                        quantity_error="Sin stock, ingrese una quantity menor"
                     )
-                )  # especificar que debe pedir una cantidad menor de productos
+                )  # especificar que debe pedir una quantity menor de productos
 
         with transaction.atomic():
             form.instance.usuario = self.request.user
-            form.instance.producto = pro
+            form.instance.product = pro
             descuento = 0
 
             if pro.get_descuento():
                 form.instance.descuento = int(pro.descuento.descuento)
-                descuento = (int(pro.precio) * cant) * (
+                descuento = (int(pro.price) * cant) * (
                     int(pro.descuento.descuento) / 100
                 )
             form.instance.cantidad = cant
-            form.instance.total = (cant * pro.precio) - descuento
+            form.instance.total = (cant * pro.price) - descuento
             form.instance.estado_operacion = EstadoOperacion.objects.get(id=1)
             self.object = form.save()
 
-            inv = Inventario.objects.get(producto=pro)
+            inv = Inventory.objects.get(product=pro)
             inv.cantidad -= cant
             inv.save()
 
             if inv.cantidad == 0:
-                pro.estado = False
+                pro.status = False
                 pro.save()
             return redirect(reverse_lazy("MisComprasActivasListView"))
 
@@ -151,7 +151,7 @@ class DetalleCompraDetailView(LoginRequiredMixin, TemplateView):
             context["datosEnvio"] = datosEnvio.objects.get(venta__id=venta.id)
         else:
             context["datosEnvio"] = "Indefinido"
-        context["title"] = "Compra - " + venta.producto.nombre
+        context["title"] = "Compra - " + venta.product.name
         context["venta"] = venta
         return context
 
@@ -174,7 +174,7 @@ class CrearDatosEnvioCreateView(
                 .filter(usuario=logeado)
                 .exists()
                 or RegistroVenta.objects.filter(id=self.kwargs["pk"])
-                .filter(producto__autor=logeado)
+                .filter(product__author=logeado)
                 .exists()
             ):
                 return super().dispatch(request, *args, **kwargs)
@@ -215,7 +215,7 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
             .filter(usuario=logeado)
             .exists()
             or RegistroVenta.objects.filter(id=self.kwargs["pk"])
-            .filter(producto__autor=logeado)
+            .filter(product__author=logeado)
             .exists()
         ):
             return datosEnvio.objects.get(venta__id=self.kwargs["pk"])
@@ -257,7 +257,7 @@ class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
                 .filter(usuario=logeado)
                 .exists()
                 or RegistroVenta.objects.filter(id=self.kwargs["pk"])
-                .filter(producto__autor=logeado)
+                .filter(product__author=logeado)
                 .exists()
             ):
                 return super().dispatch(request, *args, **kwargs)
@@ -302,7 +302,7 @@ class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
             .filter(usuario=logeado)
             .exists()
             or RegistroVenta.objects.filter(id=self.kwargs["pk"])
-            .filter(producto__autor=logeado)
+            .filter(product__author=logeado)
             .exists()
         ):
             return datosPago.objects.get(venta__id=self.kwargs["pk"])
@@ -344,7 +344,7 @@ class MisVentasActivasListView(LoginRequiredMixin, validarGrupo, ListView):
 
     def get_queryset(self):
         return RegistroVenta.objects.filter(
-            producto__autor__pk=self.request.user.pk
+            product__author__pk=self.request.user.pk
         ).filter(state=True)
 
     def get_context_data(self, **kwargs):
@@ -364,7 +364,7 @@ class MisVentasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
 
     def get_queryset(self):
         return RegistroVenta.objects.filter(
-            producto__autor__pk=self.request.user.pk
+            product__author__pk=self.request.user.pk
         ).filter(state=False)
 
     def get_context_data(self, **kwargs):
@@ -386,7 +386,7 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
 
     def get_object(self, queryset=None):
         return (
-            RegistroVenta.objects.filter(producto__autor=self.request.user)
+            RegistroVenta.objects.filter(product__author=self.request.user)
             .filter(state=True)
             .get(id=self.kwargs["pk"])
         )
@@ -399,7 +399,7 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Venta - " + self.get_object().producto.nombre
+        context["title"] = "Venta - " + self.get_object().product.name
         if datosPago.objects.filter(venta__id=self.kwargs["pk"]).exists():
             datos_Pago = datosPago.objects.get(venta__id=self.kwargs["pk"])
             context["datosPago"] = datos_Pago
@@ -434,7 +434,7 @@ class DetalleVentaCerradaTemplateView(
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            venta = RegistroVenta.objects.filter(producto__autor=self.request.user).get(
+            venta = RegistroVenta.objects.filter(product__author=self.request.user).get(
                 id=self.kwargs["pk"]
             )
             if not venta.state:
@@ -446,7 +446,7 @@ class DetalleVentaCerradaTemplateView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        venta = RegistroVenta.objects.filter(producto__autor=self.request.user).get(
+        venta = RegistroVenta.objects.filter(product__author=self.request.user).get(
             id=self.kwargs["pk"]
         )
         if datosPago.objects.filter(venta__id=self.kwargs["pk"]).exists():
@@ -461,6 +461,6 @@ class DetalleVentaCerradaTemplateView(
         else:
             context["datosEnvio"] = "Indefinido"
 
-        context["title"] = "Venta - " + venta.producto.nombre
+        context["title"] = "Venta - " + venta.product.name
         context["venta"] = venta
         return context

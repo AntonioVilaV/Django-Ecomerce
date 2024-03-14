@@ -2,21 +2,21 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.inventario.models import Category, Descuento, Inventario, Producto
+from apps.inventario.models import Category, Descuento, Inventory, Product
 
 # Register your models here.
 
 
-class ProductoResources(resources.ModelResource):
+class ProductResources(resources.ModelResource):
     class Meta:
-        model = Producto
+        model = Product
 
 
-class ProductoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    resource_class = ProductoResources
+class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ProductResources
 
 
-admin.site.register(Producto, ProductoAdmin)
-admin.site.register(Inventario)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Inventory)
 admin.site.register(Category)
 admin.site.register(Descuento)

@@ -11,7 +11,7 @@
 					<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
-								<th>Producto</th>
+								<th>Product</th>
 								<th>Nombre</th>
 								<th class="text-center">Precio U.</th>
 								<th class="text-center">Cantidad</th>
@@ -21,12 +21,12 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="image" data-title="No"><img src="{{producto.get_image}}" alt="#"></td>
+								<td class="image" data-title="No"><img src="{{product.get_image}}" alt="#"></td>
 								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="#">{{producto.nombre}}</a></p>
-									<p class="product-des">{{producto.descripcion|slice:140}}...</p>
+									<p class="product-name"><a href="#">{{product.name}}</a></p>
+									<p class="product-des">{{product.description|slice:140}}...</p>
 								</td>
-								<td class="price" data-title="Price"><span>${{producto.precio}} </span></td>
+								<td class="price" data-title="Price"><span>${{product.price}} </span></td>
 								<td class="qty" data-title="Qty"><!-- Input Order -->
 									<div class="input-group">
 										<div class="button minus">
@@ -34,10 +34,10 @@
 												<i class="ti-minus"></i>
 											</button>
 										</div>
-										<input id="cantidad" type="text" name="quant[1]" class="input-number"  data-min="1" data-max="100" value="1">
+										<input id="quantity" type="text" name="quant[1]" class="input-number"  data-min="1" data-max="100" value="1">
 
-										{% if cantidad_error %}
-											<label>{{cantidad_error}}</label>
+										{% if quantity_error %}
+											<label>{{quantity_error}}</label>
 										{% endif %}
 
 										<div class="button plus">
@@ -49,8 +49,8 @@
 									<!--/ End Input Order -->
 								</td>
 								<td class="total-amount" data-title="Total">
-									<input id="precio" type="num" value="{{producto.precio}}" hidden>
-									<span id="total">${{producto.precio}}</span>
+									<input id="price" type="num" value="{{product.price}}" hidden>
+									<span id="total">${{product.price}}</span>
 								</td>
 								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
 							</tr>
@@ -70,15 +70,15 @@
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-										<li>Sub-Total<span id="sub_total">${{producto.precio}}</span></li>
+										<li>Sub-Total<span id="sub_total">${{product.price}}</span></li>
 										<li>Envio<span>Gratis</span></li>
-										{% if producto.descuento %}
+										{% if product.descuento %}
 											<li>(-) Descuento
-												<input id="descuento" type="num" value="{{producto.descuento.descuento}}" hidden>
-												<span>{{producto.descuento.descuento}}%</span>
+												<input id="descuento" type="num" value="{{product.descuento.descuento}}" hidden>
+												<span>{{product.descuento.descuento}}%</span>
 											</li>
 										{% endif %}
-										<li class="last">Total a pagar<span id="total_pagar">${{producto.sub_total}}</span></li>
+										<li class="last">Total a pagar<span id="total_pagar">${{product.sub_total}}</span></li>
 									</ul>
 									<!--<form action="" method="post">-->
 										<div class="button5">
@@ -101,10 +101,10 @@
 
 <script>
 	$(document).ready(function(){
-		$("#cantidad").change(function(){
+		$("#quantity").change(function(){
 			valor = $(this).val();
-			precio = $("#precio").val();
-			sub_total = valor*precio
+			price = $("#price").val();
+			sub_total = valor*price
 			$("#total").html("$"+sub_total)
 			$("#sub_total").html("$"+sub_total)
 			descuento = $("#descuento").val()/100

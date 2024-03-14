@@ -25,17 +25,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="image" data-title="No"><img src="{{producto.get_image}}" alt="#"></td>
+                            <td class="image" data-title="No"><img src="{{product.get_image}}" alt="#"></td>
                             <td class="product-des" data-title="Description">
-                                <p class="product-name"><a href="#">{{producto.id}} - {{producto.nombre}}</a></p>
-                                <p class="product-des">{{producto.descripcion|slice:140}}</p>
+                                <p class="product-name"><a href="#">{{product.id}} - {{product.name}}</a></p>
+                                <p class="product-des">{{product.description|slice:140}}</p>
                             </td>
                             <td class="price" data-title="Price">
                                     <div class="col">
-                                        <input type="number" name="cantidad" min="1" value="{{producto.inventario_producto.cantidad}}">
+                                        <input type="number" name="quantity" min="1" value="{{product.inventory_product.quantity}}">
                                     </div>
                             </td>
-                            <td class="price" data-title="Price"><span>${{producto.precio}} </span></td>
+                            <td class="price" data-title="Price"><span>${{product.price}} </span></td>
                         </tr>
                     </tbody>
                 </table>

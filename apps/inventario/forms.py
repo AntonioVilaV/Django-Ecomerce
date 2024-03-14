@@ -1,19 +1,19 @@
 from django import forms
 from django.forms import ModelForm
 
-from apps.inventario.models import Inventario, Producto
+from apps.inventario.models import Inventory, Product
 
 
 class CreateProductForm(ModelForm):
     class Meta:
-        model = Producto
+        model = Product
         fields = "__all__"
         exclude = [
-            "autor",
-            "estado",
+            "author",
+            "status",
         ]
         widgets = {
-            "foto": forms.ClearableFileInput(attrs={"onchange": "readURL(this)"}),
+            "photo": forms.ClearableFileInput(attrs={"onchange": "readURL(this)"}),
         }
 
     # def clean(self):
@@ -28,16 +28,16 @@ class CreateProductForm(ModelForm):
 
 class UpdateProductForm(ModelForm):
     class Meta:
-        model = Producto
+        model = Product
         fields = "__all__"
-        exclude = ["autor", "estado"]
+        exclude = ["author", "status"]
         widgets = {
-            "foto": forms.ClearableFileInput(attrs={"onchange": "readURL(this)"}),
+            "photo": forms.ClearableFileInput(attrs={"onchange": "readURL(this)"}),
         }
 
 
 class InventoryForm(ModelForm):
     class Meta:
-        model = Inventario
+        model = Inventory
         fields = "__all__"
-        exclude = ["producto"]
+        exclude = ["product"]
