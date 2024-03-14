@@ -23,19 +23,19 @@
                         <tbody>
                             <tr>
                                 <td class="price" data-title="Fecha compra"><span>#00000{{object.id}} </span></td>
-                                <td class="price" data-title="Nro"><span>{{object.fecha_creada.date}}</span></td>
+                                <td class="price" data-title="Nro"><span>{{object.created.date}}</span></td>
 
-                                {% if not object.fecha_cierre %}
+                                {% if not object.end_date %}
                                     <td class="price" data-title="Fecha entrega"><span>Indefinido</span></td>
                                 {% else %}
-                                    <td class="price" data-title="Fecha entrega"><span>{{object.fecha_cierre.date}}</span></td>
+                                    <td class="price" data-title="Fecha entrega"><span>{{object.end_date.date}}</span></td>
                                 {% endif %}
 
 
 								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' object.usuario.id %}">{{object.usuario}} <i class="fa fa-id-card"></i></a></span></td>
                                 <form action="" method="post">
                                     {% csrf_token %}
-								    <td class="price" data-title="Estado">{{form.estado_operacion}}</td>
+								    <td class="price" data-title="Estado">{{form.operating_status}}</td>
 								    <td class="price" data-title="Opción">
                                             <button type="submit" class="btn ">Guardar</button>
                                     </td>
@@ -70,7 +70,7 @@
                                     <span><a href="/producto/{{object.product.id}}">{{object.product.name}}</a></span>
                                 </td>
                                 <td class="price" data-title="Precio"><span>{{object.product.price}}$</span></td>
-                                <td class="price" data-title="Cantidad"><span>{{object.cantidad}}</span></td>
+                                <td class="price" data-title="Cantidad"><span>{{object.quantity}}</span></td>
                                 {% if object.product.get_discount %}
                                     <td class="price" data-title="Descuento"><span>{{object.discount}}%</span></td>
                                 {% endif %}
@@ -186,18 +186,18 @@
                             </ul>
                         </div>
 
-                        {% if estado_operacion_actual == 'Cancelado' %}
+                        {% if operating_status_actual == 'Cancelado' %}
                             <ul>
                                 <li>Estado de la venta: Cancelada</li>
                             </ul>
                         {% else %}
                             <form action="" method="post">
                                 {% csrf_token %}
-                                <input type="text" name="title" value="estado_operacion" hidden>
-                                <input type="text" name="estado_operacion_actual" value="{{estado_operacion_actual}}" hidden>
+                                <input type="text" name="title" value="operating_status" hidden>
+                                <input type="text" name="operating_status_actual" value="{{operating_status_actual}}" hidden>
                                 <select name = "items" style="display: none;">
-                                    {% for i in estado_operacion %}
-                                        {% if i == estado_operacion_actual %}
+                                    {% for i in operating_status %}
+                                        {% if i == operating_status_actual %}
                                             <option value="{{i}}" selected="">{{i}}</option>
                                         {%else%}
                                             <option value="{{i}}">{{i}}</option>
@@ -229,7 +229,7 @@
                                 {% endfor %}
 
 
-                                {% if estado_operacion_actual != 'Cancelado' %}
+                                {% if operating_status_actual != 'Cancelado' %}
                                     <button type="submit" class="btn">boton</button>
                                 {% endif %}
                             </form>

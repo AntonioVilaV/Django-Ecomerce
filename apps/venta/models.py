@@ -13,8 +13,8 @@ class OperatingStatus(models.Model):
         return self.name
 
 
-class RegistroVenta(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
+class SalesRecord(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -22,26 +22,26 @@ class RegistroVenta(models.Model):
         blank=True,
         null=True,
     )
-    cantidad = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1)
     total = models.FloatField(default=1)
-    descuento = models.PositiveSmallIntegerField(null=True, blank=True)
-    estado_operacion = models.ForeignKey(OperatingStatus, on_delete=models.CASCADE)
-    fecha_creada = models.DateTimeField(auto_now_add=True)
-    fecha_cierre = models.DateTimeField(blank=True, null=True)
+    discount = models.PositiveSmallIntegerField(null=True, blank=True)
+    operating_status = models.ForeignKey(OperatingStatus, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField(blank=True, null=True)
     state = models.BooleanField(default=True)
 
-    # estado_operacion = models.PositiveSmallIntegerField(default=1) #1 en a la espera de pago, 2 en proceso, 3 enviado, 4 entregado.
+    # operating_status = models.PositiveSmallIntegerField(default=1) #1 en a la espera de pago, 2 en proceso, 3 enviado, 4 entregado.
 
     def __str__(self):
-        return f"| {self.pk} | {self.product.pk} - {self.product.name} | {self.estado_operacion} | {self.fecha_creada} "
+        return f"| {self.pk} | {self.product.pk} - {self.product.name} | {self.operating_status} | {self.created} "
 
     class Meta:
-        ordering = ["-fecha_creada"]
+        ordering = ["-created"]
 
 
 class datosEnvio(models.Model):
     venta = models.ForeignKey(
-        RegistroVenta,
+        SalesRecord,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
@@ -61,7 +61,7 @@ class datosEnvio(models.Model):
 
 class datosPago(models.Model):
     venta = models.ForeignKey(
-        RegistroVenta, on_delete=models.CASCADE, blank=True, null=True
+        SalesRecord, on_delete=models.CASCADE, blank=True, null=True
     )
     nroRef = models.CharField(max_length=200)
     recibo = models.FileField(upload_to="recibos/")

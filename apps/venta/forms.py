@@ -1,18 +1,18 @@
 from django.forms import ModelForm, ValidationError
 
-from apps.venta.models import RegistroVenta, datosEnvio, datosPago
+from apps.venta.models import SalesRecord, datosEnvio, datosPago
 
 
 class VentaForm(ModelForm):
     class Meta:
-        model = RegistroVenta
+        model = SalesRecord
         fields = []
 
 
 class DetalleVentaForm(ModelForm):
     class Meta:
-        model = RegistroVenta
-        # fields=['estado_operacion','datos_envios']
+        model = SalesRecord
+        # fields=['operating_status','datos_envios']
         fields = "__all__"
 
 
@@ -44,5 +44,5 @@ class DatosPagoForm(ModelForm):
 
 class OperatingStatusForm(ModelForm):
     class Meta:
-        model = RegistroVenta
-        fields = ["estado_operacion"]
+        model = SalesRecord
+        fields = ["operating_status"]

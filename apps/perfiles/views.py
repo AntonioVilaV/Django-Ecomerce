@@ -16,7 +16,7 @@ from apps.perfiles.forms import (
     UpdateDatosUsuarioForm,
 )
 from apps.perfiles.models import datosContacto
-from apps.venta.models import RegistroVenta
+from apps.venta.models import SalesRecord
 
 # Create your views here.
 
@@ -56,40 +56,40 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
 
         if self.request.user.groups.get().name == "Vendedor":
             ventasActivas = (
-                RegistroVenta.objects.filter(product__author=self.request.user)
+                SalesRecord.objects.filter(product__author=self.request.user)
                 .filter(state=True)
                 .count()
             )
             pagoPorConfirmar = (
-                RegistroVenta.objects.filter(product__author__pk=self.request.user.pk)
+                SalesRecord.objects.filter(product__author__pk=self.request.user.pk)
                 .filter(
-                    Q(estado_operacion__name="Esperando pago")
-                    | Q(estado_operacion__name="Confirmando pago")
+                    Q(operating_status__name="Esperando pago")
+                    | Q(operating_status__name="Confirmando pago")
                 )
                 .count()
             )
             productosPorEnviar = (
-                RegistroVenta.objects.filter(product__author__pk=self.request.user.pk)
-                .filter(estado_operacion__name="Procesando Encomienda")
+                SalesRecord.objects.filter(product__author__pk=self.request.user.pk)
+                .filter(operating_status__name="Procesando Encomienda")
                 .count()
             )
             context["resumen"] = [ventasActivas, pagoPorConfirmar, productosPorEnviar]
         elif self.request.user.groups.get().name == "Comprador":
             compras = (
-                RegistroVenta.objects.filter(usuario=self.request.user.pk)
+                SalesRecord.objects.filter(user=self.request.user.pk)
                 .filter(state=True)
                 .count()
             )
             facturas = (
-                RegistroVenta.objects.filter(usuario=self.request.user.pk)
-                .filter(estado_operacion__name="Esperando pago")
+                SalesRecord.objects.filter(user=self.request.user.pk)
+                .filter(operating_status__name="Esperando pago")
                 .count()
             )  # Facturas P.Pagar
             envios = (
-                RegistroVenta.objects.filter(usuario=self.request.user.pk)
+                SalesRecord.objects.filter(user=self.request.user.pk)
                 .filter(
-                    Q(estado_operacion__name="Procesando Encomienda")
-                    | Q(estado_operacion__name="Enviado")
+                    Q(operating_status__name="Procesando Encomienda")
+                    | Q(operating_status__name="Enviado")
                 )
                 .count()
             )
@@ -113,12 +113,12 @@ class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Eshop Django - Mi cuenta"
-        usuario = self.second_model.objects.get(id=self.kwargs["pk"])
+        user = self.second_model.objects.get(id=self.kwargs["pk"])
 
         if "form" not in context:
             context["form"] = self.form_class()
         if "form2" not in context:
-            context["form2"] = self.second_form_class(instance=usuario)
+            context["form2"] = self.second_form_class(instance=user)
         return context
 
     def get_object(self, queryset=None):
@@ -221,10 +221,10 @@ class DatosDeContactoTemplateView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if (
-            RegistroVenta.objects.filter(usuario=self.request.user)
+            SalesRecord.objects.filter(user=self.request.user)
             .filter(product__author__id=self.kwargs["pk"])
             .exists()
-            or RegistroVenta.objects.filter(usuario__id=self.kwargs["pk"])
+            or SalesRecord.objects.filter(user__id=self.kwargs["pk"])
             .filter(product__author=self.request.user)
             .exists()
         ):

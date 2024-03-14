@@ -13,7 +13,7 @@ from apps.venta.forms import (
     OperatingStatusForm,
     VentaForm,
 )
-from apps.venta.models import OperatingStatus, RegistroVenta, datosEnvio, datosPago
+from apps.venta.models import OperatingStatus, SalesRecord, datosEnvio, datosPago
 from mixins import validarGrupo
 
 # Create your views here.
@@ -25,7 +25,7 @@ class ComprarProductoCreateView(LoginRequiredMixin, validarGrupo, CreateView):
 
     grupo = "Comprador"
     url_redirect = reverse_lazy("LoginUserLoginView")
-    models = RegistroVenta
+    models = SalesRecord
     template_name = "profiles/buyer/compras/confirmar_compra.html"
     form_class = VentaForm
     success_url = "/comprar/CompraRealizada/"
@@ -62,16 +62,16 @@ class ComprarProductoCreateView(LoginRequiredMixin, validarGrupo, CreateView):
                 )  # especificar que debe pedir una quantity menor de productos
 
         with transaction.atomic():
-            form.instance.usuario = self.request.user
+            form.instance.user = self.request.user
             form.instance.product = pro
             discount = 0
 
             if pro.get_discount():
                 form.instance.discount = int(pro.discount.discount)
                 discount = (int(pro.price) * cant) * (int(pro.discount.discount) / 100)
-            form.instance.cantidad = cant
+            form.instance.quantity = cant
             form.instance.total = (cant * pro.price) - discount
-            form.instance.estado_operacion = OperatingStatus.objects.get(id=1)
+            form.instance.operating_status = OperatingStatus.objects.get(id=1)
             self.object = form.save()
 
             inv = Inventory.objects.get(product=pro)
@@ -89,7 +89,7 @@ class MisComprasActivasListView(LoginRequiredMixin, validarGrupo, ListView):
 
     grupo = "Comprador"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    model = RegistroVenta
+    model = SalesRecord
     template_name = "profiles/buyer/compras/misCompras.html"
     paginate_by = 10
 
@@ -99,9 +99,7 @@ class MisComprasActivasListView(LoginRequiredMixin, validarGrupo, ListView):
         return context
 
     def get_queryset(self):
-        return RegistroVenta.objects.filter(usuario=self.request.user.pk).filter(
-            state=True
-        )
+        return SalesRecord.objects.filter(user=self.request.user.pk).filter(state=True)
 
 
 class MisComprasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
@@ -109,7 +107,7 @@ class MisComprasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
 
     grupo = "Comprador"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    model = RegistroVenta
+    model = SalesRecord
     template_name = "profiles/buyer/compras/misCompras.html"
     paginate_by = 10
 
@@ -119,9 +117,7 @@ class MisComprasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
         return context
 
     def get_queryset(self):
-        return RegistroVenta.objects.filter(usuario=self.request.user.pk).filter(
-            state=False
-        )
+        return SalesRecord.objects.filter(user=self.request.user.pk).filter(state=False)
 
 
 class DetalleCompraDetailView(LoginRequiredMixin, TemplateView):
@@ -134,10 +130,10 @@ class DetalleCompraDetailView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         try:
-            venta = RegistroVenta.objects.filter(usuario=self.request.user).get(
+            venta = SalesRecord.objects.filter(user=self.request.user).get(
                 id=self.kwargs["pk"]
             )
-        except RegistroVenta.DoesNotExist:
+        except SalesRecord.DoesNotExist:
             raise Http404("Venta no existe")
 
         if datosPago.objects.filter(venta__id=venta.id).exists():
@@ -168,10 +164,10 @@ class CrearDatosEnvioCreateView(
         logeado = self.request.user
         if logeado.is_authenticated:
             if (
-                RegistroVenta.objects.filter(id=self.kwargs["pk"])
-                .filter(usuario=logeado)
+                SalesRecord.objects.filter(id=self.kwargs["pk"])
+                .filter(user=logeado)
                 .exists()
-                or RegistroVenta.objects.filter(id=self.kwargs["pk"])
+                or SalesRecord.objects.filter(id=self.kwargs["pk"])
                 .filter(product__author=logeado)
                 .exists()
             ):
@@ -187,7 +183,7 @@ class CrearDatosEnvioCreateView(
         return context
 
     def form_valid(self, form):
-        miVenta = RegistroVenta.objects.get(id=self.kwargs["pk"])
+        miVenta = SalesRecord.objects.get(id=self.kwargs["pk"])
         form.instance.venta = miVenta
 
         if form.is_valid():
@@ -209,10 +205,10 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         logeado = self.request.user
         if (
-            RegistroVenta.objects.filter(id=self.kwargs["pk"])
-            .filter(usuario=logeado)
+            SalesRecord.objects.filter(id=self.kwargs["pk"])
+            .filter(user=logeado)
             .exists()
-            or RegistroVenta.objects.filter(id=self.kwargs["pk"])
+            or SalesRecord.objects.filter(id=self.kwargs["pk"])
             .filter(product__author=logeado)
             .exists()
         ):
@@ -230,7 +226,7 @@ class UpdateDatosEnvioUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def form_valid(self, form):
-        venta = RegistroVenta.objects.get(id=self.kwargs["pk"])
+        venta = SalesRecord.objects.get(id=self.kwargs["pk"])
         if form.is_valid():
             form.save()
             if self.request.user.groups.get().name == "Vendedor":
@@ -251,10 +247,10 @@ class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
         logeado = self.request.user
         if self.request.user.is_authenticated:
             if (
-                RegistroVenta.objects.filter(id=self.kwargs["pk"])
-                .filter(usuario=logeado)
+                SalesRecord.objects.filter(id=self.kwargs["pk"])
+                .filter(user=logeado)
                 .exists()
-                or RegistroVenta.objects.filter(id=self.kwargs["pk"])
+                or SalesRecord.objects.filter(id=self.kwargs["pk"])
                 .filter(product__author=logeado)
                 .exists()
             ):
@@ -270,13 +266,13 @@ class CrearDatosPagoCreateView(LoginRequiredMixin, CreateView):  # Validado
         return context
 
     def form_valid(self, form):
-        miVenta = RegistroVenta.objects.get(id=self.kwargs["pk"])
+        miVenta = SalesRecord.objects.get(id=self.kwargs["pk"])
         form.instance.venta = miVenta
         with transaction.atomic():
             form.save()
             estado_nuevo = OperatingStatus.objects.get(name="Confirmando pago")
-            RegistroVenta.objects.filter(id=self.kwargs["pk"]).update(
-                estado_operacion=estado_nuevo
+            SalesRecord.objects.filter(id=self.kwargs["pk"]).update(
+                operating_status=estado_nuevo
             )
             if self.request.user.groups.get().name == "Vendedor":
                 return redirect("/detalleVenta/" + str(miVenta.id))
@@ -296,10 +292,10 @@ class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
         logeado = self.request.user
 
         if (
-            RegistroVenta.objects.filter(id=self.kwargs["pk"])
-            .filter(usuario=logeado)
+            SalesRecord.objects.filter(id=self.kwargs["pk"])
+            .filter(user=logeado)
             .exists()
-            or RegistroVenta.objects.filter(id=self.kwargs["pk"])
+            or SalesRecord.objects.filter(id=self.kwargs["pk"])
             .filter(product__author=logeado)
             .exists()
         ):
@@ -319,7 +315,7 @@ class UpdateDatosPagoUpdateView(LoginRequiredMixin, UpdateView):  # Validado
         return context
 
     def form_valid(self, form):
-        venta = RegistroVenta.objects.get(id=self.kwargs["pk"])
+        venta = SalesRecord.objects.get(id=self.kwargs["pk"])
         if form.is_valid():
             form.save()
             if self.request.user.groups.get().name == "Vendedor":
@@ -336,12 +332,12 @@ class MisVentasActivasListView(LoginRequiredMixin, validarGrupo, ListView):
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    model = RegistroVenta
+    model = SalesRecord
     template_name = "profiles/seller/ventas/misVentas.html"
     paginate_by = 8
 
     def get_queryset(self):
-        return RegistroVenta.objects.filter(
+        return SalesRecord.objects.filter(
             product__author__pk=self.request.user.pk
         ).filter(state=True)
 
@@ -357,11 +353,11 @@ class MisVentasCerradasListView(LoginRequiredMixin, validarGrupo, ListView):
 
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
-    model = RegistroVenta
+    model = SalesRecord
     template_name = "profiles/seller/ventas/misVentas.html"
 
     def get_queryset(self):
-        return RegistroVenta.objects.filter(
+        return SalesRecord.objects.filter(
             product__author__pk=self.request.user.pk
         ).filter(state=False)
 
@@ -378,13 +374,13 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
     grupo = "Vendedor"
     url_redirect = reverse_lazy("HomePerfilTemplateView")
     template_name = "profiles/seller/ventas/detalleVenta.html"
-    model = RegistroVenta
+    model = SalesRecord
     form_class = OperatingStatusForm
     success_url = reverse_lazy("MisVentasActivasListView")
 
     def get_object(self, queryset=None):
         return (
-            RegistroVenta.objects.filter(product__author=self.request.user)
+            SalesRecord.objects.filter(product__author=self.request.user)
             .filter(state=True)
             .get(id=self.kwargs["pk"])
         )
@@ -413,8 +409,8 @@ class DetalleVentaUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
 
     def form_valid(self, form):
         if (
-            form.instance.estado_operacion.name == "Entregado"
-            or form.instance.estado_operacion.name == "Cancelado"
+            form.instance.operating_status.name == "Entregado"
+            or form.instance.operating_status.name == "Cancelado"
         ):
             form.instance.state = False
         return super().form_valid(form)
@@ -432,7 +428,7 @@ class DetalleVentaCerradaTemplateView(
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            venta = RegistroVenta.objects.filter(product__author=self.request.user).get(
+            venta = SalesRecord.objects.filter(product__author=self.request.user).get(
                 id=self.kwargs["pk"]
             )
             if not venta.state:
@@ -444,7 +440,7 @@ class DetalleVentaCerradaTemplateView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        venta = RegistroVenta.objects.filter(product__author=self.request.user).get(
+        venta = SalesRecord.objects.filter(product__author=self.request.user).get(
             id=self.kwargs["pk"]
         )
         if datosPago.objects.filter(venta__id=self.kwargs["pk"]).exists():

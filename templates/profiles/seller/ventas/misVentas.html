@@ -23,27 +23,27 @@
                     <tr>
                         <td class="product-des" data-title="Venta">
                             <p class="product-name">#000000{{i.id}}</p>
-                            <p class="product-des">{{i.estado_operacion}}</p>
+                            <p class="product-des">{{i.operating_status}}</p>
                         </td>
                         <td class="product-des" data-title="Fecha Compra/Entrega">
-                            <p class="product-name">{{i.fecha_creada.date}}</p>
+                            <p class="product-name">{{i.created.date}}</p>
                             <p class="product-name">\</p>
 
-                            {% if i.fecha_cierre %}
-                                <p class="product-des">{{i.fecha_cierre.date}}</p>
+                            {% if i.end_date %}
+                                <p class="product-des">{{i.end_date.date}}</p>
                             {% else %}
                                 <p class="product-des">Indefinido</p>
                             {% endif %}
 
 
                         </td>
-                        <td class="qty" data-title="Comprador"><a href="{% url 'DatosDeContactoTemplateView' i.usuario.id %}">{{i.usuario}}</a></td>
+                        <td class="qty" data-title="Comprador"><a href="{% url 'DatosDeContactoTemplateView' i.user.id %}">{{i.user}}</a></td>
                         <td class="product-des" data-title="Producto">
                             <p class="product-name"><a href="{% url 'ProductDetailView' i.product.id %}">{{i.product.name}}</a></p>
                             <p class="product-des">{{i.product.description|slice:50}}...</p>
                         </td>
                         <td class="price" data-title="Precio"><span>${{i.product.price}} </span></td>
-                        <td class="qty" data-title="Cantidad"><span>{{i.cantidad}}</span></td>
+                        <td class="qty" data-title="Cantidad"><span>{{i.quantity}}</span></td>
 
                         <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>
 
