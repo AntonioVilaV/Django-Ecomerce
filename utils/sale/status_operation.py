@@ -1,6 +1,6 @@
 STATUS_OPERATION = {
-    1: "Esperando pago",
-    2: "Confirmando pago",
-    3: "Procesando encomienda",
-    4: "Enviado",
+    1: "Waiting for payment",
+    2: "Confirming payment",
+    3: "Processing order",
+    4: "Sent to",
 }

@@ -6,14 +6,14 @@
     <table class="table shopping-summery">
         <thead>
             <tr class="main-hading">
-                <th>Nro.Venta</th>
+                <th>Sale no.</th>
                 <th>Product</th>
                 <th></th>
-                <th class="text-center">Precio</th>
-                <th class="text-center">Cantidad</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
                 <th class="text-center">Total</th>
-                <th class="text-center">Estado</th>
-                <th class="text-center">Opción</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Option</th>
             </tr>
         </thead>
         <tbody>
@@ -35,20 +35,20 @@
                         <td class="action" data-title="Opción">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                    Opción
+                                    Option
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{% url 'DetalleCompraDetailView' i.id %}"><i class="fa fa-file-text"></i> Ver datos</a>
+                                    <a class="dropdown-item" href="{% url 'PurchaseDetailView' i.id %}"><i class="fa fa-file-text"></i> View data</a>
 
-                                    {% if i.operating_status.name == 'Esperando pago' %}
-                                        <a class="dropdown-item" href="{% url 'CrearDatosPagoCreateView' i.id %}"><i class="fa fa-credit-card-alt"></i> Pagar</a>
+                                    {% if i.operating_status.name == 'Waiting for payment' %}
+                                        <a class="dropdown-item" href="{% url 'PaymentDetailsCreateView' i.id %}"><i class="fa fa-credit-card-alt"></i> Pay</a>
                                     {% endif %}
 
                                     {% if i.operating_status.name != 'Entregado' and i.operating_status.name != 'Cancelado' %}
-                                        <a class="dropdown-item" href="{% url 'CrearDatosEnvioCreateView' i.id %}"><i class="fa fa-truck"></i> Datos Envio</a>
+                                        <a class="dropdown-item" href="{% url 'ShippingDetailsCreateView' i.id %}"><i class="fa fa-truck"></i> Shipping details</a>
                                     {% endif %}
 
-                                    <a class="dropdown-item" href="{% url 'DatosDeContactoTemplateView' i.product.author.id %}"><i class="fa fa-phone-square"></i> Vendedor </a>
+                                    <a class="dropdown-item" href="{% url 'DatosDeContactoTemplateView' i.product.author.id %}"><i class="fa fa-phone-square"></i> Seller </a>
                                 </div>
                             </div>
                         </td>
@@ -57,7 +57,7 @@
             {% else %}
                 <tr>
                     <td class="price" data-title="Nro.Venta">
-                        <h4>Vacio</h4>
+                        <h4>Empty</h4>
                     </td>
                     <td class="image" data-title="Producto" width="150px">
 
@@ -85,10 +85,10 @@
                 <ul>
                     <li>
                         {% if page_obj.has_previous %}
-                            <a href="?page={{page_obj.previous_page_number}}">Atrás</a>
+                            <a href="?page={{page_obj.previous_page_number}}">Back</a>
                         {% endif %}
                         {% if page_obj.has_next %}
-                            <span><a href="?page={{page_obj.next_page_number}}">Siguiente</a></span>
+                            <span><a href="?page={{page_obj.next_page_number}}">Next</a></span>
                         {% endif %}
                     </li>
                 </ul>

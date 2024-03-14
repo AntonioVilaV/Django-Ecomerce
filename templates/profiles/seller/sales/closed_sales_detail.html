@@ -7,48 +7,48 @@
             <div class="contactus">
                 <div class="form-main">
                     <div class="Title">
-                        <h3><i class="fa fa-file-text fa-1"></i> Factura</h3>
+                        <h3><i class="fa fa-file-text fa-1"></i> Invoice</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nro</th>
-                                <th>Fecha compra</th>
-                                <th>Fecha entrega</th>
-                                <th>Comprador</th>
-                                <th>Estado</th>
+                                <th>No.</th>
+                                <th>Purchase date</th>
+                                <th>Delivery date</th>
+                                <th>Buyer</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="price" data-title="Fecha compra"><span>#00000{{venta.id}} </span></td>
-                                <td class="price" data-title="Nro"><span>{{venta.created.date}}</span></td>
+                                <td class="price" data-title="Fecha compra"><span>#00000{{sale.id}} </span></td>
+                                <td class="price" data-title="Nro"><span>{{sale.created.date}}</span></td>
 
-                                {% if not venta.end_date %}
+                                {% if not sale.end_date %}
                                     <td class="price" data-title="Fecha entrega"><span>Indefinido</span></td>
                                 {% else %}
-                                    <td class="price" data-title="Fecha entrega"><span>{{venta.end_date.date}}</span></td>
+                                    <td class="price" data-title="Fecha entrega"><span>{{sale.end_date.date}}</span></td>
                                 {% endif %}
 
 
-								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' venta.user.id %}">{{venta.user}} <i class="fa fa-id-card"></i></a></span></td>
-								    <td class="price" data-title="Estado">{{venta.operating_status}}</td>
+								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' sale.user.id %}">{{sale.user}} <i class="fa fa-id-card"></i></a></span></td>
+								    <td class="price" data-title="Estado">{{sale.operating_status}}</td>
 							</tr>
                         </tbody>
                     </table>
                     <div class="Title">
-                        <h3><i class="fa fa-shopping-cart"></i> Venta</h3>
+                        <h3><i class="fa fa-shopping-cart"></i> Sale</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nro</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
+                                <th>No.</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
 
-                                {% if venta.product.get_discount %}
-                                    <th>Descuento</th>
+                                {% if sale.product.get_discount %}
+                                    <th>Discount</th>
                                 {% endif %}
 
 
@@ -58,69 +58,69 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="price" data-title="Nro.Producto"><span>#00000{{venta.product.id}}</span></td>
+                                <td class="price" data-title="Nro.Producto"><span>#00000{{sale.product.id}}</span></td>
                                 <td class="price" data-title="Descripción">
-                                    <span><a href="/producto/{{venta.product.id}}">{{venta.product.name}}</a></span>
+                                    <span><a href="/producto/{{sale.product.id}}">{{sale.product.name}}</a></span>
                                 </td>
-                                <td class="price" data-title="Precio"><span>{{venta.product.price}}$</span></td>
-                                <td class="price" data-title="Cantidad"><span>{{venta.quantity}}</span></td>
-                                {% if venta.product.get_discount %}
-                                    <td class="price" data-title="Descuento"><span>{{venta.discount}}%</span></td>
+                                <td class="price" data-title="Precio"><span>{{sale.product.price}}$</span></td>
+                                <td class="price" data-title="Cantidad"><span>{{sale.quantity}}</span></td>
+                                {% if sale.product.get_discount %}
+                                    <td class="price" data-title="Descuento"><span>{{sale.discount}}%</span></td>
                                 {% endif %}
-                                <td class="price" data-title="Total"><span>{{venta.total}}%</span></td>
+                                <td class="price" data-title="Total"><span>{{sale.total}}%</span></td>
 							</tr>
                         </tbody>
                     </table>
                     <div class="Title">
-                        <h3><i class="fa fa-truck"></i> Datos de pago</h3>
+                        <h3><i class="fa fa-truck"></i> Payment details</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nro Referencia</th>
-                                <th>Recibo</th>
-                                <th>Fecha de pago</th>
+                                <th>Reference no</th>
+                                <th>Receipt</th>
+                                <th>Payment date</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
 
-                                {% if datosPago == 'Indefinido' %}
-                                    <td class="price" data-title="Nro Referencia"><span>{{datosPago}}</span></td>
-                                    <td class="price" data-title="Recibo"><span><a href="">{{datosPago}}</a></span></td>
-                                    <td class="price" data-title="Fecha de pago"><span>{{datosPago}}</span></td>
+                                {% if payment_details == 'Undefined' %}
+                                    <td class="price" data-title="Nro Referencia"><span>{{payment_details}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="">{{payment_details}}</a></span></td>
+                                    <td class="price" data-title="Fecha de pago"><span>{{payment_details}}</span></td>
                                 {% else %}
-                                    <td class="price" data-title="Nro Referencia"><span>#{{datosPago.ref_no}}</span></td>
-                                    <td class="price" data-title="Recibo"><span><a href="">{{datosPago.receipt}}</a></span></td>
-                                    <td class="price" data-title="Fecha de pago"><span>{{datosPago.payment_date}}</span></td>
+                                    <td class="price" data-title="Nro Referencia"><span>#{{payment_details.ref_no}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="">{{payment_details.receipt}}</a></span></td>
+                                    <td class="price" data-title="Fecha de pago"><span>{{payment_details.payment_date}}</span></td>
                                 {% endif %}
 							</tr>
                         </tbody>
                     </table>
                     <div class="Title">
-                        <h3><i class="fa fa-truck"></i>  Datos de envio</h3>
+                        <h3><i class="fa fa-truck"></i>  Shipping details</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nombre</th>
-                                <th>Cedula</th>
-                                <th>Telefono</th>
-                                <th>Direccion</th>
+                                <th>Name</th>
+                                <th>DNI</th>
+                                <th>Phone</th>
+                                <th>Address</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            {% if datosEnvio == 'Indefinido' %}
-                                <td class="price" data-title="Nombre">Indefinido</td>
-                                <td class="price" data-title="Cedula">Indefinido</td>
-                                <td class="price" data-title="Telefono">Indefinido</td>
-                                <td class="price" data-title="Dirección">Indefinido</td>
+                            {% if shipping_details == 'Undefined' %}
+                                <td class="price" data-title="Nombre">Undefined</td>
+                                <td class="price" data-title="Cedula">Undefined</td>
+                                <td class="price" data-title="Telefono">Undefined</td>
+                                <td class="price" data-title="Dirección">Undefined</td>
                             {% else %}
-                                <td class="price" data-title="Nombre">{{datosEnvio.name}}</td>
-                                <td class="price" data-title="Cedula">{{datosEnvio.dni}}</td>
-                                <td class="price" data-title="Telefono">{{datosEnvio.phone}}</td>
-                                <td class="price" data-title="Dirección">{{datosEnvio.address}}</td>
+                                <td class="price" data-title="Nombre">{{shipping_details.name}}</td>
+                                <td class="price" data-title="Cedula">{{shipping_details.dni}}</td>
+                                <td class="price" data-title="Telefono">{{shipping_details.phone}}</td>
+                                <td class="price" data-title="Dirección">{{shipping_details.address}}</td>
                             {% endif %}
 
                         </tbody>
@@ -144,11 +144,11 @@
                         <div class="single-info">
                             <h4 class="title">Factura</h4>
                             <ul>
-                                <li>Nro.Factura: #00000{{venta.id}}</li>
+                                <li>Nro.Factura: #00000{{sale.id}}</li>
                                 <li>Fecha: 12/12/2021</li>
-                                <li>Nombre: {{venta.user.username}}</li>
+                                <li>Nombre: {{sale.user.username}}</li>
                                 <li>------------------------</li>
-                                <li>#00{{venta.product.id}} - {{venta.product.name x 2 - {{venta.product.price}}$ </li>
+                                <li>#00{{sale.product.id}} - {{sale.product.name x 2 - {{sale.product.price}}$ </li>
                                 <li>------------------------</li>
                                 <li>Total: 12$ </li>
                                 <li>------------------------</li>
@@ -196,7 +196,7 @@
                             </form>
                             <form action="" method="post">
                                 {% csrf_token %}
-                                <input type="text" name="title" value="cancelar_venta" hidden>
+                                <input type="text" name="title" value="cancelar_sale" hidden>
                                 <button type="submit" class="btn">Cancelar Venta</button>
                             </form>
                         {% endif %}

@@ -3,20 +3,20 @@ from django.forms import ModelForm, ValidationError
 from apps.venta.models import PaymentDetails, SalesRecord, ShippingDetails
 
 
-class VentaForm(ModelForm):
+class SalesForm(ModelForm):
     class Meta:
         model = SalesRecord
         fields = []
 
 
-class DetalleVentaForm(ModelForm):
+class SalesFormDetail(ModelForm):
     class Meta:
         model = SalesRecord
         # fields=['operating_status','datos_envios']
         fields = "__all__"
 
 
-class DatosEnviosForm(ModelForm):
+class ShippingDataForm(ModelForm):
     class Meta:
         model = ShippingDetails
         fields = ["name", "dni", "phone", "address"]
@@ -24,19 +24,19 @@ class DatosEnviosForm(ModelForm):
     def clean_phone(self):
         phone = self.cleaned_data["phone"]
         if not phone.isdigit():
-            raise ValidationError("El phone debe contener solo numeros")
+            raise ValidationError("the phone must have only numbers")
         else:
             return phone
 
     def clean_dni(self):
         dni = self.cleaned_data["dni"]
         if not dni.isdigit():
-            raise ValidationError("La cedula debe contener solo numeros")
+            raise ValidationError("the dni must contain only numbers")
         else:
             return dni
 
 
-class DatosPagoForm(ModelForm):
+class PaymentForm(ModelForm):
     class Meta:
         model = PaymentDetails
         fields = ["ref_no", "receipt", "payment_date"]

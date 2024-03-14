@@ -63,8 +63,8 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
             pagoPorConfirmar = (
                 SalesRecord.objects.filter(product__author__pk=self.request.user.pk)
                 .filter(
-                    Q(operating_status__name="Esperando pago")
-                    | Q(operating_status__name="Confirmando pago")
+                    Q(operating_status__name="Waiting for payment")
+                    | Q(operating_status__name="Confirming payment")
                 )
                 .count()
             )
@@ -82,14 +82,14 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
             )
             facturas = (
                 SalesRecord.objects.filter(user=self.request.user.pk)
-                .filter(operating_status__name="Esperando pago")
+                .filter(operating_status__name="Waiting for payment")
                 .count()
             )  # Facturas P.Pagar
             envios = (
                 SalesRecord.objects.filter(user=self.request.user.pk)
                 .filter(
                     Q(operating_status__name="Procesando Encomienda")
-                    | Q(operating_status__name="Enviado")
+                    | Q(operating_status__name="Sent to")
                 )
                 .count()
             )

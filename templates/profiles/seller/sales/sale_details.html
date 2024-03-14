@@ -7,17 +7,17 @@
             <div class="contactus">
                 <div class="form-main">
                     <div class="Title">
-                        <h3><i class="fa fa-file-text fa-1"></i> Factura</h3>
+                        <h3><i class="fa fa-file-text fa-1"></i> Invoice</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nro</th>
-                                <th>Fecha compra</th>
-                                <th>Fecha entrega</th>
-                                <th>Comprador</th>
-                                <th>Estado</th>
-                                <th>Opción</th>
+                                <th>No.</th>
+                                <th>Date of purchase</th>
+                                <th>Delivery date</th>
+                                <th>Buyer</th>
+                                <th>Status</th>
+                                <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,36 +26,36 @@
                                 <td class="price" data-title="Nro"><span>{{object.created.date}}</span></td>
 
                                 {% if not object.end_date %}
-                                    <td class="price" data-title="Fecha entrega"><span>Indefinido</span></td>
+                                    <td class="price" data-title="Fecha entrega"><span>Undefined</span></td>
                                 {% else %}
                                     <td class="price" data-title="Fecha entrega"><span>{{object.end_date.date}}</span></td>
                                 {% endif %}
 
 
-								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' object.usuario.id %}">{{object.usuario}} <i class="fa fa-id-card"></i></a></span></td>
+								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' object.user.id %}">{{object.user}} <i class="fa fa-id-card"></i></a></span></td>
                                 <form action="" method="post">
                                     {% csrf_token %}
 								    <td class="price" data-title="Estado">{{form.operating_status}}</td>
 								    <td class="price" data-title="Opción">
-                                            <button type="submit" class="btn ">Guardar</button>
+                                            <button type="submit" class="btn ">Save</button>
                                     </td>
                                 </form>
 							</tr>
                         </tbody>
                     </table>
                     <div class="Title">
-                        <h3><i class="fa fa-shopping-cart"></i> Venta</h3>
+                        <h3><i class="fa fa-shopping-cart"></i> Sale</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nro</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
+                                <th>No.</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
 
                                 {% if object.product.get_discount %}
-                                    <th>Descuento</th>
+                                    <th>Discount</th>
                                 {% endif %}
 
 
@@ -79,61 +79,61 @@
                         </tbody>
                     </table>
                     <div class="Title">
-                        <h3><i class="fa fa-truck"></i> Datos de pago</h3>
+                        <h3><i class="fa fa-truck"></i> Payment details</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nro Referencia</th>
-                                <th>Recibo</th>
-                                <th>Fecha de pago</th>
-                                <th>Opción</th>
+                                <th>Reference no.</th>
+                                <th>Receipt</th>
+                                <th>Payment date</th>
+                                <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
 
-                                {% if datosPago == 'Indefinido' %}
-                                    <td class="price" data-title="Nro Referencia"><span>{{datosPago}}</span></td>
-                                    <td class="price" data-title="Recibo"><span><a href="">{{datosPago}}</a></span></td>
-                                    <td class="price" data-title="Fecha de pago"><span>{{datosPago}}</span></td>
-                                    <td class="price" data-title="Opción"><span><a href="{% url 'CrearDatosPagoCreateView' object.id %}">Agregar pago</a></span></td>
+                                {% if payment_details == 'Undefined' %}
+                                    <td class="price" data-title="Nro Referencia"><span>{{payment_details}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="">{{payment_details}}</a></span></td>
+                                    <td class="price" data-title="Fecha de pago"><span>{{payment_details}}</span></td>
+                                    <td class="price" data-title="Opción"><span><a href="{% url 'PaymentDetailsCreateView' object.id %}">Add pay</a></span></td>
                                 {% else %}
-                                    <td class="price" data-title="Nro Referencia"><span>#{{datosPago.ref_no}}</span></td>
-                                    <td class="price" data-title="Recibo"><span><a href="/media/{{datosPago.receipt}}">{{datosPago.receipt}}</a></span></td>
-                                    <td class="price" data-title="Fecha de pago"><span>{{datosPago.payment_date}}</span></td>
-                                    <td class="price" data-title="Opción"><span><a href="{% url 'UpdateDatosPagoUpdateView' object.id %}" >Editar pago</a></span></td>
+                                    <td class="price" data-title="Nro Referencia"><span>#{{payment_details.ref_no}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="/media/{{payment_details.receipt}}">{{payment_details.receipt}}</a></span></td>
+                                    <td class="price" data-title="Fecha de pago"><span>{{payment_details.payment_date}}</span></td>
+                                    <td class="price" data-title="Opción"><span><a href="{% url 'PaymentDetailsUpdateView' object.id %}" >Update pay</a></span></td>
                                 {% endif %}
 							</tr>
                         </tbody>
                     </table>
                     <div class="Title">
-                        <h3><i class="fa fa-truck"></i>  Datos de envio</h3>
+                        <h3><i class="fa fa-truck"></i>  Shipping details</h3>
                     </div>
                     <table class="table shopping-summery">
                         <thead>
                             <tr class="main-hading">
-                                <th>Nombre</th>
-                                <th>Cedula</th>
-                                <th>Telefono</th>
-                                <th>Direccion</th>
-                                <th>Opción</th>
+                                <th>Name</th>
+                                <th>DNI</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            {% if datosEnvio == 'Indefinido' %}
-                                <td class="price" data-title="Nombre">Indefinido</td>
-                                <td class="price" data-title="Cedula">Indefinido</td>
-                                <td class="price" data-title="Telefono">Indefinido</td>
-                                <td class="price" data-title="Dirección">Indefinido</td>
-                                <td class="price" data-title="Opción"><a href="{% url 'CrearDatosEnvioCreateView' object.id %}">Agregar</a></td>
+                            {% if shipping_details == 'Undefined' %}
+                                <td class="price" data-title="Nombre">Undefined</td>
+                                <td class="price" data-title="Cedula">Undefined</td>
+                                <td class="price" data-title="Telefono">Undefined</td>
+                                <td class="price" data-title="Dirección">Undefined</td>
+                                <td class="price" data-title="Opción"><a href="{% url 'ShippingDetailsCreateView' object.id %}">Add</a></td>
                             {% else %}
-                                <td class="price" data-title="Nombre">{{datosEnvio.name}}</td>
-                                <td class="price" data-title="Cedula">{{datosEnvio.dni}}</td>
-                                <td class="price" data-title="Telefono">{{datosEnvio.phone}}</td>
-                                <td class="price" data-title="Dirección">{{datosEnvio.address}}</td>
-                                <td class="price" data-title="Opción"><a href="{% url 'UpdateDatosEnvioUpdateView' object.id %}">Editar</a></td>
+                                <td class="price" data-title="Nombre">{{shipping_details.name}}</td>
+                                <td class="price" data-title="Cedula">{{shipping_details.dni}}</td>
+                                <td class="price" data-title="Telefono">{{shipping_details.phone}}</td>
+                                <td class="price" data-title="Dirección">{{shipping_details.address}}</td>
+                                <td class="price" data-title="Opción"><a href="{% url 'ShippingDetailsUpdateView' object.id %}">Update</a></td>
                             {% endif %}
 
                         </tbody>

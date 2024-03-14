@@ -208,8 +208,8 @@
 															<li><a href="{% url 'PublicationCreateView'%}">Vender</a></li>
 															<li><a href="#">Ventas<i class="ti-angle-down"></i></a>
 																<ul class="dropdown">
-																	<li><a href="{% url 'MisVentasActivasListView'%}">Activas</a></li>
-																	<li><a href="{% url 'MisVentasCerradasListView'%}">Cerradas</a></li>
+																	<li><a href="{% url 'MyActiveSalesListView'%}">Activas</a></li>
+																	<li><a href="{% url 'MyClosedSalesListView'%}">Cerradas</a></li>
 																</ul>
 															</li>
 															<li><a href="#">Publicaciones<i class="ti-angle-down"></i></a>
@@ -224,8 +224,8 @@
 														{% if request.user.groups.get.name == 'Comprador' %}
 															<li><a href="#">Mis Compras<i class="ti-angle-down"></i></a>
 																<ul class="dropdown">
-																	<li><a href="{% url 'MisComprasActivasListView'%}">Activas</a></li>
-																	<li><a href="{% url 'MisComprasCerradasListView'%}">Cerradas</a></li>
+																	<li><a href="{% url 'MyActivePurchasesListView'%}">Activas</a></li>
+																	<li><a href="{% url 'MyPurchasesClosedListView'%}">Cerradas</a></li>
 																</ul>
 															</li>
 														{% endif %}

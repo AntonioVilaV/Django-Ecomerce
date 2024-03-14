@@ -5,28 +5,28 @@
 <div class="col-12">
     <div class="form-main">
             <div class="title">
-                <h3>Datos de envio</h3>
+                <h3>Shipping details</h3>
             </div>
             <form class="form" method="post" action="">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <label>Nombre<span>*</span></label>
+                            <label>Name<span>*</span></label>
                             {{form.name}}
                             <label for="">{{form.errors.name}}</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <label>Cedula<span>*</span></label>
+                            <label>DNI<span>*</span></label>
                             {{form.dni}}
                             <label for="">{{form.errors.dni}}</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <label>Telefono<span>*</span></label>
+                            <label>Phone<span>*</span></label>
                             {{form.phone}}
                             <label for="">{{form.errors.phone}}</label>
                         </div>
@@ -34,14 +34,14 @@
 
                     <div class="col-12">
                         <div class="form-group message">
-                            <label>Direccion<span>*</span></label>
+                            <label>Address<span>*</span></label>
                             {{form.address}}
                             <label for="">{{form.errors.address}}</label>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group button">
-                            <button type="submit" class="btn ">Guardar</button>
+                            <button type="submit" class="btn ">Save</button>
                         </div>
                     </div>
                 </div>

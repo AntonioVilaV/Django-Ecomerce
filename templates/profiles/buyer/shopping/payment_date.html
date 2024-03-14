@@ -6,7 +6,7 @@
 <div class="contact-us">
     <div class="form-main">
             <div class="title">
-                <h3>Datos de pago</h3>
+                <h3>Payment details</h3>
             </div>
             <form class="form" method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -14,21 +14,21 @@
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <label>Nro de referencia<span>*</span></label>
+                            <label>Reference no.<span>*</span></label>
                             {{form.ref_no}}
                             <label for="">{{form.errors.ref_no}}</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <label>Recibo<span>*</span></label>
+                            <label>Recipiet<span>*</span></label>
                             <label style="display: block;">{{form.receipt}}</label>
                             <label for="">{{form.errors.receipt}}</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="form-group">
-                            <label>Fecha de pago<span>*</span></label>
+                            <label>Payment date<span>*</span></label>
                             {{form.payment_date}}
                             <label for="">{{form.errors.payment_date}}</label>
                         </div>
@@ -36,7 +36,7 @@
 
                     <div class="col-12">
                         <div class="form-group button">
-                            <button type="submit" class="btn ">Guardar</button>
+                            <button type="submit" class="btn ">Save</button>
                         </div>
                     </div>
                 </div>

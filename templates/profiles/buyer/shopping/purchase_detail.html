@@ -1,0 +1,241 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+
+<div class="contact-us">
+    <div class="row">
+        <section class="container-fluid">
+            <div class="contactus">
+                <div class="form-main">
+                    <div class="Title">
+                        <h3><i class="fa fa-file-text fa-1" aria-hidden="true"></i> Invoice</h3>
+
+                    </div>
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>No.</th>
+                                <th>Purchase date</th>
+                                <th>Delivery date</th>
+                                <th>Seller</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="price" data-title="Fecha compra"><span>#00000{{sale.id}} </span></td>
+                                <td class="price" data-title="Nro"><span>{{sale.created.date}}</span></td>
+
+                                {% if not sale.end_date %}
+                                    <td class="price" data-title="Fecha entrega"><span>Undefined</span></td>
+                                {% else %}
+                                    <td class="price" data-title="Fecha entrega"><span>{{sale.end_date.date}}</span></td>
+                                {% endif %}
+
+								<td class="price" data-title="Vendedor"><span><a href="{% url 'DatosDeContactoTemplateView' sale.product.author.id %}">{{sale.product.author}} <i class="fa fa-id-card"></i></a></span></td>
+                                <td class="price" data-title="Estado">{{sale.operating_status}}</td>
+							</tr>
+                        </tbody>
+                    </table>
+                    <div class="Title">
+                        <h3><i class="fa fa-shopping-cart"></i>My purchase</h3>
+                    </div>
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>No.</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+
+                                {% if sale.product.get_discount %}
+                                    <th>Discount</th>
+                                {% endif %}
+
+
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="price" data-title="Nro.product"><span>#00000{{sale.product.id}}</span></td>
+                                <td class="price" data-title="Descripción">
+                                    <span><a href="{% url 'ProductDetailView' sale.product.id%}">{{sale.product.name}}</a></span>
+                                </td>
+                                <td class="price" data-title="Precio"><span>{{sale.product.price}}$</span></td>
+                                <td class="price" data-title="Cantidad"><span>{{sale.quantity}}</span></td>
+                                {% if sale.product.get_discount %}
+                                    <td class="price" data-title="Descuento"><span>{{sale.discount}}%</span></td>
+                                {% endif %}
+                                <td class="price" data-title="Total"><span>{{sale.total}}$</span></td>
+							</tr>
+                        </tbody>
+                    </table>
+                    <div class="Title">
+                        <h3><i class="fa fa-credit-card-alt"></i> Payment details</h3>
+                    </div>
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>Reference no.</th>
+                                <th>Recipiet</th>
+                                <th>Payment date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                {% if payment_details == 'Undefined' %}
+                                    <td class="price" data-title="Nro.Referencia"><span>{{payment_details}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="">{{payment_details}}</a></span></td>
+                                    <td class="price" data-title="Fecha pago"><span>{{payment_details}}</span></td>
+                                    <td class="price" data-title="Opcion"><span><a href="{% url 'PaymentDetailsCreateView' sale.id %}">add payment</a></span></td>
+                                {% else %}
+                                    <td class="price" data-title="Nro.Referencia"><span>#{{payment_details.ref_no}}</span></td>
+                                    <td class="price" data-title="Recibo"><span><a href="">{{payment_details.receipt}}</a></span></td>
+                                    <td class="price" data-title="Fecha pago"><span>{{payment_details.payment_date}}</span></td>
+                                    <td class="price" data-title="Opcion"><span><a href=" {% url 'PaymentDetailsUpdateView' sale.id %}">Update payment</a></span></td>
+                                {% endif %}
+							</tr>
+                        </tbody>
+                    </table>
+                    <div class="Title">
+                        <h3><i class="fa fa-truck"></i> Shipping details</h3>
+                    </div>
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>Name</th>
+                                <th>DNI</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% if shipping_details == 'Undefined' %}
+                                <td class="price" data-title="Nombre">Undefined</td>
+                                <td class="price" data-title="Cedula">Undefined</td>
+                                <td class="price" data-title="Telefono">Undefined</td>
+                                <td class="price" data-title="Dirección">Undefined</td>
+                                <td class="price" data-title="Opción"><a href="{% url 'ShippingDetailsCreateView' sale.id %}">Add</a></td>
+                            {% else %}
+                                <td class="price" data-title="Nombre">{{shipping_details.name}}</td>
+                                <td class="price" data-title="Cedula">{{shipping_details.dni}}</td>
+                                <td class="price" data-title="Telefono">{{shipping_details.phone}}</td>
+                                <td class="price" data-title="Dirección">{{shipping_details.address}}</td>
+                                <td class="price" data-title="Opción"><a href="{% url 'ShippingDetailsUpdateView' sale.id %}">Update shipping details</a></td>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    <!--Factura-->
+
+
+    </div>
+</div>
+{% endblock contenido %}
+
+<div class="col-lg-6 col-12">
+    <div class="single-head">
+        <div class="single-info">
+            <!--<h4 class="title">Factura</h4>
+            <ul>
+                <li>Nro.Factura: #00000{{venta.id}}</li>
+                <li>Fecha: 12/12/2021</li>
+                <li>Nombre: {{venta.user.username}}</li>
+                <li>------------------------</li>
+                <li>#00{{venta.producto.id}} - {{venta.producto.name}} x 2 - {{venta.producto.precio}}$ </li>
+                <li>------------------------</li>
+                <li>Total: 12$ </li>
+                <li>------------------------</li>
+            </ul>-->
+            <table class="table shopping-summery">
+                <thead>
+                    <tr class="main-hading">
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="single-info">
+            <h4 class="title">Payment details</h4>
+            <ul>
+
+                {% if payment_details %}
+                    <li>Ref.No.: #00000{{payment_details.ref_no}}</li>
+                    <li>Recipiet: {{payment_details.receipt}}</li>
+                    <li>Payment date: {{payment_details.payment_date}}</li>
+                {% else %}
+                    <li>Ref.No.: Undefined</li>
+                    <li>Recipiet: Undefined</li>
+                    <li>Payment date: Undefined</li>
+                {% endif %}
+
+            </ul>
+        </div>
+
+        {% if operating_status_actual == 'Cancelado' %}
+            <ul>
+                <li>Estado de la venta: Cancelada</li>
+            </ul>
+        {% else %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="title" value="operating_status" hidden>
+                <input type="text" name="operating_status_actual" value="{{operating_status_actual}}" hidden>
+                <select name = "items" style="display: none;">
+                    {% for i in operating_status %}
+                        {% if i == operating_status_actual %}
+                            <option value="{{i}}" selected="">{{i}}</option>
+                        {%else%}
+                            <option value="{{i}}">{{i}}</option>
+                        {%endif%}
+
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn">Guardar</button>
+            </form>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="title" value="cancelar_venta" hidden>
+                <button type="submit" class="btn">Cancelar Venta</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+<div class="col-lg-6 col-12">
+    <div class="single-head">
+        <div class="single-info">
+            <h4 class="title">Datos de envio</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="title" value="datos_envios" hidden>
+
+                {% for i in form %}
+                    <h5>{{i.label}}</h5>
+                    <p>{{i}}</p>
+                {% endfor %}
+
+
+                {% if operating_status_actual != 'Cancelado' %}
+                    <button type="submit" class="btn">boton</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>

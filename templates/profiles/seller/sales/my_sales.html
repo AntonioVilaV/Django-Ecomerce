@@ -6,14 +6,14 @@
     <table class="table shopping-summery">
         <thead>
             <tr class="main-hading">
-                <th>Venta</th>
-                <th>Fecha Compra/Entrega</th>
-                <th>Comprador</th>
-                <th>Producto</th>
-                <th class="text-center">Precio</th>
-                <th class="text-center">Cantidad</th>
+                <th>Sale</th>
+                <th>Date of purchase/sale</th>
+                <th>Buyer</th>
+                <th>Product</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
                 <th class="text-center">Total</th>
-                <th class="text-center">Opción</th>
+                <th class="text-center">Option</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@
                             {% if i.end_date %}
                                 <p class="product-des">{{i.end_date.date}}</p>
                             {% else %}
-                                <p class="product-des">Indefinido</p>
+                                <p class="product-des">Undefined</p>
                             {% endif %}
 
 
@@ -48,9 +48,9 @@
                         <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>
 
                         {% if i.state %}
-                            <td class="action" data-title="Opción"><a href="{% url 'DetalleVentaUpdateView' i.id %}">Ver factura</a></td>
+                            <td class="action" data-title="Opción"><a href="{% url 'SaleDetailsUpdateView' i.id %}">View invoice</a></td>
                         {% else %}
-                        <td class="action" data-title="Opción"><a href="{% url 'DetalleVentaCerradaTemplateView' i.id %}">Ver factura</a></td>
+                        <td class="action" data-title="Opción"><a href="{% url 'ClosedSalesDetailTemplateView' i.id %}">View invoice</a></td>
                         {% endif %}
 
 
@@ -59,7 +59,7 @@
             {% else %}
                 <tr>
                     <td class="product-des" data-title="Venta">
-                        <h4>Vacio</h4>
+                        <h4>Empty</h4>
                     </td>
                     <td class="product-des" data-title="Fecha Compra/Entrega">
                     </td>
@@ -92,10 +92,10 @@
                 <ul>
                     <li>
                         {% if page_obj.has_previous %}
-                            <a href="?page={{page_obj.previous_page_number}}">Atrás</a>
+                            <a href="?page={{page_obj.previous_page_number}}">Back</a>
                         {% endif %}
                         {% if page_obj.has_next %}
-                            <span><a href="?page={{page_obj.next_page_number}}">Siguiente</a></span>
+                            <span><a href="?page={{page_obj.next_page_number}}">Next</a></span>
                         {% endif %}
                     </li>
                 </ul>

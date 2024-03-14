@@ -12,9 +12,9 @@
 						<thead>
 							<tr class="main-hading">
 								<th>Product</th>
-								<th>Nombre</th>
-								<th class="text-center">Precio U.</th>
-								<th class="text-center">Cantidad</th>
+								<th>Name</th>
+								<th class="text-center">Price</th>
+								<th class="text-center">Quantity</th>
 								<th class="text-center">Total</th>
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 							</tr>
@@ -71,20 +71,20 @@
 								<div class="right">
 									<ul>
 										<li>Sub-Total<span id="sub_total">${{product.price}}</span></li>
-										<li>Envio<span>Gratis</span></li>
+										<li>Shopping<span>Free</span></li>
 										{% if product.discount %}
-											<li>(-) Descuento
+											<li>(-) Discount
 												<input id="discount" type="num" value="{{product.discount.discount}}" hidden>
 												<span>{{product.discount.discount}}%</span>
 											</li>
 										{% endif %}
-										<li class="last">Total a pagar<span id="total_pagar">${{product.sub_total}}</span></li>
+										<li class="last">Total<span id="total_payable">${{product.sub_total}}</span></li>
 									</ul>
 									<!--<form action="" method="post">-->
 										<div class="button5">
 											{% csrf_token %}
 											{{form}}
-											<button type="submit" class="btn">Comprar</button>
+											<button type="submit" class="btn">Buy</button>
 										</div>
 									<!--</form>-->
 								</div>
@@ -115,7 +115,7 @@
 			}
 
 			sub_desc = sub_total-desc
-			$("#total_pagar").html("$"+sub_desc)
+			$("#total_payable").html("$"+sub_desc)
 		});
 	});
 </script>
