@@ -2,7 +2,7 @@
 from django.core.management.base import BaseCommand
 
 # Models
-from apps.venta.models import OperatingStatus
+from apps.sale.models import OperatingStatus
 from utils.sale.status_operation import STATUS_OPERATION
 
 

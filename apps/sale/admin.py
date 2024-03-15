@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.venta.models import (
+from apps.sale.models import (
     OperatingStatus,
     PaymentDetails,
     SalesRecord,

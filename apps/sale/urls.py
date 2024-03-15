@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.venta.views import (
+from apps.sale.views import (
     BuyProductCreateView,
     ClosedSalesDetailTemplateView,
     MyActivePurchasesListView,

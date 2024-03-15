@@ -16,7 +16,7 @@ from apps.perfiles.forms import (
     UpdateDatosUsuarioForm,
 )
 from apps.perfiles.models import datosContacto
-from apps.venta.models import SalesRecord
+from apps.sale.models import SalesRecord
 
 # Create your views here.
 

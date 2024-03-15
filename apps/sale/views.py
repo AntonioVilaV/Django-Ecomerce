@@ -7,13 +7,13 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
 from apps.inventory.models import Inventory, Product
-from apps.venta.forms import (
+from apps.sale.forms import (
     OperatingStatusForm,
     PaymentForm,
     SalesForm,
     ShippingDataForm,
 )
-from apps.venta.models import (
+from apps.sale.models import (
     OperatingStatus,
     PaymentDetails,
     SalesRecord,

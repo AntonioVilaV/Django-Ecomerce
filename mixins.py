@@ -1,7 +1,7 @@
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse_lazy
 
-from apps.venta.models import SalesRecord
+from apps.sale.models import SalesRecord
 
 
 class validarGrupo:
