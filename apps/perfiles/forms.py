@@ -2,22 +2,22 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, ValidationError
 
-from apps.perfiles.models import datosContacto
+from apps.perfiles.models import ContactDetails
 
 
 class UpdateDatosContactoForm(ModelForm):
     class Meta:
-        model = datosContacto
-        fields = ["telefono", "direccion"]
+        model = ContactDetails
+        fields = ["phone", "address"]
 
-    def clean_telefono(self):
-        telefono = self.cleaned_data["telefono"]
-        if not telefono:
+    def clean_phone(self):
+        phone = self.cleaned_data["phone"]
+        if not phone:
             raise ValidationError("Este campo no puede ser vacío")
-        elif not telefono.isdigit():
+        elif not phone.isdigit():
             raise ValidationError("Solo puede ingresar numeros")
         else:
-            return telefono
+            return phone
 
 
 class UpdateDatosUsuarioForm(ModelForm):
@@ -31,7 +31,7 @@ class RegistroUsuarioForm(UserCreationForm):
         model = User
         fields = ["username", "first_name", "last_name", "email", "groups"]
         labels = {
-            "username": "Nombre de usuario",
+            "username": "Nombre de user",
             "first_name": "Nombre",
             "last_name": "Apellidos",
             "email": "Correo",

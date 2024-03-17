@@ -7,7 +7,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from apps.perfiles.models import datosContacto
+from apps.perfiles.models import ContactDetails
 
 
 class Command(BaseCommand):
@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 user = User.objects.create_superuser(
                     "admin", "admin@admin.com", "admin"
                 )
-                datosContacto.objects.create(usuario=user)
+                ContactDetails.objects.create(user=user)
                 seller_group = Group.objects.create(name="Vendedor")
                 Group.objects.create(name="Comprador")
                 user.groups.add(seller_group)

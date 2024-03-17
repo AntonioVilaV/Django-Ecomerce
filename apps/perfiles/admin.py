@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from apps.perfiles.models import datosContacto
+from apps.perfiles.models import ContactDetails
 
 # Register your models here.
 
-admin.site.register(datosContacto)
+admin.site.register(ContactDetails)

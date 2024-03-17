@@ -22,7 +22,7 @@ urlpatterns = [
     path("login/", LoginUserLoginView.as_view(), name="LoginUserLoginView"),
     path("salir/", LogoutView.as_view(), name="LogoutView"),
     path(
-        "datosContacto/<int:pk>/",
+        "ContactDetails/<int:pk>/",
         DatosDeContactoTemplateView.as_view(),
         name="DatosDeContactoTemplateView",
     ),

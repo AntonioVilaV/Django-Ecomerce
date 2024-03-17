@@ -15,14 +15,14 @@ from apps.perfiles.forms import (
     UpdateDatosContactoForm,
     UpdateDatosUsuarioForm,
 )
-from apps.perfiles.models import datosContacto
+from apps.perfiles.models import ContactDetails
 from apps.sale.models import SalesRecord
 
 # Create your views here.
 
 
 class HomeIndexTemplateView(TemplateView):
-    """Vista root de la plataforma, muestra las diferentes categorias y promociones"""
+    """Root view of the platform, showing the different categories and promotions."""
 
     template_name = "index.html"
 
@@ -103,7 +103,7 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
 class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
     """Vista encargada de mostrar los datos de mi cuenta y da la opcion de actualizar"""
 
-    model = datosContacto
+    model = ContactDetails
     second_model = User
     template_name = "profiles/miCuenta.html"
     form_class = UpdateDatosContactoForm
@@ -123,8 +123,8 @@ class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         logeado = self.request.user
-        datos = datosContacto.objects.get(usuario__id=self.kwargs["pk"])
-        if datos.usuario == logeado:
+        datos = ContactDetails.objects.get(user__id=self.kwargs["pk"])
+        if datos.user == logeado:
             return datos
         else:
             raise Http404("Acceso denegado")
@@ -133,11 +133,11 @@ class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
         self.object = self.get_object()
         try:
             return super().dispatch(request, *args, **kwargs)
-        except datosContacto.DoesNotExist:
+        except ContactDetails.DoesNotExist:
             raise Http404("Datos no existe")
 
     def post(self, request, *args, **kwargs):
-        if self.object.usuario == self.request.user:
+        if self.object.user == self.request.user:
             formDatosUsuario = UpdateDatosUsuarioForm(
                 request.POST, instance=self.request.user
             )
@@ -185,7 +185,7 @@ class RegistroUsuarioCreateView(CreateView):
         grupo = Group.objects.get(id=grupoID)
         with transaction.atomic():
             grupo.user_set.add(self.object)
-            datosContacto.objects.create(usuario=self.object)
+            ContactDetails.objects.create(user=self.object)
         new_user = authenticate(
             username=form.cleaned_data.get("username"),
             password=form.cleaned_data.get("password1"),
@@ -217,7 +217,7 @@ class LoginUserLoginView(LoginView):
 class DatosDeContactoTemplateView(TemplateView):
     """Vista esta encargada de mostrar los datos de contacto de un usuario y verificar si tienes permisos para verlos"""
 
-    template_name = "profiles/contacto/datosContacto.html"
+    template_name = "profiles/contacto/ContactDetails.html"
 
     def dispatch(self, request, *args, **kwargs):
         if (
@@ -236,5 +236,5 @@ class DatosDeContactoTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Eshop Django - Datos Contacto"
 
-        context["contacto"] = datosContacto.objects.get(id=self.kwargs["pk"])
+        context["contacto"] = ContactDetails.objects.get(id=self.kwargs["pk"])
         return context

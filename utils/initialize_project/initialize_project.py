@@ -4,12 +4,12 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management import call_command
 
-from apps.perfiles.models import datosContacto
+from apps.perfiles.models import ContactDetails
 
 
 def initialize_project():
     user = User.objects.create_superuser("admin", "admin@admin.com", "admin")
-    datosContacto.objects.create(user=user)
+    ContactDetails.objects.create(user=user)
 
     call_command("populate_categories")
 
