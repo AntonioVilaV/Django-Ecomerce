@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.perfiles.models import ContactDetails
+from apps.profiles.models import ContactDetails
 
 # Register your models here.
 

@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from apps.perfiles.views import (
+from apps.profiles.views import (
     ContactDetailsTemplateView,
     HomeIndexTemplateView,
     LoginUserLoginView,

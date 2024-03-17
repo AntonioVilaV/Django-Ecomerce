@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, ValidationError
 
-from apps.perfiles.models import ContactDetails
+from apps.profiles.models import ContactDetails
 
 
 class ContactDetailsForm(ModelForm):

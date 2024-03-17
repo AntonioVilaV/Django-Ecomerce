@@ -51,7 +51,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "apps.inventory",
-    "apps.perfiles",
+    "apps.profiles",
     "apps.sale",
 ]
 

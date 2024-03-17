@@ -10,12 +10,12 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 
 from apps.inventory.models import Product
-from apps.perfiles.forms import (
+from apps.profiles.forms import (
     ContactDetailsForm,
     UserDetailsForm,
     UserRegistrationForm,
 )
-from apps.perfiles.models import ContactDetails
+from apps.profiles.models import ContactDetails
 from apps.sale.models import SalesRecord
 
 # Create your views here.

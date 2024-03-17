@@ -7,7 +7,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from apps.perfiles.models import ContactDetails
+from apps.profiles.models import ContactDetails
 
 
 class Command(BaseCommand):

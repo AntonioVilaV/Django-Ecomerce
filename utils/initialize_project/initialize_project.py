@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management import call_command
 
-from apps.perfiles.models import ContactDetails
+from apps.profiles.models import ContactDetails
 
 
 def initialize_project():
