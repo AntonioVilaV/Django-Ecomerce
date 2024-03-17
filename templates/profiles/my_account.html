@@ -1,0 +1,58 @@
+{% extends 'base/baseContact.html' %}
+
+
+{% block contenido %}
+<div class="col-12">
+    <div class="form-main">
+            <div class="title">
+                <h3><i class="fa fa-user-circle"></i> User data</h3>
+            </div>
+            <form class="form" method="post" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Name <span>*</span></label>
+                            {{form2.first_name}}
+                            <label>{{form2.errors.first_name}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Second name<span>*</span></label>
+                            {{form2.last_name}}
+                            <label>{{form2.errors.last_name}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Telefono<span>*</span></label>
+                            {{form.phone}}
+                            <label>{{form.errors.phone}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Email<span>*</span></label>
+                            {{form2.email}}
+                            <label>{{form2.errors.email}}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group message">
+                            <label>Address<span>*</span></label>
+                            {{form.address}}
+                            <label>{{form.errors.address}}</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group button">
+                            <button type="submit" class="btn ">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+{% endblock contenido %}

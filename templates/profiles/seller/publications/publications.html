@@ -1,0 +1,97 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+    <!-- Shopping Cart -->
+	<!-- Shopping Summery -->
+	<table class="table shopping-summery">
+		<thead>
+			<tr class="main-hading">
+				<th>Product</th>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th class="text-center">Price</th>
+				<th class="text-center"></th>
+			</tr>
+		</thead>
+		<tbody>
+
+
+			{% if object_list %}
+				{% for publication in object_list %}
+				<tr>
+					<td class="image" data-title="Producto" width="150px"><img src="{{publication.get_image}}" ></td>
+					<td class="product-des" data-title="Nombre">
+						<p class="product-name"><a href="{% url 'ProductDetailView' publication.id %}">{{publication.name}}</a></p>
+						<p class="product-des">{{publication.description|slice:140}}...</p>
+					</td>
+					<td class="qty" data-title="Cantidad"><span>{{publication.inventory_product.quantity}} </span></td>
+					<td class="price" data-title="Precio"><span>${{publication.price}} </span></td>
+					<td class="action" data-title="Opc">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+								Option
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{% url 'PublicationUpdateView' publication.id %}"><i class="fas fa-edit"></i> Update</a>
+
+								{% if publication.status %}
+								<a class="dropdown-item" href="{% url 'ActionPublicationTemplateView' 'pause' publication.id %}"><i class="fa fa-pause"></i> Pause</a>
+								{% elif publication.status == False %}
+								<a class="dropdown-item" href="{% url 'ActionPublicationTemplateView' 'activate' publication.id %}"><i class="fa fa-play"></i> Activate</a>
+								{% endif %}
+								<a class="dropdown-item" href="{% url 'PublicationDeleteView' publication.id%}"><i class="fas fa-trash-alt"></i> Delete</a>
+							</div>
+						</div>
+					</td>
+
+
+				</tr>
+				{% endfor %}
+			{% else %}
+				<tr>
+					<td class="image" data-title="Producto" width="150px">
+						<h4>Empty</h4>
+					</td>
+					<td class="product-des" data-title="Nombre">
+					</td>
+					<td class="qty" data-title="Cantidad"><span> </span></td>
+					<td class="price" data-title="Precio"><span></span></td>
+					<td class="action" data-title="Opc">
+					</td>
+
+
+				</tr>
+			{% endif %}
+
+
+
+
+
+		</tbody>
+	</table>
+	<!--/ End Shopping Summery -->
+
+	<!--/ End Shopping Cart -->
+{% endblock contenido  %}
+
+{% block contenido_footer %}
+<div class="total-amount">
+    <div class="row">
+        <div class="col-12">
+            <div class="right" style="Padding:0px">
+                <ul>
+                    <li>
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{page_obj.previous_page_number}}">Back</a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <span><a href="?page={{page_obj.next_page_number}}">Next</a></span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido_footer %}

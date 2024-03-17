@@ -1,6 +1,6 @@
-from apps.inventario.models import Categoria
+from apps.inventory.models import Category
 
 
-def categorias_base(request):
-    categorias = Categoria.objects.all()
-    return {"categorias": categorias}
+def categories_base(request):
+    categories = Category.objects.all()
+    return {"categories": categories}

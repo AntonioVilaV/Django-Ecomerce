@@ -1,0 +1,106 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+    <!-- Shopping Summery -->
+    <table class="table shopping-summery">
+        <thead>
+            <tr class="main-hading">
+                <th>Sale</th>
+                <th>Date of purchase/sale</th>
+                <th>Buyer</th>
+                <th>Product</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Total</th>
+                <th class="text-center">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if object_list %}
+                {% for i in object_list %}
+                    <tr>
+                        <td class="product-des" data-title="Venta">
+                            <p class="product-name">#000000{{i.id}}</p>
+                            <p class="product-des">{{i.operating_status}}</p>
+                        </td>
+                        <td class="product-des" data-title="Fecha Compra/Entrega">
+                            <p class="product-name">{{i.created.date}}</p>
+                            <p class="product-name">\</p>
+
+                            {% if i.end_date %}
+                                <p class="product-des">{{i.end_date.date}}</p>
+                            {% else %}
+                                <p class="product-des">Undefined</p>
+                            {% endif %}
+
+
+                        </td>
+                        <td class="qty" data-title="Buyer"><a href="{% url 'ContactDetailsTemplateView' i.user.id %}">{{i.user}}</a></td>
+                        <td class="product-des" data-title="Producto">
+                            <p class="product-name"><a href="{% url 'ProductDetailView' i.product.id %}">{{i.product.name}}</a></p>
+                            <p class="product-des">{{i.product.description|slice:50}}...</p>
+                        </td>
+                        <td class="price" data-title="Precio"><span>${{i.product.price}} </span></td>
+                        <td class="qty" data-title="Cantidad"><span>{{i.quantity}}</span></td>
+
+                        <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>
+
+                        {% if i.state %}
+                            <td class="action" data-title="Opción"><a href="{% url 'SaleDetailsUpdateView' i.id %}">View invoice</a></td>
+                        {% else %}
+                        <td class="action" data-title="Opción"><a href="{% url 'ClosedSalesDetailTemplateView' i.id %}">View invoice</a></td>
+                        {% endif %}
+
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td class="product-des" data-title="Venta">
+                        <h4>Empty</h4>
+                    </td>
+                    <td class="product-des" data-title="Fecha Compra/Entrega">
+                    </td>
+                    <td class="qty" data-title="Buyer"></td>
+                    <td class="product-des" data-title="Producto">
+                    </td>
+                    <td class="price" data-title="Precio"><span></span></td>
+                    <td class="qty" data-title="Cantidad"><span></span></td>
+                    <td class="total-amount" data-title="Total"><span></span></td>
+
+                    <td class="action" data-title="Opción"></td>
+                </tr>
+            {% endif %}
+
+
+
+
+        </tbody>
+    </table>
+    <!--/ End Shopping Summery -->
+{% endblock contenido %}
+
+
+
+{% block contenido_footer %}
+<div class="total-amount">
+    <div class="row">
+        <div class="col-12">
+            <div class="right" style="Padding:0px">
+                <ul>
+                    <li>
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{page_obj.previous_page_number}}">Back</a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <span><a href="?page={{page_obj.next_page_number}}">Next</a></span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido_footer %}

@@ -1,0 +1,77 @@
+{% extends 'base/baseContact.html' %}
+{% block contenido %}
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+<div class="row">
+  <div class="col-lg-16 col-12">
+    <div class="contact-us">
+      <div class="form-main" style="padding-top: 25px;">
+        <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <div class="image">
+                <img src="{{object.get_image}}" width="400px">
+            </div>
+            {{form.foto.label}}
+            {{form.foto}}
+            <label>{{form.errors.foto}}</label>
+          </div>
+          <div class="col-lg-5 col-12">
+            <div class="col">
+
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block">{{form.name.label}}</label>
+                  {{form.name}}
+                  <label>{{form.errors.name}}</label>
+                </div>
+              </div>
+
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block">{{form.price.label}}</label>
+                  {{form.price}}
+                  <label>{{form.errors.price}}</label>
+                </div>
+
+              </div>
+
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block">Quantity</label>
+                  {{form2.quantity}}
+                  <label>{{form2.errors.quantity}}</label>
+                </div>
+              </div>
+
+              <div class="col-lg-11 col-12">
+                <div class="form-group">
+                  <label style="display: block">Category</label>
+                  {{form.category}}
+                  <label style="display: block">{{form.errors.category}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group message">
+              <label>{{form.description.label}}</label>
+              {{form.description}}
+              <label>{{form.errors.description}}</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group button">
+              <button type="submit" class="btn ">Save</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+{% endblock contenido %}

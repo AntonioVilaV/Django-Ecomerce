@@ -1,0 +1,99 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+    <!-- Shopping Summery -->
+    <table class="table shopping-summery">
+        <thead>
+            <tr class="main-hading">
+                <th>Sale no.</th>
+                <th>Product</th>
+                <th></th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Total</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+                {% for i in object_list %}
+                    <tr>
+                        <td class="price" data-title="Nro.Venta">
+                            <p class="product-name"><span>#000000{{i.id}}</span></p>
+                        </td>
+                        <td class="image" data-title="Producto" width="150px"><img src="{{i.product.get_image}}" alt="#"></td>
+                        <td class="product-des" data-title="Nombre">
+                            <p class="product-name"><a href="#">{{i.product.name}}</a></p>
+                            <p class="product-des">{{i.product.description|slice:40}}...</p>
+                        </td>
+                        <td class="price" data-title="Precio"><span>${{i.product.price}} </span></td>
+                        <td class="qty" data-title="Cantidad"><span>{{i.quantity}}</span></td>
+                        <td class="total-amount" data-title="Total"><span>${{i.total}}</span></td>
+                        <td class="total-amount" data-title="Estado"><span>{{i.operating_status.name}}</span></td>
+                        <td class="action" data-title="Opción">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                                    Option
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'PurchaseDetailView' i.id %}"><i class="fa fa-file-text"></i> View data</a>
+
+                                    {% if i.operating_status.name == 'Waiting for payment' %}
+                                        <a class="dropdown-item" href="{% url 'PaymentDetailsCreateView' i.id %}"><i class="fa fa-credit-card-alt"></i> Pay</a>
+                                    {% endif %}
+
+                                    {% if i.operating_status.name != 'Entregado' and i.operating_status.name != 'Cancelado' %}
+                                        <a class="dropdown-item" href="{% url 'ShippingDetailsCreateView' i.id %}"><i class="fa fa-truck"></i> Shipping details</a>
+                                    {% endif %}
+
+                                    <a class="dropdown-item" href="{% url 'ContactDetailsTemplateView' i.product.author.id %}"><i class="fa fa-phone-square"></i> Seller </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td class="price" data-title="Nro.Venta">
+                        <h4>Empty</h4>
+                    </td>
+                    <td class="image" data-title="Producto" width="150px">
+
+                    </td>
+                    <td class="product-des" data-title="Nombre">
+                    </td>
+                    <td class="price" data-title="Precio"><span></span></td>
+                    <td class="qty" data-title="Cantidad"><span></span></td>
+                    <td class="total-amount" data-title="Total"><span></span></td>
+                    <td class="total-amount" data-title="Estado"><span></span></td>
+                    <td class="action" data-title="Opción">
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <!--/ End Shopping Summery -->
+{% endblock contenido %}
+
+{% block contenido_footer %}
+<div class="total-amount">
+    <div class="row">
+        <div class="col-12">
+            <div class="right" style="Padding:0px">
+                <ul>
+                    <li>
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{page_obj.previous_page_number}}">Back</a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <span><a href="?page={{page_obj.next_page_number}}">Next</a></span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido_footer %}

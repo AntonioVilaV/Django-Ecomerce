@@ -50,9 +50,9 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "apps.inventario",
-    "apps.perfiles",
-    "apps.venta",
+    "apps.inventory",
+    "apps.profiles",
+    "apps.sale",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -80,7 +80,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "utils.context_processors.categorias_base",
+                "utils.context_processors.categories_base",
             ],
         },
     },
@@ -129,7 +129,7 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = ["static"]
 
 
-LOGIN_REDIRECT_URL = reverse_lazy("HomePerfilTemplateView")
+LOGIN_REDIRECT_URL = reverse_lazy("ProfileHomeTemplateView")
 LOGIN_URL = "/login/"
 
 LOGOUT_REDIRECT_URL = "/"

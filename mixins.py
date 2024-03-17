@@ -1,10 +1,10 @@
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse_lazy
 
-from apps.venta.models import RegistroVenta
+from apps.sale.models import SalesRecord
 
 
-class validarGrupo:
+class ValidateGroup:
     grupo = ""
     url_redirect = ""
 
@@ -13,7 +13,7 @@ class validarGrupo:
 
     def get_url_redirect(self):
         if not self.url_redirect:
-            return reverse_lazy("HomePerfilTemplateView")
+            return reverse_lazy("ProfileHomeTemplateView")
         else:
             return self.url_redirect
 
@@ -23,16 +23,11 @@ class validarGrupo:
         return HttpResponseRedirect(self.get_url_redirect())
 
 
-class validarUsuario:
+class ValidateUser:
     model = ""
 
     def dispatch(self, request, *args, **kwargs):
-        if self.model == "RegistroVenta":
-            if (
-                RegistroVenta.objects.get(id=self.kwargs["pk"]).usuario
-                != self.request.user
-            ):
-                print("############")
-                print("aaa")
+        if self.model == "SalesRecord":
+            if SalesRecord.objects.get(id=self.kwargs["pk"]).user != self.request.user:
                 raise Http404("Producto deshabilitado")
         return super().dispatch(request, *args, **kwargs)

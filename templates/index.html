@@ -17,11 +17,11 @@
                         <div class="row">
                             <div class="col-lg-7 col-12">
                                 <div class="hero-text">
-                                    <h1><span>Descuento 50% </span>Ropa para mujeres</h1>
-                                    <p>Porque tú te lo mereces
+                                    <h1><span>Discount 50% </span>Women's clothing</h1>
+                                    <p>Because you deserve it
                                         <!--<br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>-->
                                     <div class="button">
-                                        <a href="/buscar/?categorias=decV&amp;search=" class="btn">Comprar ahora!</a>
+                                        <a href="/buscar/?categories=decV&amp;search=" class="btn">Buy now!</a>
                                     </div>
 
                                 </div>
@@ -43,9 +43,9 @@
                 <div class="single-banner">
                     <img src="{% static 'recursos/img/ki.jpg' %}" height="370px" alt="#">
                     <div class="content">
-                        <p>Colección Niños</p>
-                        <h3>Para los consentidos <br> de la casa</h3>
-                        <a href="/buscar/?categorias=Niños&search=">Comprar ahora!</a>
+                        <p>Children's collection</p>
+                        <h3>For the spoiled of <br> the house</h3>
+                        <a href="/buscar/?categories=Niños&search=">Buy now!</a>
                     </div>
                 </div>
             </div>
@@ -55,9 +55,9 @@
                 <div class="single-banner">
                     <img src="{% static 'recursos/img/man5.jpg' %}" alt="#">
                     <div class="content">
-                        <p>Coleccion Hombres</p>
-                        <h3>Para lucir bien <br> y sentirte bien</h3>
-                        <a href="/buscar/?categorias=Salud&search=">Comprar Ahora!</a>
+                        <p>Men's collection</p>
+                        <h3>To look good <br> and feel good</h3>
+                        <a href="/buscar/?categories=Salud&search=">Buy now!</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <div class="content">
                         <p>Ventas Flash</p>
                         <h3>Ofertas flash <br> hasta <span>70%</span> menos</h3>
-                        <a href="/buscar/?categorias=decV&search=">Comprar ahora!</a>
+                        <a href="/buscar/?categories=decV&search=">Comprar ahora!</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Top Productos</h2>
+                    <h2>Top products</h2>
 
                 </div>
             </div>
@@ -109,32 +109,32 @@
                             <div class="tab-single">
                                 <div class="row">
 
-                                    {% for producto in man %}
+                                    {% for product in man %}
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{% url 'ProductoDetailView' producto.id %}">
-                                                    <img class="default-img" src="{{producto.get_image}}" alt="#">
-                                                    <img class="hover-img" src="{{producto.get_image}}" alt="#">
+                                                <a href="{% url 'ProductDetailView' product.id %}">
+                                                    <img class="default-img" src="{{product.get_image}}" alt="#">
+                                                    <img class="hover-img" src="{{product.get_image}}" alt="#">
 
-                                                    {% if producto.descuento %}
-                                                    <span class="price-dec">{{producto.descuento.descuento}}% -</span>
+                                                    {% if product.discount %}
+                                                    <span class="price-dec">{{product.discount.discount}}% -</span>
                                                     {% endif %}
                                                 </a>
                                                 <div class="button-head">
                                                     <div class="product-action-2">
                                                         <a title="Add to cart"
-                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                            href="{% url 'ProductDetailView' product.id %}"><i
                                                                 class="fa fa-shopping-cart"></i> Comprar</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a
-                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                        href="{% url 'ProductDetailView' product.id %}">{{product.name}}</a>
                                                 </h3>
                                                 <div class="product-price">
-                                                    <span>${{producto.precio}}</span>
+                                                    <span>${{product.price}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,31 +150,31 @@
                             <div class="tab-single">
                                 <div class="row">
 
-                                    {% for producto in women %}
+                                    {% for product in women %}
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{% url 'ProductoDetailView' producto.id %}">
-                                                    <img class="default-img" src="{{producto.get_image}}" alt="#">
-                                                    <img class="hover-img" src="{{producto.get_image}}" alt="#">
-                                                    {% if producto.descuento %}
-                                                    <span class="price-dec">{{producto.descuento.descuento}}% -</span>
+                                                <a href="{% url 'ProductDetailView' product.id %}">
+                                                    <img class="default-img" src="{{product.get_image}}" alt="#">
+                                                    <img class="hover-img" src="{{product.get_image}}" alt="#">
+                                                    {% if product.discount %}
+                                                    <span class="price-dec">{{product.discount.discount}}% -</span>
                                                     {% endif %}
                                                 </a>
                                                 <div class="button-head">
                                                     <div class="product-action-2">
                                                         <a title="Add to cart"
-                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
+                                                            href="{% url 'ProductDetailView' product.id %}"><i
                                                                 class="fa fa-shopping-cart"></i> Comprar</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a
-                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                        href="{% url 'ProductDetailView' product.id %}">{{product.name}}</a>
                                                 </h3>
                                                 <div class="product-price">
-                                                    <span>${{producto.precio}}</span>
+                                                    <span>${{product.price}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,31 +188,31 @@
                         <div class="tab-pane fade" id="kids" role="tabpanel">
                             <div class="tab-single">
                                 <div class="row">
-                                    {% for producto in kids %}
+                                    {% for product in kids %}
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{% url 'ProductoDetailView' producto.id %}">
-                                                    <img class="default-img" src="{{producto.get_image}}" alt="#">
-                                                    <img class="hover-img" src="{{producto.get_image}}" alt="#">
-                                                    {% if producto.descuento %}
-                                                    <span class="price-dec">{{producto.descuento.descuento}}% -</span>
+                                                <a href="{% url 'ProductDetailView' product.id %}">
+                                                    <img class="default-img" src="{{product.get_image}}" alt="#">
+                                                    <img class="hover-img" src="{{product.get_image}}" alt="#">
+                                                    {% if product.discount %}
+                                                    <span class="price-dec">{{product.discount.discount}}% -</span>
                                                     {% endif %}
                                                 </a>
                                                 <div class="button-head">
                                                     <div class="product-action-2">
                                                         <a title="Add to cart"
-                                                            href="{% url 'ProductoDetailView' producto.id %}"><i
-                                                                class="fa fa-shopping-cart"></i> Comprar</a>
+                                                            href="{% url 'ProductDetailView' product.id %}"><i
+                                                                class="fa fa-shopping-cart"></i> Buy</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a
-                                                        href="{% url 'ProductoDetailView' producto.id %}">{{producto.nombre}}</a>
+                                                        href="{% url 'ProductDetailView' product.id %}">{{product.name}}</a>
                                                 </h3>
                                                 <div class="product-price">
-                                                    <span>${{producto.precio}}</span>
+                                                    <span>${{product.price}}</span>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,0 +1,56 @@
+{% extends 'base/baseContact.html' %}
+
+
+{% block contenido %}
+
+<div class="contact-us">
+    <div class="form-main">
+            <div class="title">
+                <h3>Shipping details</h3>
+            </div>
+            <form class="form" method="post" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Name<span>*</span></label>
+                            {{form.name}}
+                            <label for="">{{form.errors.name}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>DNI<span>*</span></label>
+                            {{form.dni}}
+                            <label for="">{{form.errors.dni}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Phone<span>*</span></label>
+                            {{form.phone}}
+                            <label for="">{{form.errors.phone}}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group message">
+                            <label>Address<span>*</span></label>
+                            {{form.address}}
+                            <label for="">{{form.errors.address}}</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group button">
+                            <button type="submit" class="btn ">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+
+
+
+
+{% endblock contenido%}
