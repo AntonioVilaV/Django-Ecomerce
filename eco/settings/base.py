@@ -129,7 +129,7 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = ["static"]
 
 
-LOGIN_REDIRECT_URL = reverse_lazy("HomePerfilTemplateView")
+LOGIN_REDIRECT_URL = reverse_lazy("ProfileHomeTemplateView")
 LOGIN_URL = "/login/"
 
 LOGOUT_REDIRECT_URL = "/"

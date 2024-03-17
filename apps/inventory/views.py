@@ -14,15 +14,15 @@ from django.views.generic import (
 
 from apps.inventory.forms import CreateProductForm, InventoryForm, UpdateProductForm
 from apps.inventory.models import Inventory, Product
-from mixins import validarGrupo
+from mixins import ValidateGroup
 
 
-# Vendedor - Vistas Products
-class ActivePublicationsListView(LoginRequiredMixin, validarGrupo, ListView):
+# Seller - Vistas Products
+class ActivePublicationsListView(LoginRequiredMixin, ValidateGroup, ListView):
     """View in charge of displaying the list of Publications or published products that are active. View for user type Seller"""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = Product
     template_name = "profiles/seller/publications/publications.html"
     paginate_by = 10
@@ -36,11 +36,11 @@ class ActivePublicationsListView(LoginRequiredMixin, validarGrupo, ListView):
         return Product.objects.filter(status=True).filter(author=self.request.user)
 
 
-class PausedPublicationsListView(LoginRequiredMixin, validarGrupo, ListView):
+class PausedPublicationsListView(LoginRequiredMixin, ValidateGroup, ListView):
     """View in charge of showing the list of Publications or published products that are paused. View for user type Seller"""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = Product
     template_name = "profiles/seller/publications/publications.html"
     paginate_by = 10
@@ -54,16 +54,16 @@ class PausedPublicationsListView(LoginRequiredMixin, validarGrupo, ListView):
         return Product.objects.filter(author=self.request.user).filter(status=False)
 
 
-class PublicationCreateView(LoginRequiredMixin, validarGrupo, CreateView):
+class PublicationCreateView(LoginRequiredMixin, ValidateGroup, CreateView):
     """View in charge of creating product or publication to sell on the platform"""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     template_name = "profiles/seller/publications/createPublication.html"
     model = Product
     form_class = CreateProductForm
     second_form_class = InventoryForm
-    success_url = reverse_lazy("HomePerfilTemplateView")
+    success_url = reverse_lazy("ProfileHomeTemplateView")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,11 +96,11 @@ class PublicationCreateView(LoginRequiredMixin, validarGrupo, CreateView):
             )
 
 
-class PublicationUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
+class PublicationUpdateView(LoginRequiredMixin, ValidateGroup, UpdateView):
     """View in charge of updating or editing the data of a Product"""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     template_name = "profiles/seller/publications/updatePublication.html"
     model = Product
     second_model = Inventory
@@ -157,11 +157,11 @@ class PublicationUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
             raise Http404("Action denied")
 
 
-class PublicationDeleteView(LoginRequiredMixin, validarGrupo, DeleteView):
+class PublicationDeleteView(LoginRequiredMixin, ValidateGroup, DeleteView):
     """View in charge of deleting product or publication"""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = Product
     template_name = "profiles/seller/publications/deletePublication.html"
     success_url = reverse_lazy("ActivePublicationsListView")
@@ -186,11 +186,11 @@ class PublicationDeleteView(LoginRequiredMixin, validarGrupo, DeleteView):
             raise Http404("Action denied")
 
 
-class ActionPublicationTemplateView(LoginRequiredMixin, validarGrupo, TemplateView):
+class ActionPublicationTemplateView(LoginRequiredMixin, ValidateGroup, TemplateView):
     """View in charge of managing and executing actions on publications; Activate or pause publication."""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     template_name = "profiles/seller/publications/actionPublication.html"
 
     def dispatch(self, request, *args, **kwargs):
@@ -244,7 +244,7 @@ class ActionPublicationTemplateView(LoginRequiredMixin, validarGrupo, TemplateVi
                 return redirect(reverse_lazy("PausedPublicationsListView"))
 
 
-# Comprador - Vistas products
+# Buyer - Vistas products
 class ProductDetailView(DetailView):
     """View in charge of displaying product details to the buyer and giving options and purchase details"""
 

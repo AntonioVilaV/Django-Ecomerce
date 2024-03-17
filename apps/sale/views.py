@@ -19,16 +19,16 @@ from apps.sale.models import (
     SalesRecord,
     ShippingDetails,
 )
-from mixins import validarGrupo
+from mixins import ValidateGroup
 
 # Create your views here.
 
 
-# Comprador - Vista Ventas
-class BuyProductCreateView(LoginRequiredMixin, validarGrupo, CreateView):
+# Buyer - Vista Ventas
+class BuyProductCreateView(LoginRequiredMixin, ValidateGroup, CreateView):
     """Vista encargada de mandar la peticion de compra de producto y crear la venta en la base de datos"""
 
-    grupo = "Comprador"
+    grupo = "Buyer"
     url_redirect = reverse_lazy("LoginUserLoginView")
     models = SalesRecord
     template_name = "profiles/buyer/shopping/confirm_purchase.html"
@@ -89,11 +89,11 @@ class BuyProductCreateView(LoginRequiredMixin, validarGrupo, CreateView):
             return redirect(reverse_lazy("MyActivePurchasesListView"))
 
 
-class MyActivePurchasesListView(LoginRequiredMixin, validarGrupo, ListView):
+class MyActivePurchasesListView(LoginRequiredMixin, ValidateGroup, ListView):
     """View in charge of displaying a list of the user's active purchases. Purchases that do not have status delivered or cancelled."""
 
-    grupo = "Comprador"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Buyer"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = SalesRecord
     template_name = "profiles/buyer/shopping/my_purchases.html"
     paginate_by = 10
@@ -107,11 +107,11 @@ class MyActivePurchasesListView(LoginRequiredMixin, validarGrupo, ListView):
         return SalesRecord.objects.filter(user=self.request.user.pk).filter(state=True)
 
 
-class MyPurchasesClosedListView(LoginRequiredMixin, validarGrupo, ListView):
+class MyPurchasesClosedListView(LoginRequiredMixin, ValidateGroup, ListView):
     """View in charge of displaying a list of the user's closed purchases. Purchases with status delivered or cancelled"""
 
-    grupo = "Comprador"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Buyer"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = SalesRecord
     template_name = "profiles/buyer/shopping/my_purchases.html"
     paginate_by = 10
@@ -128,7 +128,7 @@ class MyPurchasesClosedListView(LoginRequiredMixin, validarGrupo, ListView):
 class PurchaseDetailView(LoginRequiredMixin, TemplateView):
     """View in charge of displaying purchase details or purchase invoice to the user"""
 
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     template_name = "profiles/buyer/shopping/purchase_detail.html"
 
     def get_context_data(self, **kwargs):
@@ -191,9 +191,9 @@ class ShippingDetailsCreateView(LoginRequiredMixin, CreateView):
 
         if form.is_valid():
             form.save()
-            if self.request.user.groups.get().name == "Vendedor":
+            if self.request.user.groups.get().name == "Seller":
                 return redirect("/sale_detail/" + str(my_sale.id))
-            elif self.request.user.groups.get().name == "Comprador":
+            elif self.request.user.groups.get().name == "Buyer":
                 return redirect("/purchase_detail/" + str(my_sale.id))
 
 
@@ -203,7 +203,7 @@ class ShippingDetailsUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "profiles/buyer/shopping/update_shipping_details.html"
     model = ShippingDetails
     form_class = ShippingDataForm
-    success_url = reverse_lazy("HomePerfilTemplateView")
+    success_url = reverse_lazy("ProfileHomeTemplateView")
 
     def get_object(self, queryset=None):
         logged = self.request.user
@@ -232,9 +232,9 @@ class ShippingDetailsUpdateView(LoginRequiredMixin, UpdateView):
         sale = SalesRecord.objects.get(id=self.kwargs["pk"])
         if form.is_valid():
             form.save()
-            if self.request.user.groups.get().name == "Vendedor":
+            if self.request.user.groups.get().name == "Seller":
                 return redirect("/sale_detail/" + str(sale.id))
-            elif self.request.user.groups.get().name == "Comprador":
+            elif self.request.user.groups.get().name == "Buyer":
                 return redirect("/purchase_detail/" + str(sale.id))
 
 
@@ -277,9 +277,9 @@ class PaymentDetailsCreateView(LoginRequiredMixin, CreateView):
             SalesRecord.objects.filter(id=self.kwargs["pk"]).update(
                 operating_status=estado_nuevo
             )
-            if self.request.user.groups.get().name == "Vendedor":
+            if self.request.user.groups.get().name == "Seller":
                 return redirect("/sale_detail/" + str(my_sale.id))
-            elif self.request.user.groups.get().name == "Comprador":
+            elif self.request.user.groups.get().name == "Buyer":
                 return redirect("/purchase_detail/" + str(my_sale.id))
 
 
@@ -289,7 +289,7 @@ class PaymentDetailsUpdateView(LoginRequiredMixin, UpdateView):  # Validado
     template_name = "profiles/buyer/shopping/payment_date.html"
     model = PaymentDetails
     form_class = PaymentForm
-    success_url = reverse_lazy("HomePerfilTemplateView")
+    success_url = reverse_lazy("ProfileHomeTemplateView")
 
     def get_object(self, queryset=None):
         logged = self.request.user
@@ -321,20 +321,20 @@ class PaymentDetailsUpdateView(LoginRequiredMixin, UpdateView):  # Validado
         sale = SalesRecord.objects.get(id=self.kwargs["pk"])
         if form.is_valid():
             form.save()
-            if self.request.user.groups.get().name == "Vendedor":
+            if self.request.user.groups.get().name == "Seller":
                 return redirect("/sale_detail/" + str(sale.id))
-            elif self.request.user.groups.get().name == "Comprador":
+            elif self.request.user.groups.get().name == "Buyer":
                 return redirect("/purchase_detail/" + str(sale.id))
 
 
-# Vendedor - vistas Ventas
+# Seller - vistas Ventas
 
 
-class MyActiveSalesListView(LoginRequiredMixin, validarGrupo, ListView):
+class MyActiveSalesListView(LoginRequiredMixin, ValidateGroup, ListView):
     """View in charge of displaying the list of sales that are still active, i.e. not yet cancelled or delivered."""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = SalesRecord
     template_name = "profiles/seller/sales/my_sales.html"
     paginate_by = 8
@@ -350,11 +350,11 @@ class MyActiveSalesListView(LoginRequiredMixin, validarGrupo, ListView):
         return context
 
 
-class MyClosedSalesListView(LoginRequiredMixin, validarGrupo, ListView):
+class MyClosedSalesListView(LoginRequiredMixin, ValidateGroup, ListView):
     """View in charge of displaying the list of closed sales, i.e. that were cancelled or their products were delivered."""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     model = SalesRecord
     template_name = "profiles/seller/sales/my_sales.html"
 
@@ -369,11 +369,11 @@ class MyClosedSalesListView(LoginRequiredMixin, validarGrupo, ListView):
         return context
 
 
-class SaleDetailsUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
+class SaleDetailsUpdateView(LoginRequiredMixin, ValidateGroup, UpdateView):
     """View in charge of displaying the invoice or sale details and offers the option to change the status of the sale."""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     template_name = "profiles/seller/sales/sale_details.html"
     model = SalesRecord
     form_class = OperatingStatusForm
@@ -417,11 +417,11 @@ class SaleDetailsUpdateView(LoginRequiredMixin, validarGrupo, UpdateView):
         return super().form_valid(form)
 
 
-class ClosedSalesDetailTemplateView(LoginRequiredMixin, validarGrupo, TemplateView):
+class ClosedSalesDetailTemplateView(LoginRequiredMixin, ValidateGroup, TemplateView):
     """View in charge of showing the detail of the sale or invoice when it has a closed status."""
 
-    grupo = "Vendedor"
-    url_redirect = reverse_lazy("HomePerfilTemplateView")
+    grupo = "Seller"
+    url_redirect = reverse_lazy("ProfileHomeTemplateView")
     template_name = "profiles/seller/sales/closed_sales_detail.html"
     success_url = reverse_lazy("MyActiveSalesListView")
 

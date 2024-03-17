@@ -33,7 +33,7 @@
                                     <td class="price" data-title="Fecha entrega"><span>{{sale.end_date.date}}</span></td>
                                 {% endif %}
 
-								<td class="price" data-title="Vendedor"><span><a href="{% url 'DatosDeContactoTemplateView' sale.product.author.id %}">{{sale.product.author}} <i class="fa fa-id-card"></i></a></span></td>
+								<td class="price" data-title="Seller"><span><a href="{% url 'ContactDetailsTemplateView' sale.product.author.id %}">{{sale.product.author}} <i class="fa fa-id-card"></i></a></span></td>
                                 <td class="price" data-title="Estado">{{sale.operating_status}}</td>
 							</tr>
                         </tbody>

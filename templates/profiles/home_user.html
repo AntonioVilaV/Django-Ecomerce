@@ -4,7 +4,7 @@
 {% block contenido %}
 <div class="col-12">
     <div class="form-main">
-		{% if request.user.groups.get.name == 'Vendedor' %}
+		{% if request.user.groups.get.name == 'Seller' %}
 			<div class="title">
 				<h3>Resumen</h3>
 			</div>
@@ -43,7 +43,7 @@
 			</section>
 		{% endif %}
 
-		{% if request.user.groups.get.name == 'Comprador' %}
+		{% if request.user.groups.get.name == 'Buyer' %}
 			<div class="title">
 				<h3>Resumen</h3>
 			</div>
@@ -91,7 +91,7 @@
 {%block a%}
 
 <!--Widgets resumen de la cuenta-->
-{% if request.user.groups.get.name == 'Vendedor' %}
+{% if request.user.groups.get.name == 'Seller' %}
 <div class="row">
 	<div class="col-md-3 col-sm-6 col-12">
 		<div class="info-box">
@@ -183,7 +183,7 @@
 
 {% endif %}
 
-{% if request.user.groups.get.name == 'Comprador' %}
+{% if request.user.groups.get.name == 'Buyer' %}
 <div class="row">
 	<div class="col-md-3 col-sm-6 col-12">
 		<div class="info-box">

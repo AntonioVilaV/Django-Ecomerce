@@ -1,0 +1,33 @@
+{% extends 'base/base_contenido.html' %}
+
+
+{% block contenido %}
+<table class="table shopping-summery">
+    <thead>
+        <tr class="main-hading">
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th class="text-center">Dirección</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+
+            <td class="price" data-title="Usuario"><span>{{contact.user.username}} </span></td>
+            <td class="price" data-title="Nombre"><span>{{contact.user.first_name}} {{contacto.user.last_name}}</span></td>
+            <td class="price" data-title="Telefono"><span>{{contact.phone}} </span></td>
+            <td class="price" data-title="Correo"><span>{{contact.user.email}} </span></td>
+            <td class="price" data-title="Dirección"><span>{{contact.address}} </span></td>
+
+            </td>
+
+
+        </tr>
+
+
+    </tbody>
+</table>
+{% endblock contenido %}

@@ -32,7 +32,7 @@
                                 {% endif %}
 
 
-								<td class="price" data-title="Comprador"><span><a href="{% url 'DatosDeContactoTemplateView' object.user.id %}">{{object.user}} <i class="fa fa-id-card"></i></a></span></td>
+								<td class="price" data-title="Buyer"><span><a href="{% url 'ContactDetailsTemplateView' object.user.id %}">{{object.user}} <i class="fa fa-id-card"></i></a></span></td>
                                 <form action="" method="post">
                                     {% csrf_token %}
 								    <td class="price" data-title="Estado">{{form.operating_status}}</td>

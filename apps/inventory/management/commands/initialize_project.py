@@ -20,8 +20,8 @@ class Command(BaseCommand):
                     "admin", "admin@admin.com", "admin"
                 )
                 ContactDetails.objects.create(user=user)
-                seller_group = Group.objects.create(name="Vendedor")
-                Group.objects.create(name="Comprador")
+                seller_group = Group.objects.create(name="Seller")
+                Group.objects.create(name="Buyer")
                 user.groups.add(seller_group)
                 self.stdout.write(self.style.SUCCESS("Usuario creado exitosamente!"))
 

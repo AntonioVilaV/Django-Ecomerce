@@ -37,7 +37,7 @@
 
 
                         </td>
-                        <td class="qty" data-title="Comprador"><a href="{% url 'DatosDeContactoTemplateView' i.user.id %}">{{i.user}}</a></td>
+                        <td class="qty" data-title="Buyer"><a href="{% url 'ContactDetailsTemplateView' i.user.id %}">{{i.user}}</a></td>
                         <td class="product-des" data-title="Producto">
                             <p class="product-name"><a href="{% url 'ProductDetailView' i.product.id %}">{{i.product.name}}</a></p>
                             <p class="product-des">{{i.product.description|slice:50}}...</p>
@@ -63,7 +63,7 @@
                     </td>
                     <td class="product-des" data-title="Fecha Compra/Entrega">
                     </td>
-                    <td class="qty" data-title="Comprador"></td>
+                    <td class="qty" data-title="Buyer"></td>
                     <td class="product-des" data-title="Producto">
                     </td>
                     <td class="price" data-title="Precio"><span></span></td>

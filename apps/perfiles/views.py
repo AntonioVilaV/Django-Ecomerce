@@ -11,9 +11,9 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 
 from apps.inventory.models import Product
 from apps.perfiles.forms import (
-    RegistroUsuarioForm,
-    UpdateDatosContactoForm,
-    UpdateDatosUsuarioForm,
+    ContactDetailsForm,
+    UserDetailsForm,
+    UserRegistrationForm,
 )
 from apps.perfiles.models import ContactDetails
 from apps.sale.models import SalesRecord
@@ -42,25 +42,25 @@ class HomeIndexTemplateView(TemplateView):
         return context
 
 
-# Vendedor - Vistas
+# Seller - Vistas
 
 
-class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
-    """Vista home del perfil de usuario , encargada de mostrar el status de las operaciones de venta y compra del Vendedor"""
+class ProfileHomeTemplateView(LoginRequiredMixin, TemplateView):
+    """Home view of the user profile, in charge of displaying the status of the Seller's sale and purchase transactions."""
 
-    template_name = "profiles/homeUsuario.html"
+    template_name = "profiles/home_user.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Eshop Django - Home"
 
-        if self.request.user.groups.get().name == "Vendedor":
-            ventasActivas = (
+        if self.request.user.groups.get().name == "Seller":
+            active_sales = (
                 SalesRecord.objects.filter(product__author=self.request.user)
                 .filter(state=True)
                 .count()
             )
-            pagoPorConfirmar = (
+            payments_to_be_confirmed = (
                 SalesRecord.objects.filter(product__author__pk=self.request.user.pk)
                 .filter(
                     Q(operating_status__name="Waiting for payment")
@@ -68,51 +68,55 @@ class HomePerfilTemplateView(LoginRequiredMixin, TemplateView):
                 )
                 .count()
             )
-            productosPorEnviar = (
+            products_to_be_shipped = (
                 SalesRecord.objects.filter(product__author__pk=self.request.user.pk)
-                .filter(operating_status__name="Procesando Encomienda")
+                .filter(operating_status__name="Processing order")
                 .count()
             )
-            context["resumen"] = [ventasActivas, pagoPorConfirmar, productosPorEnviar]
-        elif self.request.user.groups.get().name == "Comprador":
-            compras = (
+            context["resumen"] = [
+                active_sales,
+                payments_to_be_confirmed,
+                products_to_be_shipped,
+            ]
+        elif self.request.user.groups.get().name == "Buyer":
+            purchases = (
                 SalesRecord.objects.filter(user=self.request.user.pk)
                 .filter(state=True)
                 .count()
             )
-            facturas = (
+            invoices = (
                 SalesRecord.objects.filter(user=self.request.user.pk)
                 .filter(operating_status__name="Waiting for payment")
                 .count()
-            )  # Facturas P.Pagar
-            envios = (
+            )
+            shipments = (
                 SalesRecord.objects.filter(user=self.request.user.pk)
                 .filter(
-                    Q(operating_status__name="Procesando Encomienda")
+                    Q(operating_status__name="Processing order")
                     | Q(operating_status__name="Sent to")
                 )
                 .count()
             )
-            context["resumen"] = [compras, facturas, envios]
+            context["resumen"] = [purchases, invoices, shipments]
         return context
 
 
-# Comprador - Vistas
+# Buyer - Vistas
 
 
-class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
-    """Vista encargada de mostrar los datos de mi cuenta y da la opcion de actualizar"""
+class MyAccountUpdateView(LoginRequiredMixin, UpdateView):
+    """View in charge of displaying my account data and gives the option to upgrade"""
 
     model = ContactDetails
     second_model = User
-    template_name = "profiles/miCuenta.html"
-    form_class = UpdateDatosContactoForm
-    second_form_class = UpdateDatosUsuarioForm
-    success_url = reverse_lazy("HomePerfilTemplateView")
+    template_name = "profiles/my_account.html"
+    form_class = ContactDetailsForm
+    second_form_class = UserDetailsForm
+    success_url = reverse_lazy("ProfileHomeTemplateView")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Mi cuenta"
+        context["title"] = "Eshop Django - My account"
         user = self.second_model.objects.get(id=self.kwargs["pk"])
 
         if "form" not in context:
@@ -127,64 +131,58 @@ class MiCuentaUpdateView(LoginRequiredMixin, UpdateView):
         if datos.user == logeado:
             return datos
         else:
-            raise Http404("Acceso denegado")
+            raise Http404("Access denied")
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
             return super().dispatch(request, *args, **kwargs)
         except ContactDetails.DoesNotExist:
-            raise Http404("Datos no existe")
+            raise Http404("Data not exists")
 
     def post(self, request, *args, **kwargs):
         if self.object.user == self.request.user:
-            formDatosUsuario = UpdateDatosUsuarioForm(
-                request.POST, instance=self.request.user
-            )
-            formDatosContacto = UpdateDatosContactoForm(
-                request.POST, instance=self.object
-            )
+            form_user_data = UserDetailsForm(request.POST, instance=self.request.user)
+            form_contact_data = ContactDetailsForm(request.POST, instance=self.object)
 
-            if formDatosUsuario.is_valid() and formDatosContacto.is_valid():
-                formDatosUsuario.save(commit=False)
-                formDatosContacto.save()
-                formDatosUsuario.save()
+            if form_user_data.is_valid() and form_contact_data.is_valid():
+                form_user_data.save(commit=False)
+                form_contact_data.save()
+                form_user_data.save()
                 return self.render_to_response(self.get_context_data())
             else:
                 return self.render_to_response(
-                    self.get_context_data(
-                        form=formDatosContacto, form2=formDatosUsuario
-                    )
+                    self.get_context_data(form=form_contact_data, form2=form_user_data)
                 )
         else:
-            raise Http404("Acción dendegada")
+            raise Http404("Access denied")
 
 
-class RegistroUsuarioCreateView(CreateView):
-    """Vista encargada de registrar un usuario en la base de datos de la plataforma"""
+class UserRegistrationCreateView(CreateView):
+    """View in charge of registering a user in the platform database"""
 
     model = User
-    template_name = "profiles/registrar.html"
-    form_class = RegistroUsuarioForm
-    success_url = reverse_lazy("HomePerfilTemplateView")
+    template_name = "profiles/register.html"
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy("ProfileHomeTemplateView")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Registrar"
+        context["title"] = "Register"
         return context
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect(reverse_lazy("HomePerfilTemplateView"))
+            return redirect(reverse_lazy("ProfileHomeTemplateView"))
         else:
             return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        grupoID = self.request.POST["groups"]
-        grupo = Group.objects.get(id=grupoID)
+        group_id = self.request.POST["groups"]
+        group = Group.objects.get(id=group_id)
         with transaction.atomic():
-            grupo.user_set.add(self.object)
+            group.user_set.add(self.object)
             ContactDetails.objects.create(user=self.object)
         new_user = authenticate(
             username=form.cleaned_data.get("username"),
@@ -199,7 +197,7 @@ class RegistroUsuarioCreateView(CreateView):
 
 
 class LoginUserLoginView(LoginView):
-    """Vista encargada de mostrar formulario de logueo"""
+    """View in charge of displaying login form"""
 
     template_name = "log/log.html"
 
@@ -210,14 +208,14 @@ class LoginUserLoginView(LoginView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect("HomePerfilTemplateView")
+            return redirect("ProfileHomeTemplateView")
         return super().dispatch(request, *args, **kwargs)
 
 
-class DatosDeContactoTemplateView(TemplateView):
-    """Vista esta encargada de mostrar los datos de contacto de un usuario y verificar si tienes permisos para verlos"""
+class ContactDetailsTemplateView(TemplateView):
+    """This view is responsible for displaying a user's contact details and verifying whether you have permissions to view them."""
 
-    template_name = "profiles/contacto/ContactDetails.html"
+    template_name = "profiles/contacto/contact_details.html"
 
     def dispatch(self, request, *args, **kwargs):
         if (
@@ -230,11 +228,11 @@ class DatosDeContactoTemplateView(TemplateView):
         ):
             return super().dispatch(request, *args, **kwargs)
         else:
-            raise Http404("Objeto no encontrado")
+            raise Http404("Object not found")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Eshop Django - Datos Contacto"
+        context["title"] = "Eshop Django - Contact details"
 
         context["contacto"] = ContactDetails.objects.get(id=self.kwargs["pk"])
         return context

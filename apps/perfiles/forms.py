@@ -5,7 +5,7 @@ from django.forms import ModelForm, ValidationError
 from apps.perfiles.models import ContactDetails
 
 
-class UpdateDatosContactoForm(ModelForm):
+class ContactDetailsForm(ModelForm):
     class Meta:
         model = ContactDetails
         fields = ["phone", "address"]
@@ -13,27 +13,27 @@ class UpdateDatosContactoForm(ModelForm):
     def clean_phone(self):
         phone = self.cleaned_data["phone"]
         if not phone:
-            raise ValidationError("Este campo no puede ser vacío")
+            raise ValidationError("This field cannot be empty")
         elif not phone.isdigit():
-            raise ValidationError("Solo puede ingresar numeros")
+            raise ValidationError("You can only enter numbers")
         else:
             return phone
 
 
-class UpdateDatosUsuarioForm(ModelForm):
+class UserDetailsForm(ModelForm):
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email"]
 
 
-class RegistroUsuarioForm(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "first_name", "last_name", "email", "groups"]
         labels = {
-            "username": "Nombre de user",
-            "first_name": "Nombre",
-            "last_name": "Apellidos",
-            "email": "Correo",
-            "groups": "Grupos",
+            "username": "User name",
+            "first_name": "Name",
+            "last_name": "Second name",
+            "email": "Email",
+            "groups": "Groups",
         }

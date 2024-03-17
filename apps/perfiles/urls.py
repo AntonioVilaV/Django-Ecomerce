@@ -2,28 +2,32 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from apps.perfiles.views import (
-    DatosDeContactoTemplateView,
+    ContactDetailsTemplateView,
     HomeIndexTemplateView,
-    HomePerfilTemplateView,
     LoginUserLoginView,
-    MiCuentaUpdateView,
-    RegistroUsuarioCreateView,
+    MyAccountUpdateView,
+    ProfileHomeTemplateView,
+    UserRegistrationCreateView,
 )
 
 urlpatterns = [
     path("", HomeIndexTemplateView.as_view(), name="HomeIndexTemplateView"),
-    path("home/", HomePerfilTemplateView.as_view(), name="HomePerfilTemplateView"),
-    path("miCuenta/<int:pk>", MiCuentaUpdateView.as_view(), name="MiCuentaUpdateView"),
+    path("home/", ProfileHomeTemplateView.as_view(), name="ProfileHomeTemplateView"),
     path(
-        "registrar/",
-        RegistroUsuarioCreateView.as_view(),
-        name="RegistroUsuarioCreateView",
+        "my_account/<int:pk>/",
+        MyAccountUpdateView.as_view(),
+        name="MyAccountUpdateView",
+    ),
+    path(
+        "register/",
+        UserRegistrationCreateView.as_view(),
+        name="UserRegistrationCreateView",
     ),
     path("login/", LoginUserLoginView.as_view(), name="LoginUserLoginView"),
     path("salir/", LogoutView.as_view(), name="LogoutView"),
     path(
-        "ContactDetails/<int:pk>/",
-        DatosDeContactoTemplateView.as_view(),
-        name="DatosDeContactoTemplateView",
+        "contact_details/<int:pk>/",
+        ContactDetailsTemplateView.as_view(),
+        name="ContactDetailsTemplateView",
     ),
 ]
